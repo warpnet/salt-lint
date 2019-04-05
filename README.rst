@@ -9,6 +9,13 @@ The project is heavily based on `ansible-lint`_, which was created by `Will Tham
 Installing
 ==========
 
+Using Pip
+---------
+
+.. code-block:: bash
+
+    pip install salt-lint
+
 From Source
 -----------
 

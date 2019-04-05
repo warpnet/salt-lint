@@ -1,0 +1,12 @@
+---
+
+# For use with pre-commit.
+# See usage instructions at http://pre-commit.com
+
+-   id: salt-lint
+    name: Salt-lint
+    description: This hook runs salt-lint.
+    entry: salt-lint
+    language: python
+    files: \.(sls)$
+

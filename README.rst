@@ -59,11 +59,32 @@ Salt-lint supports local confguration via a ``.salt-lint`` configuration file. S
 
 If a value is provided on both the command line and via a config file, the values will be merged (if a list like **exclude_paths**), or the **True** value will be preferred, in the case of something like **quiet**.
 
+Pre-commit Setup
+----------------
+
+To use salt-lint with `pre-commit`_,  just add the following to your local repo's ``.pre-commit-config.yaml`` file. Prior to version 0.12.0 of `pre-commit`_ the file was ``hooks.yaml`` (now ``.pre-commit-config.yaml``).
+
+.. code-block:: yaml
+
+    ---
+
+    # For use with pre-commit.
+    # See usage instructions at http://pre-commit.com
+
+    -   id: salt-lint
+        name: Salt-lint
+        description: This hook runs salt-lint.
+        entry: salt-lint
+        language: python
+        files: \.(sls)$
+
+
 Authors
 =======
 
 salt-lint is heavily based on `ansible-lint`_ with the modified work by `Roald Nefs`_. `ansible-lint`_ was created by `Will Thames`_ and is now maintained as part of the `Ansible`_ by `Red Hat`_ project.
 
+.. _pre-commit: https://pre-commit.com
 .. _ansible-lint: https://github.com/ansible/ansible-lint 
 .. _Roald Nefs: https://github.com/roaldnefs
 .. _Will Thames: https://github.com/willthames

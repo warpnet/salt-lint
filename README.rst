@@ -1,3 +1,11 @@
+.. image:: https://img.shields.io/pypi/v/salt-lint.svg?style=for-the-badge   
+   :target: https://pypi.org/project/salt-lint
+   :alt: PyPI
+
+.. image:: https://img.shields.io/travis/roaldnefs/salt-lint.svg?style=for-the-badge
+   :target: https://travis-ci.org/roaldnefs/salt-lint
+   :alt: Travis (.org)
+
 Salt-lint
 =========
 

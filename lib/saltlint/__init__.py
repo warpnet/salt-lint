@@ -1,6 +1,8 @@
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
 # Modified work Copyright (c) 2019 Roald Nefs
 
+from __future__ import print_function
+
 from collections import defaultdict
 import os
 import re

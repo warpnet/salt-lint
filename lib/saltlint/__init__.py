@@ -94,8 +94,6 @@ class RulesCollection(object):
                 rule_definition.add(rule.id)
                 if set(rule_definition).isdisjoint(skip_list):
                     matches.extend(rule.matchlines(statefile, text))
-                    #matches.extend(rule.matchtasks(statefile, text))
-                    #matches.extend(rule.matchyaml(statefile, text))
 
         return matches
 

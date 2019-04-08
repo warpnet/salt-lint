@@ -16,11 +16,11 @@ class Formatter(object):
                 u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
                                       color['ENDC']),
                 u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
-                                   color['ENDC']),
+                                    color['ENDC']),
                 u'{0}{1}{2}'.format(color['BLUE'], match.filename,
-                                   color['ENDC']),
+                                    color['ENDC']),
                 u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
-                                   color['ENDC']),
+                                    color['ENDC']),
                 u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC'])
             )
         else:

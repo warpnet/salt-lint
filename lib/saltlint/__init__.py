@@ -141,7 +141,7 @@ class Runner(object):
         self.states = set()
         # assume state if directory
         if os.path.isdir(state):
-            self.playbooks.add((os.path.join(state, ''), 'directory'))
+            self.states.add((os.path.join(state, ''), 'directory'))
             self.state_dir = state
         else:
             self.states.add((state, 'state'))

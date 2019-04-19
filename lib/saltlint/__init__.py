@@ -139,13 +139,11 @@ class Runner(object):
                  verbosity=0, checked_files=None):
         self.rules = rules
         self.states = set()
-        # assume state if directory
+        # assume state is directory
         if os.path.isdir(state):
-            self.states.add((os.path.join(state, ''), 'directory'))
-            self.state_dir = state
+            self.states.add((os.path.join(state, 'init.sls'), 'state'))
         else:
             self.states.add((state, 'state'))
-            self.state_dir = os.path.dirname(state)
         self.tags = tags
         self.skip_list = skip_list
         self._update_exclude_paths(exclude_paths)
@@ -173,11 +171,7 @@ class Runner(object):
         for state in self.states:
             if self.is_excluded(state[0]):
                 continue
-            if state[1] == 'directory':
-                continue
             files.append({'path': state[0], 'type': state[1]})
-
-        # TODO loop over states in directory
 
         matches = list()
 

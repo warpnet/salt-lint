@@ -41,10 +41,9 @@ class SaltLintRule(object):
             if line.lstrip().startswith('#'):
                 continue
 
-            # TODO
-            # rule_id_list = saltlint.utils.get_rule_skips_from_line(line)
-            # if self.id in rule_id_list:
-            #     continue
+            rule_id_list = saltlint.utils.get_rule_skips_from_line(line)
+            if self.id in rule_id_list:
+                continue
 
             result = self.match(file, line)
             if not result:

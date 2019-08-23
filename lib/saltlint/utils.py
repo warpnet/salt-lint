@@ -22,3 +22,11 @@ def load_plugins(directory):
             if fh:
                 fh.close()
     return result
+
+
+def get_rule_skips_from_line(line):
+    rule_id_list = []
+    if '# noqa' in line:
+        noqa_text = line.split('# noqa')[1]
+        rule_id_list = noqa_text.split()
+    return rule_id_list

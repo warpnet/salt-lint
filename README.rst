@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/pypi/v/salt-lint.svg?style=for-the-badge   
+.. image:: https://img.shields.io/pypi/v/salt-lint.svg?style=for-the-badge
    :target: https://pypi.org/project/salt-lint
    :alt: PyPI
 
@@ -9,8 +9,7 @@
 Salt-lint
 =========
 
-``salt-lint`` checks Salt state files (SLS) for practices and behaviour that could
-potentially be improved.
+``salt-lint`` checks Salt state files (SLS) for practices and behavior that could potentially be improved.
 
 The project is heavily based on `ansible-lint`_, which was created by `Will Thames`_ and is now maintained as part of the `Ansible`_ by `Red Hat`_ project.
 
@@ -70,9 +69,9 @@ Configuring
 Configuration File
 ------------------
 
-Salt-lint supports local confguration via a ``.salt-lint`` configuration file. Salt-lint check the working directory for the presence of this file and applies any configuration found there. The configuration file location can also be overridden via the ``-c path/to/file`` CLI flag.
+Salt-lint supports local configuration via a ``.salt-lint`` configuration file. Salt-lint check the working directory for the presence of this file and applies any configuration found there. The configuration file location can also be overridden via the ``-c path/to/file`` CLI flag.
 
-If a value is provided on both the command line and via a config file, the values will be merged (if a list like **exclude_paths**), or the **True** value will be preferred, in the case of something like **quiet**.
+If a value is provided on both the command line and via a configuration file, the values will be merged (if a list like **exclude_paths**), or the **True** value will be preferred, in the case of something like **quiet**.
 
 Pre-commit Setup
 ----------------
@@ -100,7 +99,7 @@ Authors
 salt-lint is heavily based on `ansible-lint`_ with the modified work by `Roald Nefs`_. `ansible-lint`_ was created by `Will Thames`_ and is now maintained as part of the `Ansible`_ by `Red Hat`_ project.
 
 .. _pre-commit: https://pre-commit.com
-.. _ansible-lint: https://github.com/ansible/ansible-lint 
+.. _ansible-lint: https://github.com/ansible/ansible-lint
 .. _Roald Nefs: https://github.com/roaldnefs
 .. _Will Thames: https://github.com/willthames
 .. _Ansible: https://ansible.com

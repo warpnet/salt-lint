@@ -92,6 +92,13 @@ To use salt-lint with `pre-commit`_,  just add the following to your local repo'
         language: python
         files: \.(sls)$
 
+Rules
+=====
+
+False Positives: Skipping Rules
+-------------------------------
+
+Some rules are bit of a rule of thumb. To skip a specific rule for a specific task, inside your state add ``# noqa [rule_id]`` at the end of the line. You can skip multiple rules via a space-separated list.
 
 Authors
 =======

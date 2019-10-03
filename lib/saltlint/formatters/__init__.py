@@ -3,7 +3,10 @@
 # Modified work Copyright (c) 2019 Roald Nefs
 
 # Import salt libs
-import salt.utils.color
+try:
+    import salt.utils.color as saltcolor
+except ImportError:
+    import salt.utils as saltcolor
 
 
 class Formatter(object):
@@ -11,7 +14,7 @@ class Formatter(object):
     def format(self, match, colored=False):
         formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
         if colored:
-            color = salt.utils.color.get_colors()
+            color = saltcolor.get_colors()
             return formatstr.format(
                 u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
                                       color['ENDC']),

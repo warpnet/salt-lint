@@ -98,7 +98,13 @@ Rules
 False Positives: Skipping Rules
 -------------------------------
 
-Some rules are bit of a rule of thumb. To skip a specific rule for a specific task, inside your state add ``# noqa [rule_id]`` at the end of the line. You can skip multiple rules via a space-separated list.
+Some rules are bit of a rule of thumb. To skip a specific rule for a specific task, inside your state add ``# noqa [rule_id]`` at the end of the line. You can skip multiple rules via a space-separated list. Example:
+
+.. code-block:: yaml
+
+    /tmp/testfile:
+      file.managed:
+        - source: salt://{{unspaced_var}}/example  # noqa: 206
 
 Authors
 =======

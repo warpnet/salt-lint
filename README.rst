@@ -61,7 +61,7 @@ The following is the output from ``salt-lint --help``, providing an overview of 
 Linting Salt state files
 ------------------------
 
-It's important to note tat ``salt-lint`` accepts a list of Salt state files or a list of directories.
+It's important to note that ``salt-lint`` accepts a list of Salt state files or a list of directories.
 
 Configuring
 ===========
@@ -69,7 +69,7 @@ Configuring
 Configuration File
 ------------------
 
-Salt-lint supports local configuration via a ``.salt-lint`` configuration file. Salt-lint check the working directory for the presence of this file and applies any configuration found there. The configuration file location can also be overridden via the ``-c path/to/file`` CLI flag.
+Salt-lint supports local configuration via a ``.salt-lint`` configuration file. Salt-lint checks the working directory for the presence of this file and applies any configuration found there. The configuration file location can also be overridden via the ``-c path/to/file`` CLI flag.
 
 If a value is provided on both the command line and via a configuration file, the values will be merged (if a list like **exclude_paths**), or the **True** value will be preferred, in the case of something like **quiet**.
 

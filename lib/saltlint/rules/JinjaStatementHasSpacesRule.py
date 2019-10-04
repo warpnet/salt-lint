@@ -12,7 +12,7 @@ class JinjaStatementHasSpacesRule(SaltLintRule):
     description = 'Jinja statement should have spaces before and after: ``{% statement %}``'
     severity = 'LOW'
     tags = ['formatting']
-    version_added = 'v0.0.1'
+    version_added = 'v0.0.2'
 
     bracket_regex = re.compile(r"{%[^ -]|{%-[^ ]|[^ -]%}|[^ ]-%}")
 

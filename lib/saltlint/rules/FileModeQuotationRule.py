@@ -12,7 +12,7 @@ class FileModeQuotationRule(SaltLintRule):
     description = 'File modes should always be encapsulated in quotation marks'
     severity = 'HIGH'
     tags = ['formatting']
-    version_added = 'develop'
+    version_added = 'v0.0.3'
 
     bracket_regex = re.compile(r"^\s+- ((dir_)|(file_))?mode: [0-9]{3,4}")
 

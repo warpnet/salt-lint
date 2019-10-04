@@ -14,7 +14,7 @@ class JinjaCommentHasSpacesRule(SaltLintRule):
     tags = ['formatting']
     version_added = 'v0.0.5'
 
-    bracket_regex = re.compile(r"{#[^ -]|{#-[^ ]|[^ -]#}|[^ ]-#}")
+    bracket_regex = re.compile(r"{#[^ \-\+]|{#[\-\+][^ ]|[^ \-\+]#}|[^ ][\-\+]#}")
 
     def match(self, file, line):
         return self.bracket_regex.search(line)

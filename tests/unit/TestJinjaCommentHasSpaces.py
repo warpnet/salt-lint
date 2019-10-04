@@ -10,11 +10,11 @@ from tests import RunFromText
 
 
 GOOD_COMMENT_LINE = '''
-{#- set example='good' -#}
+{#- set example='good' +#}
 '''
 
 BAD_COMMENT_LINE = '''
-{#-set example='bad'-#}
+{#-set example='bad'+#}
 '''
 
 class TestLineTooLongRule(unittest.TestCase):

@@ -73,6 +73,22 @@ Salt-lint supports local configuration via a ``.salt-lint`` configuration file. 
 
 If a value is provided on both the command line and via a configuration file, the values will be merged (if a list like **exclude_paths**), or the **True** value will be preferred, in the case of something like **quiet**.
 
+The following values are supported, and function identically to their CLI counterparts:
+
+.. code-block:: yaml
+
+    ---
+    exclude_paths:
+      - exclude_this_file
+      - exclude_this_directory/
+      - exclude/this/sub-directory/
+    skip_list:
+      - 207
+      - 208
+    tags:
+      - formatting
+    verbosity: 1
+
 Pre-commit Setup
 ----------------
 

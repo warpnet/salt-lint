@@ -8,7 +8,7 @@ import sys
 from setuptools import setup, find_packages
 
 
-version = "0.0.2"
+version = "0.0.3"
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -56,7 +56,7 @@ setup(
     license='MIT',
     zip_safe=False,
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Information Technology',

@@ -12,7 +12,7 @@ class FileModeLeadingZeroRule(SaltLintRule):
     description = 'File modes should always contain a leading zero'
     severity = 'LOW'
     tags = ['formatting']
-    version_added = 'develop'
+    version_added = 'v0.0.3'
 
     bracket_regex = re.compile(r"^\s+- ((dir_)|(file_))?mode: ((')|(\"))?[0-9]{3}([\D]|$)")
 

@@ -5,11 +5,11 @@
 import unittest
 
 from saltlint import RulesCollection
-from saltlint.rules.FileModeQuotationRule import FileModeQuotationRule
+from saltlint.rules.FileModeLeadingZeroRule import FileModeLeadingZeroRule
 from tests import RunFromText
 
 
-GOOD_MODE_QUOTATION_LINE = '''
+GOOD_MODE_LEADING_ZERO_LINE = '''
 testfile:
   file.managed:
     - name: /tmp/testfile
@@ -18,28 +18,29 @@ testfile:
     - mode: '0700'
 '''
 
-BAD_MODE_QUOTATION_LINE = '''
+BAD_MODE_LEADING_ZERO_LINE = '''
 testfile:
   file.managed:
     - name: /tmp/badfile
     - user: root
     - group: root
-    - mode: 0700
-    - file_mode: 0660
-    - dir_mode: 0775
+    - mode: 700
+    - file_mode: '660'
+    - dir_mode: '775'
 '''
 
-class TestModeQuotationRule(unittest.TestCase):
+class TestFileModeLeadingZeroRule(unittest.TestCase):
     collection = RulesCollection()
 
     def setUp(self):
-        self.collection.register(FileModeQuotationRule())
-        self.runner = RunFromText(self.collection)
+        self.collection.register(FileModeLeadingZeroRule())
 
     def test_statement_positive(self):
-        results = self.runner.run_state(GOOD_MODE_QUOTATION_LINE)
+        runner = RunFromText(self.collection)
+        results = runner.run_state(GOOD_MODE_LEADING_ZERO_LINE)
         self.assertEqual(0, len(results))
 
     def test_statement_negative(self):
-        results = self.runner.run_state(BAD_MODE_QUOTATION_LINE)
+        runner = RunFromText(self.collection)
+        results = runner.run_state(BAD_MODE_LEADING_ZERO_LINE)
         self.assertEqual(3, len(results))

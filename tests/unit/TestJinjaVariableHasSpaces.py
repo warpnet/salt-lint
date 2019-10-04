@@ -10,11 +10,11 @@ from tests import RunFromText
 
 
 GOOD_VARIABLE_LINE = '''
-{{ variable }}
+{{- variable -}}
 '''
 
 BAD_VARIABLE_LINE = '''
-{{ variable}}
+{{-variable-}}
 '''
 
 class TestLineTooLongRule(unittest.TestCase):

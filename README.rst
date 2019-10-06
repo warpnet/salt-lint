@@ -63,6 +63,28 @@ Linting Salt state files
 
 It's important to note that ``salt-lint`` accepts a list of Salt state files or a list of directories.
 
+GitHub Action
+-------------
+
+Salt-lint is available on the GitHub `marketplace`_ as a GitHub Action. The `salt-lint-action`_ allows you to run ``salt-lint`` with no additional options.
+
+To use the action simply add the following lines to your ``.github/workflows/main.yml``.
+
+.. code-block:: yaml
+
+    on: [push]
+
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        name: Salt Lint Action
+        steps:
+        - uses: actions/checkout@v1
+        - name: Run salt-lint
+          uses: roaldnefs/salt-lint-action@master
+          env:
+            ACTION_STATE_NAME: init.sls
+
 Configuring
 ===========
 
@@ -133,3 +155,5 @@ salt-lint is heavily based on `ansible-lint`_ with the modified work by `Roald N
 .. _Will Thames: https://github.com/willthames
 .. _Ansible: https://ansible.com
 .. _Red Hat: https://redhat.com
+.. _marketplace: https://github.com/marketplace/actions/salt-lint
+.. _salt-lint-action: https://github.com/roaldnefs/salt-lint-action

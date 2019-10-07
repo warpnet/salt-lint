@@ -26,9 +26,10 @@ testdirectory02:
 BAD_NUMBER_LINE = '''
 testdirectory:
   file.recurse:
-    - name: /tmp/directory
-    - file_mode: 0775
-    - dir_mode: 070
+    - name: /tmp/directory001  # shouldn't fail
+    - mode: 0                  # shouldn't fail
+    - file_mode: 00            # should fail
+    - dir_mode: 0700           # should fail
 '''
 
 class TestFileModeLeadingZeroRule(unittest.TestCase):

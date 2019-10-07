@@ -16,9 +16,9 @@ testdirectory:
     - file_mode: 700
     - dir_mode: '0775'
 
-testdirectory2:
+testdirectory02:
   file.recurse:
-    - name: /tmp/directory2
+    - name: /tmp/directory02
     - file_mode: 0
     - dir_mode: "0775"
 '''

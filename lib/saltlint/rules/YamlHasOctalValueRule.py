@@ -12,7 +12,7 @@ class YamlHasOctalValueRule(SaltLintRule):
     description = 'Numbers that start with `0` should always be encapsulated in quotation marks'
     severity = 'HIGH'
     tags = ['formatting']
-    version_added = 'develop'
+    version_added = 'v0.0.6'
 
     bracket_regex = re.compile(r"(?<!['\"])0+[1-9]\d*(?!['\"])")
 

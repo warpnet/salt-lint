@@ -14,7 +14,7 @@ class YamlHasOctalValueRule(SaltLintRule):
     tags = ['formatting']
     version_added = 'v0.0.6'
 
-    bracket_regex = re.compile(r"(?<!['\"])0+[1-9]\d*(?!['\"])")
+    bracket_regex = re.compile(r": (?<!['\"])0+[1-9]\d*(?!['\"])")
 
     def match(self, file, line):
         return self.bracket_regex.search(line)

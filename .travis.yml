@@ -35,3 +35,4 @@ deploy:
     tags: true
     branch: master
     python: 3.6
+    condition: "$TOXENV = py36"

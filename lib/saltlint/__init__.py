@@ -20,7 +20,7 @@ import saltlint.utils
 
 # Import salt libs
 from salt.utils import yamlloader
-from salt.renderers.yaml import _ERROR_MAP
+from salt.renderers.yaml import _ERROR_MAP  # noqa: F401
 
 default_rulesdir = os.path.join(os.path.dirname(saltlint.utils.__file__), 'rules')
 
@@ -75,28 +75,32 @@ class SaltLintRule(object):
 
         # Strip jinja from the statefile text
         text = self.unjinja(text)
+        yaml = {}
 
         with warnings.catch_warnings(record=True) as warn_list:
             try:
                 yaml = yamlloader.load(text)
             except ScannerError as exc:
-                err_type = _ERROR_MAP.get(exc.problem, exc.problem)
-                line_num = exc.problem_mark.line + 1
+                # err_type = _ERROR_MAP.get(exc.problem, exc.problem)
+                # line_num = exc.problem_mark.line + 1
                 # TODO do something with exeception
-            except (ParserError, ConstructorError) as exc:
                 pass
+            except (ParserError, ConstructorError) as exc:  # noqa: F841
                 # TODO do something with exeception
+                pass
 
             if len(warn_list) > 0:
                 for item in warn_list:
                     # TODO do something with warngin
                     pass
 
-            # Get the result
+            # Get the result based on the parsed YAML
             result = self.matchyaml(file, yaml)
 
             for section, message in result:
-                matches.append(Match('?', section, file['path'], self, message))
+                # TODO fix line number, because after parsing YAML we lost the lines
+                line_number = '?'
+                matches.append(Match(line_number, section, file['path'], self, message))
 
             return matches
 

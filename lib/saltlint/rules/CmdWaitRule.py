@@ -1,6 +1,4 @@
-# Copyright (c) 2016, Tsukinowa Inc. <info@tsukinowa.jp>
-# Copyright (c) 2018, Ansible Project
-# Modified work Copyright (c) 2019 Roald Nefs
+# Copyright (c) 2019 Roald Nefs
 
 from saltlint import SaltLintRule
 

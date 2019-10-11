@@ -80,7 +80,7 @@ class SaltLintRule(object):
         with warnings.catch_warnings(record=True) as warn_list:
             try:
                 yaml = yamlloader.load(text)
-            except ScannerError as exc:
+            except ScannerError as exc:  # noqa: F841
                 # err_type = _ERROR_MAP.get(exc.problem, exc.problem)
                 # line_num = exc.problem_mark.line + 1
                 # TODO do something with exeception

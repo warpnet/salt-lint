@@ -3,15 +3,24 @@
 
 from __future__ import print_function
 
+# Import python libs
 from collections import defaultdict
 import os
 import re
 import sys
-
+import warnings
+from yaml.scanner import ScannerError
+from yaml.parser import ParserError
+from yaml.constructor import ConstructorError
 import six
-
-import saltlint.utils
 import codecs
+
+# Import salt-lint libs
+import saltlint.utils
+
+# Import salt libs
+from salt.utils import yamlloader
+from salt.renderers.yaml import _ERROR_MAP
 
 default_rulesdir = os.path.join(os.path.dirname(saltlint.utils.__file__), 'rules')
 
@@ -25,10 +34,13 @@ class SaltLintRule(object):
         return self.id + ": " + self.shortdesc + "\n " + self.description
 
     match = None
+    matchyaml = None
 
     @staticmethod
     def unjinja(text):
-        return re.sub(r"{{[^}]*}}", "JINJA_VAR", text)
+        text = re.sub(r"{%.*?%}", '', text)
+        text = re.sub(r"{{[^}]*}}", "JINJA_VAR", text)
+        return text
 
     def matchlines(self, file, text):
         matches = []
@@ -55,6 +67,38 @@ class SaltLintRule(object):
                            file['path'], self, message))
 
         return matches
+
+    def matchyamls(self, file, text):
+        matches = []
+        if not self.matchyaml:
+            return matches
+
+        # Strip jinja from the statefile text
+        text = self.unjinja(text)
+
+        with warnings.catch_warnings(record=True) as warn_list:
+            try:
+                yaml = yamlloader.load(text)
+            except ScannerError as exc:
+                err_type = _ERROR_MAP.get(exc.problem, exc.problem)
+                line_num = exc.problem_mark.line + 1
+                # TODO do something with exeception
+            except (ParserError, ConstructorError) as exc:
+                pass
+                # TODO do something with exeception
+
+            if len(warn_list) > 0:
+                for item in warn_list:
+                    # TODO do something with warngin
+                    pass
+
+            # Get the result
+            result = self.matchyaml(file, yaml)
+
+            for section, message in result:
+                matches.append(Match('?', section, file['path'], self, message))
+
+            return matches
 
 
 class RulesCollection(object):
@@ -93,6 +137,7 @@ class RulesCollection(object):
                 rule_definition.add(rule.id)
                 if set(rule_definition).isdisjoint(skip_list):
                     matches.extend(rule.matchlines(statefile, text))
+                    matches.extend(rule.matchyamls(statefile, text))
 
         return matches
 
@@ -173,9 +218,6 @@ class Runner(object):
             files.append({'path': state[0], 'type': state[1]})
 
         matches = list()
-
-        # remove duplicates from files list
-        files = [value for n, value in enumerate(files) if value not in files[:n]]
 
         # remove duplicates from files list
         files = [value for n, value in enumerate(files) if value not in files[:n]]

@@ -8,14 +8,16 @@ from __future__ import print_function
 import errno
 import optparse
 import sys
+import yaml
+import os
+
+# import Salt libs
+from salt.ext import six
 
 import saltlint
 import saltlint.formatters as formatters
-import six
 from saltlint import RulesCollection
 from saltlint.version import __version__
-import yaml
-import os
 
 
 def load_config(config_file):

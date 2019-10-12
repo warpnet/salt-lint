@@ -7,11 +7,13 @@ from collections import defaultdict
 import os
 import re
 import sys
+import codecs
 
-import six
+# import Salt libs
+from salt.ext import six
 
 import saltlint.utils
-import codecs
+
 
 default_rulesdir = os.path.join(os.path.dirname(saltlint.utils.__file__), 'rules')
 

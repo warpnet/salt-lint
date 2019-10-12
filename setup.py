@@ -25,8 +25,6 @@ with io.open('README.rst', 'r', encoding='utf-8') as readme_file:
 
 requirements = [
     'salt',
-    'six',
-    'pyyaml',
 ]
 
 if sys.argv[-1] == 'readme':

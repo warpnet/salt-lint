@@ -47,6 +47,8 @@ def main():
                       action='append',
                       default=[],
                       help="only check rules whose id/tags match these values")
+    parser.add_option('-T', dest='listtags', action='store_true',
+                      help="list all the tags")
     parser.add_option('-v', dest='verbosity', action='count',
                       help="Increase verbosity level",
                       default=0)
@@ -84,7 +86,7 @@ def main():
         if 'tags' in config:
             options.tags = options.tags + config['tags']
 
-    if len(args) == 0 and not (options.listrules):
+    if len(args) == 0 and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
@@ -97,6 +99,10 @@ def main():
 
     if options.listrules:
         print(rules)
+        return 0
+
+    if options.listtags:
+        print(rules.listtags())
         return 0
 
     if isinstance(options.tags, six.string_types):

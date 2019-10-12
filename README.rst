@@ -47,6 +47,7 @@ The following is the output from ``salt-lint --help``, providing an overview of 
       -h, --help            show this help message and exit
       -L                    list all the rules
       -t TAGS               only check rules whose id/tags match these values
+      -T                    list all the tags
       -v                    Increase verbosity level
       -x SKIP_LIST          only check rules whose id/tags do not match these
                             values

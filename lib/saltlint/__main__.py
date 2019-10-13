@@ -42,7 +42,19 @@ def main():
 
     parser.add_option('-L', dest='listrules', default=False,
                       action='store_true', help="list all the rules")
-
+    parser.add_option('-r', action='append', dest='rulesdir',
+                      default=[], type='str',
+                      help="specify one or more rules directories using "
+                           "one or more -r arguments. Any -r flags override "
+                           "the default rules in %s, unless -R is also used."
+                           % saltlint.default_rulesdir)
+    parser.add_option('-R', action='store_true',
+                      default=False,
+                      dest='use_default_rules',
+                      help="Use default rules in %s in addition to any extra "
+                           "rules directories specified with -r. There is "
+                           "no need to specify this if no -r flags are used."
+                           % saltlint.default_rulesdir)
     parser.add_option('-t', dest='tags',
                       action='append',
                       default=[],
@@ -86,12 +98,20 @@ def main():
         if 'tags' in config:
             options.tags = options.tags + config['tags']
 
+        if 'use_default_rules' in config:
+            options.use_default_rules = options.use_default_rules or config['use_default_rules']
+
+        if 'rulesdir' in config:
+            options.rulesdir = options.rulesdir + config['rulesdir']
+
     if len(args) == 0 and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
-    # TODO add custom rule dirs
-    rulesdirs = [saltlint.default_rulesdir]
+    if options.use_default_rules:
+        rulesdirs = options.rulesdir + [saltlint.default_rulesdir]
+    else:
+        rulesdirs = options.rulesdir or [saltlint.default_rulesdir]
 
     rules = RulesCollection()
     for rulesdir in rulesdirs:

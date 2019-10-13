@@ -40,24 +40,32 @@ The following is the output from ``salt-lint --help``, providing an overview of 
 
 .. code-block:: bash
 
-    Usage: salt-lint [options] init.sls [state ...]
+   Usage: salt-lint [options] init.sls [state ...]
 
-    Options:
-      --version             show program's version number and exit
-      -h, --help            show this help message and exit
-      -L                    list all the rules
-      -t TAGS               only check rules whose id/tags match these values
-      -T                    list all the tags
-      -v                    Increase verbosity level
-      -x SKIP_LIST          only check rules whose id/tags do not match these
-                            values
-      --nocolor             disable colored output
-      --force-color         Try force colored output (relying on salt's code)
-      --exclude=EXCLUDE_PATHS
-                            path to directories or files to skip. This option is
-                            repeatable.
-      -c C                  Specify configuration file to use.  Defaults to
-                            ".salt-lint"
+   Options:
+     --version             show program's version number and exit
+     -h, --help            show this help message and exit
+     -L                    list all the rules
+     -r RULESDIR           specify one or more rules directories using one or
+                           more -r arguments. Any -r flags override the default
+                           rules in /tmp/saltlint/lib/saltlint/rules, unless -R
+                           is also used.
+     -R                    Use default rules in /tmp/saltlint/lib/saltlint/rules
+                           in addition to any extra rules directories specified
+                           with -r. There is no need to specify this if no -r
+                           flags are used.
+     -t TAGS               only check rules whose id/tags match these values
+     -T                    list all the tags
+     -v                    Increase verbosity level
+     -x SKIP_LIST          only check rules whose id/tags do not match these
+                           values
+     --nocolor             disable colored output
+     --force-color         Try force colored output (relying on salt's code)
+     --exclude=EXCLUDE_PATHS
+                           path to directories or files to skip. This option is
+                           repeatable.
+     -c C                  Specify configuration file to use.  Defaults to
+                           ".salt-lint"
 
 Linting Salt state files
 ------------------------

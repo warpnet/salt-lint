@@ -42,7 +42,19 @@ def main():
 
     parser.add_option('-L', dest='listrules', default=False,
                       action='store_true', help="list all the rules")
-
+    parser.add_option('-r', action='append', dest='rulesdir',
+                      default=[], type='str',
+                      help="specify one or more rules directories using "
+                           "one or more -r arguments. Any -r flags override "
+                           "the default rules in %s, unless -R is also used."
+                           % saltlint.default_rulesdir)
+    parser.add_option('-R', action='store_true',
+                      default=False,
+                      dest='use_default_rules',
+                      help="Use default rules in %s in addition to any extra "
+                           "rules directories specified with -r. There is "
+                           "no need to specify this if no -r flags are used."
+                           % saltlint.default_rulesdir)
     parser.add_option('-t', dest='tags',
                       action='append',
                       default=[],
@@ -67,20 +79,6 @@ def main():
                            ' is repeatable.',
                       default=[])
     parser.add_option('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
-
-    parser.add_option('-r', action='append', dest='rulesdir',
-                      default=[], type='str',
-                      help="specify one or more rules directories using "
-                           "one or more -r arguments. Any -r flags override "
-                           "the default rules in %s, unless -R is also used."
-                           % saltlint.default_rulesdir)
-    parser.add_option('-R', action='store_true',
-                      default=False,
-                      dest='use_default_rules',
-                      help="Use default rules in %s in addition to any extra "
-                           "rules directories specified with -r. There is "
-                           "no need to specify this if no -r flags are used"
-                           % saltlint.default_rulesdir)
     options, args = parser.parse_args(sys.argv[1:])
 
     config = load_config(options.c)

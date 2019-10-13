@@ -8,14 +8,16 @@ from __future__ import print_function
 import errno
 import optparse
 import sys
+import yaml
+import os
+
+# import Salt libs
+from salt.ext import six
 
 import saltlint
 import saltlint.formatters as formatters
-import six
 from saltlint import RulesCollection
 from saltlint.version import __version__
-import yaml
-import os
 
 
 def load_config(config_file):
@@ -45,6 +47,8 @@ def main():
                       action='append',
                       default=[],
                       help="only check rules whose id/tags match these values")
+    parser.add_option('-T', dest='listtags', action='store_true',
+                      help="list all the tags")
     parser.add_option('-v', dest='verbosity', action='count',
                       help="Increase verbosity level",
                       default=0)
@@ -102,7 +106,7 @@ def main():
         if 'rulesdir' in config:
             options.rulesdir = options.rulesdir + config['rulesdir']
 
-    if len(args) == 0 and not (options.listrules):
+    if len(args) == 0 and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
@@ -117,6 +121,10 @@ def main():
 
     if options.listrules:
         print(rules)
+        return 0
+
+    if options.listtags:
+        print(rules.listtags())
         return 0
 
     if isinstance(options.tags, six.string_types):

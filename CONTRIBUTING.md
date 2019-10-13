@@ -3,29 +3,64 @@
 When contributing to this repository, please first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change.
 
-Please note we have a code of conduct, please follow it in all your interactions with the project.
-
 ## Pull Request Process
 
-To contribute to this project, please use pull requests on a branch of your own fork.
+Please note we have a code of conduct, please follow it in all your interactions with the project. The workflow advice below mirrors [SaltStack's own guide](https://docs.saltstack.com/en/latest/topics/development/contributing.html#sending-a-github-pull-request) and is well worth reading.
 
-After [creating your fork on GitHub](https://guides.github.com/activities/forking/), you can do:
+1. [Fork roaldnefs/salt-lint](https://github.com/roaldnefs/salt-lint/fork) on GitHub.
 
-```console
-$ git clone git@github.com:yourname/salt-lint
-$ cd salt-lint
-$ git checkout -b your-branch-name
-
-DO SOME CODING HERE
-
-$ git add your new files
-$ git commit --signoff
-$ git push origin your-branch-name
+2. Make a local clone of your fork.
+```bash
+git clone git@github.com:my-account/salt-lint.git
+cd salt-lint
 ```
 
-You will then be able to create a pull request from your commit.
+3. Add [roaldnefs/salt-lint](https://github.com/roaldnefs/salt-lint) as a git remote.
+```bash
+git remote add upstream https://github.com/roaldnefs/salt-lint.git
+```
 
-All fixes to core functionality (i.e. anything except rules or examples) should be accompanied by tests that fail prior to your change and succeed afterwards.
+4. Create a new branch in your clone. Create your branch from the develop branch.
+```bash
+git fetch upstream
+git checkout -b add-cool-feature upstream/develop
+```
+
+5. Edit and commit changes to your branch.
+```
+vim path/to/file1 path/to/file2
+git diff
+git add path/to/file1 path/to/file2
+git commit
+```
+Write a short, descriptive commit title and a longer commit message if necessary.
+```
+Add cool feature
+
+Fixes #1
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch fix-broken-thing
+# Changes to be committed:
+#       modified:   path/to/file1
+#       modified:   path/to/file2
+```
+
+6. Push your locally-committed changes to your GitHub fork.
+```
+git push -u origin add-cool-feature
+```
+
+7. Find the branch on your GitHub salt fork.
+[https://github.com/my-account/salt-lint/branches/add-cool-feature](salt-lint)
+
+8. Open a new pull request.
+Click on `Pull Request` on the right near the top of the page,
+[https://github.com/my-account/salt-lint/pull/new/add-cool-feature](https://github.com/my-account/salt-lint/pull/new/add-cool-feature)
+Choose `develop` as the base branch. Review that the proposed changes are what you expect. Write a descriptive comment. Include links to related issues (e.g. 'Fixes #1.') in the comment field. Click `Create pull request`.
+
+9. Salt-lint project members will review your pull request and automated tests will run on it.
 
 Feel free to raise issues in the repo if you don't feel able to contribute a code fix.
 

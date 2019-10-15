@@ -1,10 +1,14 @@
 .. image:: https://img.shields.io/pypi/v/salt-lint.svg?style=for-the-badge
-   :target: https://pypi.org/project/salt-lint
-   :alt: PyPI
+    :target: https://pypi.org/project/salt-lint
+    :alt: PyPI
 
 .. image:: https://img.shields.io/travis/roaldnefs/salt-lint.svg?style=for-the-badge
-   :target: https://travis-ci.org/roaldnefs/salt-lint
-   :alt: Travis (.org)
+    :target: https://travis-ci.org/roaldnefs/salt-lint
+    :alt: Travis (.org)
+
+.. image:: https://img.shields.io/coveralls/github/roaldnefs/salt-lint.svg?style=for-the-badge
+    :target: https://coveralls.io/github/roaldnefs/salt-lint
+    :alt: Coveralls
 
 Salt-lint
 =========

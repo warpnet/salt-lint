@@ -4,7 +4,7 @@
 
 import tempfile
 
-from saltlint import Runner
+from saltlint.linter import Runner
 
 
 class RunFromText(object):

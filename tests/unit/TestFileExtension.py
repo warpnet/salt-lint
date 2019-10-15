@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2019 Roald Nefs
 
 import unittest
 
-from saltlint import Runner, RulesCollection
+from saltlint.linter import Runner, RulesCollection
 from saltlint.rules.FileExtensionRule import FileExtensionRule
 
 

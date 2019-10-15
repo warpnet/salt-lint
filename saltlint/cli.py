@@ -1,23 +1,21 @@
-# !/usr/bin/env python
-
+# -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
 # Modified work Copyright (c) 2019 Roald Nefs
 
 from __future__ import print_function
 
-import errno
 import optparse
 import sys
 import yaml
 import os
 
-# import Salt libs
+# Import Salt libs
 from salt.ext import six
 
-import saltlint
+import saltlint.linter
 import saltlint.formatters as formatters
-from saltlint import RulesCollection
-from saltlint.version import __version__
+from saltlint.linter import RulesCollection, Runner
+from saltlint import NAME, VERSION
 
 
 def load_config(config_file):
@@ -33,12 +31,12 @@ def load_config(config_file):
     return None
 
 
-def main():
+def run():
 
     formatter = formatters.Formatter()
 
     parser = optparse.OptionParser("%prog [options] init.sls [state ...]",
-                                   version="%prog " + __version__)
+                                   version='{} {}'.format(NAME, VERSION))
 
     parser.add_option('-L', dest='listrules', default=False,
                       action='store_true', help="list all the rules")
@@ -47,14 +45,14 @@ def main():
                       help="specify one or more rules directories using "
                            "one or more -r arguments. Any -r flags override "
                            "the default rules in %s, unless -R is also used."
-                           % saltlint.default_rulesdir)
+                           % saltlint.linter.default_rulesdir)
     parser.add_option('-R', action='store_true',
                       default=False,
                       dest='use_default_rules',
                       help="Use default rules in %s in addition to any extra "
                            "rules directories specified with -r. There is "
                            "no need to specify this if no -r flags are used."
-                           % saltlint.default_rulesdir)
+                           % saltlint.linter.default_rulesdir)
     parser.add_option('-t', dest='tags',
                       action='append',
                       default=[],
@@ -109,9 +107,9 @@ def main():
         return 1
 
     if options.use_default_rules:
-        rulesdirs = options.rulesdir + [saltlint.default_rulesdir]
+        rulesdirs = options.rulesdir + [saltlint.linter.default_rulesdir]
     else:
-        rulesdirs = options.rulesdir or [saltlint.default_rulesdir]
+        rulesdirs = options.rulesdir or [saltlint.linter.default_rulesdir]
 
     rules = RulesCollection()
     for rulesdir in rulesdirs:
@@ -137,9 +135,9 @@ def main():
     matches = list()
     checked_files = set()
     for state in states:
-        runner = saltlint.Runner(rules, state, options.tags,
-                                 options.skip_list, options.exclude_paths,
-                                 options.verbosity, checked_files)
+        runner = Runner(rules, state, options.tags,
+                        options.skip_list, options.exclude_paths,
+                        options.verbosity, checked_files)
         matches.extend(runner.run())
 
     matches.sort(key=lambda x: (x.filename, x.linenumber, x.rule.id))
@@ -151,13 +149,3 @@ def main():
         return 2
     else:
         return 0
-
-
-if __name__ == "__main__":
-    try:
-        sys.exit(main())
-    except IOError as exc:
-        if exc.errno != errno.EPIPE:
-            raise
-    except RuntimeError as e:
-        raise SystemExit(str(e))

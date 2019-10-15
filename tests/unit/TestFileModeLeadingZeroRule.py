@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2013-2018 Will Thames <will@thames.id.au>
 # Copyright (c) 2018 Ansible by Red Hat
 # Modified work Copyright (c) 2019 Jeffrey Bouter
 
 import unittest
 
-from saltlint import RulesCollection
+from saltlint.linter import RulesCollection
 from saltlint.rules.FileModeLeadingZeroRule import FileModeLeadingZeroRule
 from tests import RunFromText
 

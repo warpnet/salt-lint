@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2016, Will Thames and contributors
 # Copyright (c) 2018, Ansible Project
 # Modified work Copyright (c) 2019 Roald Nefs
 
-from saltlint import SaltLintRule
+from saltlint.linter import SaltLintRule
 import re
 
 

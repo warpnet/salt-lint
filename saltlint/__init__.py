@@ -5,7 +5,7 @@
 """
 
 NAME = 'salt-lint'
-VERSION = '0.0.8'
+VERSION = '0.0.9'
 DESCRIPTION = __doc__
 
 __author__ = 'Roald Nefs'

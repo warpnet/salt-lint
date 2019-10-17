@@ -1,57 +1,55 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import os
+# Copyright (c) 2013-2018 Will Thames <will@thames.id.au>
+# Copyright (c) 2018 Ansible by Red Hat
+# Modified work Copyright (c) 2019 Roald Nefs
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 import io
-import sys
-
 from setuptools import setup, find_packages
 
+from saltlint import (__author__, __license__,
+                      NAME, VERSION, DESCRIPTION)
 
-version = "0.0.8"
 
-if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist upload')
-    os.system('python setup.py bdist_wheel upload')
-    sys.exit()
-
-if sys.argv[-1] == 'tag':
-    os.system("git tag -a %s -m 'version %s'" % (version, version))
-    os.system("git push --tags")
-    sys.exit()
-
+# Read long description from the README.rst file
 with io.open('README.rst', 'r', encoding='utf-8') as readme_file:
-    readme = readme_file.read()
-
-requirements = [
-    'salt',
-]
-
-if sys.argv[-1] == 'readme':
-    print(readme)
-    sys.exit()
+    long_description = readme_file.read()
 
 
 setup(
-    name='salt-lint',
-    version=version,
-    description=('A command-line utility that checks for best practices '
-                 'in SaltStack.'),
-    long_description=readme,
-    author='Roald Nefs',
+    name=NAME,
+    version=VERSION,
+    description=DESCRIPTION.split('\n')[0],
+    long_description=long_description,
+    author=__author__,
     author_email='info@roaldnefs.com',
     url='https://github.com/roaldnefs/salt-lint',
-    packages=find_packages(where='lib'),
-    package_dir={'': 'lib'},
+    packages=find_packages(exclude=['tests', 'tests.*']),
     entry_points={
         'console_scripts': [
-            'salt-lint = saltlint.__main__:main',
+            'salt-lint = saltlint.cli:run',
         ]
     },
     include_package_data=True,
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
-    install_requires=requirements,
-    license='MIT',
+    install_requires=['salt'],
+    license=__license__,
     zip_safe=False,
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -73,5 +71,5 @@ setup(
         'Topic :: Software Development :: Testing',
         'Topic :: Utilities',
     ],
-    keywords='salt, saltstack, lint',
+    keywords=['salt', 'saltstack', 'lint', 'linter', 'checker']
 )

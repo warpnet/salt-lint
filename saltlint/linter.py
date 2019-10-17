@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
 # Modified work Copyright (c) 2019 Roald Nefs
 
@@ -27,6 +28,7 @@ class SaltLintRule(object):
         return self.id + ": " + self.shortdesc + "\n " + self.description
 
     match = None
+    matchtext = None
 
     @staticmethod
     def unjinja(text):
@@ -55,6 +57,18 @@ class SaltLintRule(object):
                 message = result
             matches.append(Match(prev_line_no+1, line,
                            file['path'], self, message))
+
+        return matches
+
+    def matchfulltext(self, file, text):
+        matches = []
+        if not self.matchtext:
+            return matches
+
+        results = self.matchtext(file, text)
+
+        for line, section, message in results:
+            matches.append(Match(line, section, file['path'], self, message))
 
         return matches
 
@@ -95,6 +109,7 @@ class RulesCollection(object):
                 rule_definition.add(rule.id)
                 if set(rule_definition).isdisjoint(skip_list):
                     matches.extend(rule.matchlines(statefile, text))
+                    matches.extend(rule.matchfulltext(statefile, text))
 
         return matches
 

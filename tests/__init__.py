@@ -5,6 +5,7 @@
 import tempfile
 
 from saltlint.linter import Runner
+from saltlint.config import SaltLintConfig
 
 
 class RunFromText(object):
@@ -14,7 +15,7 @@ class RunFromText(object):
         self.collection = collection
 
     def _call_runner(self, path):
-        runner = Runner(self.collection, path, [], [], [])
+        runner = Runner(self.collection, path, SaltLintConfig({}))
         return runner.run()
 
     def run_state(self, state_text):

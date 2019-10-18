@@ -8,8 +8,7 @@ import optparse
 import sys
 
 from saltlint import formatters, NAME, VERSION
-from saltlint.linter import default_rulesdir
-from saltlint.config import SaltLintConfig, SaltLintConfigError
+from saltlint.config import SaltLintConfig, SaltLintConfigError, default_rulesdir
 from saltlint.linter import RulesCollection, Runner
 
 
@@ -58,11 +57,12 @@ def run():
                            ' is repeatable.',
                       default=[])
     parser.add_option('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
-    options, args = parser.parse_args(sys.argv[1:])
+    (options, args) = parser.parse_args(sys.argv[1:])
 
     # Read, parse and validate the configration
+    options_dict = vars(options)
     try:
-        config = SaltLintConfig(options)
+        config = SaltLintConfig(options_dict)
     except SaltLintConfigError as exc:
         print(exc)
         return 2

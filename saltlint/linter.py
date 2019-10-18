@@ -16,12 +16,9 @@ from salt.ext import six
 import saltlint.utils
 
 
-default_rulesdir = os.path.join(os.path.dirname(saltlint.utils.__file__), 'rules')
-
-
 class SaltLintRule(object):
 
-    def __init__(self, config):
+    def __init__(self, config=None):
         self.config = config
 
     def __repr__(self):
@@ -78,7 +75,7 @@ class SaltLintRule(object):
 
 class RulesCollection(object):
 
-    def __init__(self, config):
+    def __init__(self, config=None):
         self.rules = []
         self.config = config
 

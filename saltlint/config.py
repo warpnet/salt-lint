@@ -3,11 +3,15 @@
 
 import yaml
 import os
+import sys
 
 # Import Salt libs
 from salt.ext import six
 
-from saltlint.linter import default_rulesdir
+import saltlint.utils
+
+
+default_rulesdir = os.path.join(os.path.dirname(saltlint.utils.__file__), 'rules')
 
 
 class SaltLintConfigError(Exception):
@@ -19,7 +23,8 @@ class SaltLintConfig(object):
     def __init__(self, options):
         self._options = options
         # Configuration file to use, defaults to ".salt-lint".
-        file = options.c if options.c else '.salt-lint'
+        config = options.get('c')
+        file = config if config is not None else '.salt-lint'
 
         # Read the file contents
         if os.path.exists(file):
@@ -43,17 +48,17 @@ class SaltLintConfig(object):
                 raise SaltLintConfigError("invalid config: {}".format(exc))
 
         # Parse verbosity
-        self.verbosity = self._options.verbosity if self._options.verbosity else 0
+        self.verbosity = self._options.get('verbosity', 0)
         if 'verbosity' in config:
             self.verbosity += config['verbosity']
 
         # Parse exclude paths
-        self.exclude_paths = self._options.exclude_paths
+        self.exclude_paths = self._options.get('exclude_paths', [])
         if 'exclude_paths' in config:
             self.exclude_paths += config['exclude_paths']
 
         # Parse skip list
-        skip_list = self._options.skip_list
+        skip_list = self._options.get('skip_list', [])
         if 'skip_list' in config:
             skip_list += config['skip_list']
         skip = set()
@@ -62,19 +67,19 @@ class SaltLintConfig(object):
         self.skip_list = frozenset(skip)
 
         # Parse tags
-        self.tags = self._options.tags
+        self.tags = self._options.get('tags', [])
         if 'tags' in config:
             self.tags += config['tags']
         if isinstance(self.tags, six.string_types):
             self.tags = self.tags.split(',')
 
         # Parse use default rules
-        use_default_rules = self._options.use_default_rules
+        use_default_rules = self._options.get('use_default_rules', False)
         if 'use_default_rules' in config:
             use_default_rules = use_default_rules or config['use_default_rules']
 
         # Parse rulesdir
-        rulesdir = self._options.rulesdir
+        rulesdir = self._options.get('rulesdir', [])
         if 'rulesdir' in config:
             rulesdir += config['rulesdir']
 
@@ -85,7 +90,10 @@ class SaltLintConfig(object):
             self.rulesdirs = rulesdir or [default_rulesdir]
 
         # Parse colored
-        self.colored = self._options.colored
+        self.colored = self._options.get(
+            'colored',
+            hasattr(sys.stdout, 'isatty') and sys.stdout.isatty()
+        )
 
     def _validate(self):
         pass

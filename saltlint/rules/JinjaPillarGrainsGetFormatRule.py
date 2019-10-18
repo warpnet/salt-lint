@@ -13,10 +13,10 @@ class JinjaPillarGrainsGetFormatRule(SaltLintRule):
     description = "pillar.get and grains.get should always be formatted" \
                   " like salt['pillar.get']('item') or grains['item1']"
     severity = 'HIGH'
-    tags = ['formatting']
+    tags = ['formatting', 'jinja']
     version_added = 'develop'
 
-    bracket_regex = re.compile(r"{{ ?(pillar|grains).get\(.+}}")
+    bracket_regex = re.compile(r"{{( |\-|\+)?.(pillar|grains).get\(.+}}")
 
     def match(self, file, line):
         return self.bracket_regex.search(line)

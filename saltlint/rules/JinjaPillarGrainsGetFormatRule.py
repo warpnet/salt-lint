@@ -10,7 +10,8 @@ import re
 class JinjaPillarGrainsGetFormatRule(SaltLintRule):
     id = '211'
     shortdesc = 'pillar.get or grains.get should be formatted differently'
-    description = "pillar.get and grains.get should always be formatted like salt['pillar.get']('item') or grains['item1']"
+    description = "pillar.get and grains.get should always be formatted" \
+                  " like salt['pillar.get']('item') or grains['item1']"
     severity = 'HIGH'
     tags = ['formatting']
     version_added = 'develop'

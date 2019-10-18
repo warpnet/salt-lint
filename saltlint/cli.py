@@ -73,9 +73,9 @@ def run():
         return 1
 
     # Collect the rules from the configution
-    rules = RulesCollection()
+    rules = RulesCollection(config)
     for rulesdir in config.rulesdirs:
-        rules.extend(RulesCollection.create_from_directory(rulesdir))
+        rules.extend(RulesCollection.create_from_directory(rulesdir, config))
 
     # Show the rules listing
     if options.listrules:
@@ -91,9 +91,7 @@ def run():
     matches = list()
     checked_files = set()
     for state in states:
-        runner = Runner(rules, state, config.tags,
-                        config.skip_list, config.exclude_paths,
-                        config.verbosity, checked_files)
+        runner = Runner(rules, state, config, checked_files)
         matches.extend(runner.run())
 
     # Sort the matches

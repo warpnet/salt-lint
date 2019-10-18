@@ -43,7 +43,7 @@ class SaltLintConfig(object):
                 raise SaltLintConfigError("invalid config: {}".format(exc))
 
         # Parse verbosity
-        self.verbosity = self._options.verbosity
+        self.verbosity = self._options.verbosity if self._options.verbosity else 0
         if 'verbosity' in config:
             self.verbosity += config['verbosity']
 

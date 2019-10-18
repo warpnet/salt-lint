@@ -6,33 +6,14 @@ from __future__ import print_function
 
 import optparse
 import sys
-import yaml
-import os
 
-# Import Salt libs
-from salt.ext import six
-
-import saltlint.linter
-import saltlint.formatters as formatters
+from saltlint import formatters, NAME, VERSION
+from saltlint.linter import default_rulesdir
+from saltlint.config import SaltLintConfig, SaltLintConfigError
 from saltlint.linter import RulesCollection, Runner
-from saltlint import NAME, VERSION
-
-
-def load_config(config_file):
-    config_path = config_file if config_file else ".salt-lint"
-
-    if os.path.exists(config_path):
-        with open(config_path, "r") as stream:
-            try:
-                return yaml.safe_load(stream)
-            except yaml.YAMLERROR:
-                pass
-
-    return None
 
 
 def run():
-
     formatter = formatters.Formatter()
 
     parser = optparse.OptionParser("%prog [options] init.sls [state ...]",
@@ -45,14 +26,14 @@ def run():
                       help="specify one or more rules directories using "
                            "one or more -r arguments. Any -r flags override "
                            "the default rules in %s, unless -R is also used."
-                           % saltlint.linter.default_rulesdir)
+                           % default_rulesdir)
     parser.add_option('-R', action='store_true',
                       default=False,
                       dest='use_default_rules',
                       help="Use default rules in %s in addition to any extra "
                            "rules directories specified with -r. There is "
                            "no need to specify this if no -r flags are used."
-                           % saltlint.linter.default_rulesdir)
+                           % default_rulesdir)
     parser.add_option('-t', dest='tags',
                       action='append',
                       default=[],
@@ -79,72 +60,50 @@ def run():
     parser.add_option('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
     options, args = parser.parse_args(sys.argv[1:])
 
-    config = load_config(options.c)
+    # Read, parse and validate the configration
+    try:
+        config = SaltLintConfig(options)
+    except SaltLintConfigError as exc:
+        print(exc)
+        return 2
 
-    if config:
-        # TODO parse configuration options
-
-        if 'verbosity' in config:
-            options.verbosity = options.verbosity + config['verbosity']
-
-        if 'exclude_paths' in config:
-            options.exclude_paths = options.exclude_paths + config['exclude_paths']
-
-        if 'skip_list' in config:
-            options.skip_list = options.skip_list + config['skip_list']
-
-        if 'tags' in config:
-            options.tags = options.tags + config['tags']
-
-        if 'use_default_rules' in config:
-            options.use_default_rules = options.use_default_rules or config['use_default_rules']
-
-        if 'rulesdir' in config:
-            options.rulesdir = options.rulesdir + config['rulesdir']
-
+    # Show a help message on the screen
     if len(args) == 0 and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
-    if options.use_default_rules:
-        rulesdirs = options.rulesdir + [saltlint.linter.default_rulesdir]
-    else:
-        rulesdirs = options.rulesdir or [saltlint.linter.default_rulesdir]
-
+    # Collect the rules from the configution
     rules = RulesCollection()
-    for rulesdir in rulesdirs:
+    for rulesdir in config.rulesdirs:
         rules.extend(RulesCollection.create_from_directory(rulesdir))
 
+    # Show the rules listing
     if options.listrules:
         print(rules)
         return 0
 
+    # Show the tags listing
     if options.listtags:
         print(rules.listtags())
         return 0
-
-    if isinstance(options.tags, six.string_types):
-        options.tags = options.tags.split(',')
-
-    skip = set()
-    for s in options.skip_list:
-        skip.update(str(s).split(','))
-    options.skip_list = frozenset(skip)
 
     states = set(args)
     matches = list()
     checked_files = set()
     for state in states:
-        runner = Runner(rules, state, options.tags,
-                        options.skip_list, options.exclude_paths,
-                        options.verbosity, checked_files)
+        runner = Runner(rules, state, config.tags,
+                        config.skip_list, config.exclude_paths,
+                        config.verbosity, checked_files)
         matches.extend(runner.run())
 
+    # Sort the matches
     matches.sort(key=lambda x: (x.filename, x.linenumber, x.rule.id))
 
+    # Show the matches on the screen
     for match in matches:
-        print(formatter.format(match, options.colored))
+        print(formatter.format(match, config.colored))
 
+    # Return the exit code
     if len(matches):
         return 2
     else:

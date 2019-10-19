@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2018 Will Thames <will@thames.id.au>
 # Copyright (c) 2018 Ansible by Red Hat
-# Modified work Copyright (c) 2019 Roald Nefs
+# Modified work Copyright (c) 2019 Warpnet B.V.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,8 @@ from saltlint import (__author__, __license__,
                       NAME, VERSION, DESCRIPTION)
 
 
-# Read long description from the README.rst file
-with io.open('README.rst', 'r', encoding='utf-8') as readme_file:
+# Read long description from the README.md file
+with io.open('README.md', 'r', encoding='utf-8') as readme_file:
     long_description = readme_file.read()
 
 
@@ -37,9 +37,10 @@ setup(
     version=VERSION,
     description=DESCRIPTION.split('\n')[0],
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author=__author__,
-    author_email='info@roaldnefs.com',
-    url='https://github.com/roaldnefs/salt-lint',
+    author_email='info@warpnet.nl',
+    url='https://github.com/warpnet/salt-lint',
     packages=find_packages(exclude=['tests', 'tests.*']),
     entry_points={
         'console_scripts': [

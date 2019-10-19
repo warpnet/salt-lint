@@ -171,4 +171,4 @@ salt-lint is heavily based on `ansible-lint`_ with the modified work by `Warpnet
 .. _Ansible: https://ansible.com
 .. _Red Hat: https://redhat.com
 .. _marketplace: https://github.com/marketplace/actions/salt-lint
-.. _salt-lint-action: https://github.com/warpnet/salt-lint-action
+.. _salt-lint-action: https://github.com/roaldnefs/salt-lint-action

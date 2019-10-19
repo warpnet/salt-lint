@@ -38,7 +38,7 @@ setup(
     description=DESCRIPTION.split('\n')[0],
     long_description=long_description,
     author=__author__,
-    author_email='dev@warpnet.nl',
+    author_email='info@warpnet.nl',
     url='https://github.com/warpnet/salt-lint',
     packages=find_packages(exclude=['tests', 'tests.*']),
     entry_points={

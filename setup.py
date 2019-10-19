@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2018 Will Thames <will@thames.id.au>
 # Copyright (c) 2018 Ansible by Red Hat
-# Modified work Copyright (c) 2019 Roald Nefs
+# Modified work Copyright (c) 2019 Warpnet B.V.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,8 @@ setup(
     description=DESCRIPTION.split('\n')[0],
     long_description=long_description,
     author=__author__,
-    author_email='info@roaldnefs.com',
-    url='https://github.com/roaldnefs/salt-lint',
+    author_email='dev@warpnet.nl',
+    url='https://github.com/warpnet/salt-lint',
     packages=find_packages(exclude=['tests', 'tests.*']),
     entry_points={
         'console_scripts': [

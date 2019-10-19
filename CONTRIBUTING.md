@@ -7,7 +7,7 @@ email, or any other method with the owners of this repository before making a ch
 
 Please note we have a code of conduct, please follow it in all your interactions with the project. The workflow advice below mirrors [SaltStack's own guide](https://docs.saltstack.com/en/latest/topics/development/contributing.html#sending-a-github-pull-request) and is well worth reading.
 
-1. [Fork roaldnefs/salt-lint](https://github.com/roaldnefs/salt-lint/fork) on GitHub.
+1. [Fork warpnet/salt-lint](https://github.com/warpnet/salt-lint/fork) on GitHub.
 
 2. Make a local clone of your fork.
 ```bash
@@ -15,9 +15,9 @@ git clone git@github.com:my-account/salt-lint.git
 cd salt-lint
 ```
 
-3. Add [roaldnefs/salt-lint](https://github.com/roaldnefs/salt-lint) as a git remote.
+3. Add [warpnet/salt-lint](https://github.com/warpnet/salt-lint) as a git remote.
 ```bash
-git remote add upstream https://github.com/roaldnefs/salt-lint.git
+git remote add upstream https://github.com/warpnet/salt-lint.git
 ```
 
 4. Create a new branch in your clone. Create your branch from the develop branch.
@@ -121,7 +121,7 @@ a project may be further defined and clarified by project maintainers.
 ### Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at info@roaldnefs.com. All
+reported by contacting the project team at dev@warpnet.nl. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.

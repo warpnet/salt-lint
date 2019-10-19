@@ -2,12 +2,12 @@
     :target: https://pypi.org/project/salt-lint
     :alt: PyPI
 
-.. image:: https://img.shields.io/travis/roaldnefs/salt-lint.svg?style=for-the-badge
-    :target: https://travis-ci.org/roaldnefs/salt-lint
+.. image:: https://img.shields.io/travis/warpnet/salt-lint.svg?style=for-the-badge
+    :target: https://travis-ci.org/warpnet/salt-lint
     :alt: Travis (.org)
 
-.. image:: https://img.shields.io/coveralls/github/roaldnefs/salt-lint.svg?style=for-the-badge
-    :target: https://coveralls.io/github/roaldnefs/salt-lint
+.. image:: https://img.shields.io/coveralls/github/warpnet/salt-lint.svg?style=for-the-badge
+    :target: https://coveralls.io/github/warpnet/salt-lint
     :alt: Coveralls
 
 Salt-lint
@@ -32,7 +32,7 @@ From Source
 
 .. code-block:: bash
 
-    pip install git+https://github.com/roaldnefs/salt-lint.git
+    pip install git+https://github.com/warpnet/salt-lint.git
 
 Usage
 =====
@@ -94,7 +94,7 @@ To use the action simply add the following lines to your ``.github/workflows/mai
         steps:
         - uses: actions/checkout@v1
         - name: Run salt-lint
-          uses: roaldnefs/salt-lint-action@master
+          uses: warpnet/salt-lint-action@master
           env:
             ACTION_STATE_NAME: init.sls
 
@@ -160,13 +160,15 @@ Some rules are bit of a rule of thumb. To skip a specific rule for a specific ta
 Authors
 =======
 
-salt-lint is heavily based on `ansible-lint`_ with the modified work by `Roald Nefs`_. `ansible-lint`_ was created by `Will Thames`_ and is now maintained as part of the `Ansible`_ by `Red Hat`_ project.
+salt-lint is heavily based on `ansible-lint`_ with the modified work by `Warpnet B.V.`_. `ansible-lint`_ was created by `Will Thames`_ and is now maintained as part of the `Ansible`_ by `Red Hat`_ project.
 
 .. _pre-commit: https://pre-commit.com
 .. _ansible-lint: https://github.com/ansible/ansible-lint
+:: _Warpnet B.V.: https:/github.com/warpnet
 .. _Roald Nefs: https://github.com/roaldnefs
+.. _Jeffrey Bouter: https://github.com/jbouter
 .. _Will Thames: https://github.com/willthames
 .. _Ansible: https://ansible.com
 .. _Red Hat: https://redhat.com
 .. _marketplace: https://github.com/marketplace/actions/salt-lint
-.. _salt-lint-action: https://github.com/roaldnefs/salt-lint-action
+.. _salt-lint-action: https://github.com/warpnet/salt-lint-action

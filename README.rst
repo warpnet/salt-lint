@@ -94,7 +94,7 @@ To use the action simply add the following lines to your ``.github/workflows/mai
         steps:
         - uses: actions/checkout@v1
         - name: Run salt-lint
-          uses: warpnet/salt-lint-action@master
+          uses: roaldnefs/salt-lint-action@master
           env:
             ACTION_STATE_NAME: init.sls
 

@@ -37,6 +37,7 @@ setup(
     version=VERSION,
     description=DESCRIPTION.split('\n')[0],
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author=__author__,
     author_email='info@warpnet.nl',
     url='https://github.com/warpnet/salt-lint',

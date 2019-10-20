@@ -14,6 +14,7 @@ import codecs
 from salt.ext import six
 
 import saltlint.utils
+from saltlint.config import SaltLintConfig
 
 
 class SaltLintRule(object):
@@ -75,7 +76,7 @@ class SaltLintRule(object):
 
 class RulesCollection(object):
 
-    def __init__(self, config=None):
+    def __init__(self, config=SaltLintConfig()):
         self.rules = []
         self.config = config
 
@@ -105,10 +106,18 @@ class RulesCollection(object):
             return matches
 
         for rule in self.rules:
+            skip = False
             if not tags or not set(rule.tags).union([rule.id]).isdisjoint(tags):
                 rule_definition = set(rule.tags)
                 rule_definition.add(rule.id)
-                if set(rule_definition).isdisjoint(skip_list):
+
+                # Check if the the file is in the rule specific ignore list.
+                for definition in rule_definition:
+                    if self.config.is_file_ignored(statefile['path'], definition):
+                        skip = True
+                        break
+
+                if not skip and set(rule_definition).isdisjoint(skip_list):
                     matches.extend(rule.matchlines(statefile, text))
                     matches.extend(rule.matchfulltext(statefile, text))
 

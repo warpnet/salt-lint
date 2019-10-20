@@ -4,6 +4,7 @@
 import yaml
 import os
 import sys
+import pathspec
 
 # Import Salt libs
 from salt.ext import six
@@ -20,7 +21,7 @@ class SaltLintConfigError(Exception):
 
 class SaltLintConfig(object):
 
-    def __init__(self, options):
+    def __init__(self, options=dict()):
         self._options = options
         # Configuration file to use, defaults to ".salt-lint".
         config = options.get('c')
@@ -35,7 +36,6 @@ class SaltLintConfig(object):
 
         # Parse the content of the file as YAML
         self._parse(content)
-        self._validate()
 
     def _parse(self, content):
         config = dict()
@@ -95,5 +95,28 @@ class SaltLintConfig(object):
             hasattr(sys.stdout, 'isatty') and sys.stdout.isatty()
         )
 
-    def _validate(self):
-        pass
+        # Parse rule specific configuration, the configration can be listed by
+        # the rule ID and/or tag.
+        self.rules = dict()
+        if 'rules' in config and isinstance(config['rules'], dict):
+            # Read rule specific configuration from the config dict.
+            for name, rule in six.iteritems(config['rules']):
+                # Store the keys as strings.
+                self.rules[str(name)] = dict()
+
+                if 'ignore' not in rule:
+                    continue
+
+                if not isinstance(rule['ignore'], six.string_types):
+                    raise SaltLintConfigError(
+                        'invalid config: ignore should contain file patterns')
+
+                # Retrieve the pathspec.
+                self.rules[str(name)]['ignore'] = pathspec.PathSpec.from_lines(
+                    'gitwildmatch', rule['ignore'].splitlines())
+
+    def is_file_ignored(self, filepath, rule):
+        rule = str(rule)
+        if rule not in self.rules or 'ignore' not in self.rules[rule]:
+            return False
+        return self.rules[rule]['ignore'].match_file(filepath)

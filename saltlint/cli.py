@@ -12,7 +12,7 @@ from saltlint.config import SaltLintConfig, SaltLintConfigError, default_rulesdi
 from saltlint.linter import RulesCollection, Runner
 
 
-def run():
+def run(args=None):
     formatter = formatters.Formatter()
 
     parser = optparse.OptionParser("%prog [options] init.sls [state ...]",
@@ -57,7 +57,7 @@ def run():
                            ' is repeatable.',
                       default=[])
     parser.add_option('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
-    (options, args) = parser.parse_args(sys.argv[1:])
+    (options, parsed_args) = parser.parse_args(args if args is not None else sys.argv[1:])
 
     # Read, parse and validate the configration
     options_dict = vars(options)
@@ -68,7 +68,7 @@ def run():
         return 2
 
     # Show a help message on the screen
-    if len(args) == 0 and not (options.listrules or options.listtags):
+    if len(parsed_args) == 0 and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
@@ -87,7 +87,7 @@ def run():
         print(rules.listtags())
         return 0
 
-    states = set(args)
+    states = set(parsed_args)
     matches = list()
     checked_files = set()
     for state in states:

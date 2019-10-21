@@ -14,12 +14,13 @@ import codecs
 from salt.ext import six
 
 import saltlint.utils
-
-
-default_rulesdir = os.path.join(os.path.dirname(saltlint.utils.__file__), 'rules')
+from saltlint.config import SaltLintConfig
 
 
 class SaltLintRule(object):
+
+    def __init__(self, config=None):
+        self.config = config
 
     def __repr__(self):
         return self.id + ": " + self.shortdesc
@@ -75,8 +76,9 @@ class SaltLintRule(object):
 
 class RulesCollection(object):
 
-    def __init__(self):
+    def __init__(self, config=SaltLintConfig()):
         self.rules = []
+        self.config = config
 
     def register(self, obj):
         self.rules.append(obj)
@@ -104,10 +106,18 @@ class RulesCollection(object):
             return matches
 
         for rule in self.rules:
+            skip = False
             if not tags or not set(rule.tags).union([rule.id]).isdisjoint(tags):
                 rule_definition = set(rule.tags)
                 rule_definition.add(rule.id)
-                if set(rule_definition).isdisjoint(skip_list):
+
+                # Check if the the file is in the rule specific ignore list.
+                for definition in rule_definition:
+                    if self.config.is_file_ignored(statefile['path'], definition):
+                        skip = True
+                        break
+
+                if not skip and set(rule_definition).isdisjoint(skip_list):
                     matches.extend(rule.matchlines(statefile, text))
                     matches.extend(rule.matchfulltext(statefile, text))
 
@@ -128,9 +138,9 @@ class RulesCollection(object):
         return "\n".join(results)
 
     @classmethod
-    def create_from_directory(cls, rulesdir):
-        result = cls()
-        result.rules = saltlint.utils.load_plugins(os.path.expanduser(rulesdir))
+    def create_from_directory(cls, rulesdir, config):
+        result = cls(config)
+        result.rules = saltlint.utils.load_plugins(os.path.expanduser(rulesdir), config)
         return result
 
 
@@ -151,19 +161,24 @@ class Match(object):
 
 class Runner(object):
 
-    def __init__(self, rules, state, tags, skip_list, exclude_paths,
-                 verbosity=0, checked_files=None):
+    def __init__(self, rules, state, config, checked_files=None):
         self.rules = rules
+
         self.states = set()
-        # assume state is directory
+        # Assume state is directory
         if os.path.isdir(state):
             self.states.add((os.path.join(state, 'init.sls'), 'state'))
         else:
             self.states.add((state, 'state'))
-        self.tags = tags
-        self.skip_list = skip_list
-        self._update_exclude_paths(exclude_paths)
-        self.verbosity = verbosity
+
+        # Get configuration options
+        self.config = config
+        self.tags = config.tags
+        self.skip_list = config.skip_list
+        self.verbosity = config.verbosity
+        self._update_exclude_paths(config.exclude_paths)
+
+        # Set the checked files
         if checked_files is None:
             checked_files = set()
         self.checked_files = checked_files
@@ -190,9 +205,6 @@ class Runner(object):
             files.append({'path': state[0], 'type': state[1]})
 
         matches = list()
-
-        # remove duplicates from files list
-        files = [value for n, value in enumerate(files) if value not in files[:n]]
 
         # remove duplicates from files list
         files = [value for n, value in enumerate(files) if value not in files[:n]]

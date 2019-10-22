@@ -12,7 +12,7 @@ class JinjaVariableHasSpacesRule(SaltLintRule):
     shortdesc = 'Jinja variables should have spaces before and after: {{ var_name }}'
     description = 'Jinja variables should have spaces before and after: ``{{ var_name }}``'
     severity = 'LOW'
-    tags = ['formatting']
+    tags = ['formatting', 'jinja']
     version_added = 'v0.0.1'
 
     bracket_regex = re.compile(r"{{[^ \-\+]|{{[-\+][^ ]|[^ \-\+]}}|[^ ][-\+]}}")

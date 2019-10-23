@@ -106,6 +106,13 @@ skip_list:
 tags:
   - formatting
 verbosity: 1
+rules:
+  formatting:
+    ignore: |
+      ignore/this/directory/*.sls
+      *.jinja
+  210:
+    ignore: 'exclude_this_file.sls'
 ```
 
 ## Pre-commit Setup

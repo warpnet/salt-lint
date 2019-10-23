@@ -7,7 +7,7 @@ import imp
 import os
 
 
-def load_plugins(directory):
+def load_plugins(directory, config):
     result = []
     fh = None
 
@@ -17,7 +17,7 @@ def load_plugins(directory):
         try:
             fh, filename, desc = imp.find_module(pluginname, [directory])
             mod = imp.load_module(pluginname, fh, filename, desc)
-            obj = getattr(mod, pluginname)()
+            obj = getattr(mod, pluginname)(config)
             result.append(obj)
         finally:
             if fh:

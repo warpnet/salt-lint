@@ -14,7 +14,7 @@ class JinjaPillarGrainsGetFormatRule(SaltLintRule):
                   " like salt['pillar.get']('item') or grains['item1']"
     severity = 'HIGH'
     tags = ['formatting', 'jinja']
-    version_added = 'develop'
+    version_added = 'v0.0.10'
 
     bracket_regex = re.compile(r"{{( |\-|\+)?.(pillar|grains).get\(.+}}")
 

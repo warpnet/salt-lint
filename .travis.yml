@@ -41,6 +41,8 @@ matrix:
     - python: 3.8
       env: TOXENV=py38
       install: 
+        # Install distro package. Bug report: https://github.com/saltstack/salt/issues/55029
+        - pip install distro
         - pip install tox
       script:
         - tox

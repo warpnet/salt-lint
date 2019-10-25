@@ -1,6 +1,6 @@
 [![PyPI](https://img.shields.io/pypi/v/salt-lint.svg?style=for-the-badge)](https://pypi.org/project/salt-lint)
-[![Travis (.org)](https://img.shields.io/travis/warpnet/salt-lint.svg?style=for-the-badge)](https://travis-ci.org/warpnet/salt-lint)
-[![Coveralls](https://img.shields.io/coveralls/github/warpnet/salt-lint.svg?style=for-the-badge)](https://coveralls.io/github/warpnet/salt-lint)
+[![Travis (.org)](https://img.shields.io/travis/warpnet/salt-lint/master.svg?style=for-the-badge)](https://travis-ci.org/warpnet/salt-lint)
+[![Coveralls](https://img.shields.io/coveralls/github/warpnet/salt-lint/master.svg?style=for-the-badge)](https://coveralls.io/github/warpnet/salt-lint)
 
 # Salt-lint
 

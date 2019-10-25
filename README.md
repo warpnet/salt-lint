@@ -37,14 +37,12 @@ Options:
   -L                    list all the rules
   -r RULESDIR           specify one or more rules directories using one or
                         more -r arguments. Any -r flags override the default
-                        rules in
-                        /home/roald/workspace/github.com/roaldnefs/salt-
-                        lint/saltlint/rules, unless -R is also used.
+                        rules in /path/to/salt-lint/saltlint/rules, unless 
+                        -R is also used.
   -R                    Use default rules in
-                        /home/roald/workspace/github.com/roaldnefs/salt-
-                        lint/saltlint/rules in addition to any extra rules
-                        directories specified with -r. There is no need to
-                        specify this if no -r flags are used.
+                        /path/to/salt-lint/saltlint/rules in addition to any
+                        extra rules directories specified with -r. There is
+                        no need to specify this if no -r flags are used.
   -t TAGS               only check rules whose id/tags match these values
   -T                    list all the tags
   -v                    Increase verbosity level
@@ -55,6 +53,7 @@ Options:
   --exclude=EXCLUDE_PATHS
                         path to directories or files to skip. This option is
                         repeatable.
+  --json                parse the output as JSON
   -c C                  Specify configuration file to use.  Defaults to
                         ".salt-lint"
 ```

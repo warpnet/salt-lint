@@ -40,6 +40,7 @@ class Formatter(object):
                                     match.linenumber,
                                     match.line)
 
+
 class JsonFormatter(object):
 
     def process(self, matches, *args, **kwargs):

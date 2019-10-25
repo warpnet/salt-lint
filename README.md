@@ -139,7 +139,7 @@ To use salt-lint with [pre-commit](https://pre-commit.com),  just add the follow
 ## List of rules
 
 | Rule                                                 | Description                                                                  |
-|:-----------------------------------------------------|:-----------------------------------------------------------------------------|
+:-:|:--
 | [201](https://github.com/warpnet/salt-lint/wiki/201) | Trailing whitespace                                                          |
 | [202](https://github.com/warpnet/salt-lint/wiki/202) | Jinja statement should have spaces before and after: `{% statement %}`       |
 | [203](https://github.com/warpnet/salt-lint/wiki/203) | Most files should not contain tabs                                           |

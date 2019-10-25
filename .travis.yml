@@ -4,21 +4,58 @@ language: python
 
 matrix:
   include:
+    - env: TOXENV=flake8
+      install: 
+        - pip install tox
+      script:
+        - tox
+
     - python: 2.7
       env: TOXENV=py27
+      install: 
+        - pip install tox
+      script:
+        - tox
+
     - python: 3.5
       env: TOXENV=py35
+      install: 
+        - pip install tox
+      script:
+        - tox
+
     - python: 3.6
       env: TOXENV=py36
+      install: 
+        - pip install tox
+      script:
+        - tox
+
     - python: 3.7
       env: TOXENV=py37
-    - env: TOXENV=flake8
+      install: 
+        - pip install tox
+      script:
+        - tox
 
-install:
-  - pip install tox
+    - python: 3.8
+      env: TOXENV=py38
+      install: 
+        - pip install tox
+      script:
+        - tox
 
-script:
-  - tox
+    - language: generic
+      sudo: false
+      env: HADOLINT: "${HOME}/hadolint"
+      install:
+        # Download hadolint binary and set it as executable
+        - curl -sL -o ${HADOLINT} "https://github.com/hadolint/hadolint/releases/download/v1.16.0/hadolint-$(uname -s)-$(uname -m)"
+          && chmod 700 ${HADOLINT}
+      script:
+        # List files which name starts with 'Dockerfile'
+        # eg. Dockerfile, Dockerfile.build, etc.
+        - git ls-files --exclude='Dockerfile*' --ignored | xargs --max-lines=1 ${HADOLINT}
 
 # Deploy a new release to PyPi for every new tag on the 'master' branch on the
 # repository 'warpnet/salt-lint'.

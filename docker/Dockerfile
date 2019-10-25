@@ -2,11 +2,11 @@ FROM python:3.7-alpine
 LABEL maintainer="info@warpnet.nl"
 
 # Install required alpine packages
-# hadolint ignore=DL3019
+# hadolint ignore=DL3018,DL3019
 RUN apk add --no-cache gcc g++ build-base libzmq musl-dev zeromq-dev
 
 # Install the salt-lint package
-RUN pip install --no-cache salt-lint
+RUN pip install --no-cache salt-lint=v0.0.10
 
 # Remove development utilities
 RUN apk del --no-cache gcc g++ build-base libzmq musl-dev zeromq-dev \

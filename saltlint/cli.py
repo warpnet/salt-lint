@@ -99,7 +99,7 @@ def run(args=None):
 
     # Show the matches on the screen
     for match in matches:
-        print(formatter.format(match, config.colored))
+        print(formatter.format(match, config.colored).encode('utf-8'))
 
     # Return the exit code
     if len(matches):

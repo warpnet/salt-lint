@@ -47,7 +47,8 @@ matrix:
 
     - language: generic
       sudo: false
-      env: HADOLINT: "${HOME}/hadolint"
+      env: 
+        HADOLINT: "${HOME}/hadolint"
       install:
         # Download hadolint binary and set it as executable
         - curl -sL -o ${HADOLINT} "https://github.com/hadolint/hadolint/releases/download/v1.16.0/hadolint-$(uname -s)-$(uname -m)"

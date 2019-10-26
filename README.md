@@ -135,6 +135,25 @@ To use salt-lint with [pre-commit](https://pre-commit.com),  just add the follow
 
 # Rules
 
+
+## List of rules
+
+Rule | Description
+:-:|:--
+[201](https://github.com/warpnet/salt-lint/wiki/201) | Trailing whitespace
+[202](https://github.com/warpnet/salt-lint/wiki/202) | Jinja statement should have spaces before and after: `{% statement %}`
+[203](https://github.com/warpnet/salt-lint/wiki/203) | Most files should not contain tabs
+[204](https://github.com/warpnet/salt-lint/wiki/204) | Lines should be no longer that 160 chars
+[205](https://github.com/warpnet/salt-lint/wiki/205) | Use ".sls" as a Salt State file extension
+[206](https://github.com/warpnet/salt-lint/wiki/206) | Jinja variables should have spaces before and after `{{ var_name }}`
+[207](https://github.com/warpnet/salt-lint/wiki/207) | File modes should always be encapsulated in quotation marks
+[208](https://github.com/warpnet/salt-lint/wiki/208) | File modes should always contain a leading zero
+[209](https://github.com/warpnet/salt-lint/wiki/209) | Jinja comment should have spaces before and after: `{# comment #}`
+[210](https://github.com/warpnet/salt-lint/wiki/210) | Numbers that start with `0` should always be encapsulated in quotation marks
+[211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
+[212](https://github.com/warpnet/salt-lint/wiki/212) | Most files should not contain irregular spaces
+
+
 ## False Positives: Skipping Rules
 
 Some rules are bit of a rule of thumb. To skip a specific rule for a specific task, inside your state add `# noqa [rule_id]` at the end of the line. You can skip multiple rules via a space-separated list. Example:

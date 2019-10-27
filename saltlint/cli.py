@@ -5,7 +5,9 @@
 from __future__ import print_function
 
 import optparse
+import os
 import sys
+import tempfile
 
 from saltlint import formatters, NAME, VERSION
 from saltlint.config import SaltLintConfig, SaltLintConfigError, default_rulesdir
@@ -59,6 +61,18 @@ def run(args=None):
     parser.add_option('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
     (options, parsed_args) = parser.parse_args(args if args is not None else sys.argv[1:])
 
+    stdin_state = None
+    states = set(parsed_args)
+    matches = list()
+    checked_files = set()
+
+    # Read input from stdin
+    if not sys.stdin.isatty():
+        stdin_state = tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False)
+        stdin_state.write(sys.stdin.read())
+        stdin_state.flush()
+        states.add(stdin_state.name)
+
     # Read, parse and validate the configration
     options_dict = vars(options)
     try:
@@ -68,7 +82,7 @@ def run(args=None):
         return 2
 
     # Show a help message on the screen
-    if len(parsed_args) == 0 and not (options.listrules or options.listtags):
+    if len(states) == 0 and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
@@ -93,9 +107,6 @@ def run(args=None):
     else:
         formatter = formatters.Formatter()
 
-    states = set(parsed_args)
-    matches = list()
-    checked_files = set()
     for state in states:
         runner = Runner(rules, state, config, checked_files)
         matches.extend(runner.run())
@@ -105,6 +116,10 @@ def run(args=None):
 
     # Show the matches on the screen
     formatter.process(matches, config.colored)
+
+    # Delete stdin temporary file
+    if stdin_state:
+        os.unlink(stdin_state.name)
 
     # Return the exit code
     if len(matches):

@@ -8,6 +8,7 @@ import optparse
 import os
 import sys
 import tempfile
+import codecs
 
 from saltlint import formatters, NAME, VERSION
 from saltlint.config import SaltLintConfig, SaltLintConfigError, default_rulesdir
@@ -15,6 +16,12 @@ from saltlint.linter import RulesCollection, Runner
 
 
 def run(args=None):
+    # Wrap `sys.stdout` in an object that automatically encodes an unicode
+    # string into utf-8, in Python 2 only. The default encoding for Python 3
+    # is already utf-8.
+    if sys.version_info[0] < 3:
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
+
     formatter = formatters.Formatter()
 
     parser = optparse.OptionParser("%prog [options] init.sls [state ...]",
@@ -110,7 +117,7 @@ def run(args=None):
 
     # Show the matches on the screen
     for match in matches:
-        print(formatter.format(match, config.colored).encode('utf-8'))
+        print(formatter.format(match, config.colored))
 
     # Delete stdin temporary file
     if stdin_state:

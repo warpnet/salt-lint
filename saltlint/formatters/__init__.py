@@ -55,5 +55,6 @@ class JsonFormatter(object):
             'message': match.message,
             'filename': match.filename,
             'linenumber': match.linenumber,
-            'line': match.line
+            'line': match.line,
+            'severity': match.rule.severity,
         }

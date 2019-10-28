@@ -16,7 +16,7 @@ class Formatter(object):
 
     def process(self, matches, colored=False):
         for match in matches:
-            print(self.format(match, colored).encode('utf-8'))
+            print(self.format(match, colored))
 
     def format(self, match, colored=False):
         formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"

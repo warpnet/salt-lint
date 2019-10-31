@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2013-2018 Will Thames <will@thames.id.au>
 # Copyright (c) 2018 Ansible by Red Hat
 # Modified work Copyright (c) 2019 Roald Nefs
+
+import json
 
 # Import salt libs
 try:
@@ -10,6 +13,10 @@ except ImportError:
 
 
 class Formatter(object):
+
+    def process(self, matches, colored=False):
+        for match in matches:
+            print(self.format(match, colored))
 
     def format(self, match, colored=False):
         formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
@@ -32,3 +39,22 @@ class Formatter(object):
                                     match.filename,
                                     match.linenumber,
                                     match.line)
+
+
+class JsonFormatter(object):
+
+    def process(self, matches, *args, **kwargs):
+        items = []
+        for match in matches:
+            items.append(self.format(match))
+        print(json.dumps(items))
+
+    def format(self, match):
+        return {
+            'id': match.rule.id,
+            'message': match.message,
+            'filename': match.filename,
+            'linenumber': match.linenumber,
+            'line': match.line,
+            'severity': match.rule.severity,
+        }

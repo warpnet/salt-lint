@@ -22,8 +22,6 @@ def run(args=None):
     if sys.version_info[0] < 3:
         sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
-    formatter = formatters.Formatter()
-
     parser = optparse.OptionParser("%prog [options] init.sls [state ...]",
                                    version='{} {}'.format(NAME, VERSION))
 
@@ -65,6 +63,8 @@ def run(args=None):
                       help='path to directories or files to skip. This option'
                            ' is repeatable.',
                       default=[])
+    parser.add_option('--json', dest='json', action='store_true', default=False,
+                      help='parse the output as JSON')
     parser.add_option('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
     (options, parsed_args) = parser.parse_args(args if args is not None else sys.argv[1:])
 
@@ -108,6 +108,12 @@ def run(args=None):
         print(rules.listtags())
         return 0
 
+    # Define the formatter
+    if config.json:
+        formatter = formatters.JsonFormatter()
+    else:
+        formatter = formatters.Formatter()
+
     for state in states:
         runner = Runner(rules, state, config, checked_files)
         matches.extend(runner.run())
@@ -116,8 +122,7 @@ def run(args=None):
     matches.sort(key=lambda x: (x.filename, x.linenumber, x.rule.id))
 
     # Show the matches on the screen
-    for match in matches:
-        print(formatter.format(match, config.colored))
+    formatter.process(matches, config.colored)
 
     # Delete stdin temporary file
     if stdin_state:

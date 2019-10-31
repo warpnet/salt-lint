@@ -34,11 +34,12 @@ class Formatter(object):
                 u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC'])
             )
         else:
-            return formatstr.format(match.rule.id,
-                                    match.message,
-                                    match.filename,
-                                    match.linenumber,
-                                    match.line)
+            return formatstr.format(
+                u'[{0}]'.format(match.rule.id),
+                match.message,
+                match.filename,
+                match.linenumber,
+                match.line)
 
 
 class JsonFormatter(object):

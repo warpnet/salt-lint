@@ -4,7 +4,7 @@
 
 # Salt-lint
 
-`salt-lint` checks Salt state files (SLS) for practices and behavior that could potentially be improved.
+`salt-lint` checks Salt State files (SLS) for practices and behavior that could potentially be improved.
 
 The project is heavily based on [ansible-lint](https://github.com/ansible/ansible-lint), which was created by [Will Thames](https://github.com/willthames) and is now maintained as part of the [Ansible](https://www.ansible.com/) by [Red Hat](https://www.redhat.com) project.
 
@@ -59,9 +59,9 @@ Options:
                         ".salt-lint"
 ```
 
-## Linting Salt state files
+## Linting Salt State files
 
-It's important to note that `salt-lint` accepts a list of Salt state files or a list of directories.
+It's important to note that `salt-lint` accepts a list of Salt State files or a list of directories.
 
 ## GitHub Action
 

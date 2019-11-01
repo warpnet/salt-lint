@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 Roald Nefs
+# Copyright (c) 2019 Warpnet B.V.
 
 """A command-line utility that checks for best practices in SaltStack.
 """
 
 NAME = 'salt-lint'
-VERSION = '0.0.10'
+VERSION = '0.1.0'
 DESCRIPTION = __doc__
 
 __author__ = 'Warpnet B.V.'

@@ -9,7 +9,7 @@ class NoIrregularSpacesRule(SaltLintRule):
     description = 'Irregular spaces can cause unexpected display issues, use spaces'
     severity = 'LOW'
     tags = ['formatting']
-    version_added = 'develop'
+    version_added = 'v0.1.0'
 
     irregular_spaces = [
         u"\u000B",  # Line Tabulation (\v) - <VT>

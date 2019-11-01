@@ -1,10 +1,10 @@
 [![PyPI](https://img.shields.io/pypi/v/salt-lint.svg?style=for-the-badge)](https://pypi.org/project/salt-lint)
-[![Travis (.org)](https://img.shields.io/travis/warpnet/salt-lint.svg?style=for-the-badge)](https://travis-ci.org/warpnet/salt-lint)
-[![Coveralls](https://img.shields.io/coveralls/github/warpnet/salt-lint.svg?style=for-the-badge)](https://coveralls.io/github/warpnet/salt-lint)
+[![Travis (.org)](https://img.shields.io/travis/warpnet/salt-lint/master.svg?style=for-the-badge)](https://travis-ci.org/warpnet/salt-lint)
+[![Coveralls](https://img.shields.io/coveralls/github/warpnet/salt-lint/master.svg?style=for-the-badge)](https://coveralls.io/github/warpnet/salt-lint)
 
 # Salt-lint
 
-`salt-lint` checks Salt state files (SLS) for practices and behavior that could potentially be improved.
+`salt-lint` checks Salt State files (SLS) for practices and behavior that could potentially be improved.
 
 The project is heavily based on [ansible-lint](https://github.com/ansible/ansible-lint), which was created by [Will Thames](https://github.com/willthames) and is now maintained as part of the [Ansible](https://www.ansible.com/) by [Red Hat](https://www.redhat.com) project.
 
@@ -37,14 +37,12 @@ Options:
   -L                    list all the rules
   -r RULESDIR           specify one or more rules directories using one or
                         more -r arguments. Any -r flags override the default
-                        rules in
-                        /home/roald/workspace/github.com/roaldnefs/salt-
-                        lint/saltlint/rules, unless -R is also used.
+                        rules in /path/to/salt-lint/saltlint/rules, unless 
+                        -R is also used.
   -R                    Use default rules in
-                        /home/roald/workspace/github.com/roaldnefs/salt-
-                        lint/saltlint/rules in addition to any extra rules
-                        directories specified with -r. There is no need to
-                        specify this if no -r flags are used.
+                        /path/to/salt-lint/saltlint/rules in addition to any
+                        extra rules directories specified with -r. There is
+                        no need to specify this if no -r flags are used.
   -t TAGS               only check rules whose id/tags match these values
   -T                    list all the tags
   -v                    Increase verbosity level
@@ -55,13 +53,14 @@ Options:
   --exclude=EXCLUDE_PATHS
                         path to directories or files to skip. This option is
                         repeatable.
+  --json                parse the output as JSON
   -c C                  Specify configuration file to use.  Defaults to
                         ".salt-lint"
 ```
 
-## Linting Salt state files
+## Linting Salt State files
 
-It's important to note that `salt-lint` accepts a list of Salt state files or a list of directories.
+It's important to note that `salt-lint` accepts a list of Salt State files or a list of directories.
 
 ## GitHub Action
 
@@ -134,6 +133,25 @@ To use salt-lint with [pre-commit](https://pre-commit.com),  just add the follow
 ```
 
 # Rules
+
+
+## List of rules
+
+Rule | Description
+:-:|:--
+[201](https://github.com/warpnet/salt-lint/wiki/201) | Trailing whitespace
+[202](https://github.com/warpnet/salt-lint/wiki/202) | Jinja statement should have spaces before and after: `{% statement %}`
+[203](https://github.com/warpnet/salt-lint/wiki/203) | Most files should not contain tabs
+[204](https://github.com/warpnet/salt-lint/wiki/204) | Lines should be no longer that 160 chars
+[205](https://github.com/warpnet/salt-lint/wiki/205) | Use ".sls" as a Salt State file extension
+[206](https://github.com/warpnet/salt-lint/wiki/206) | Jinja variables should have spaces before and after `{{ var_name }}`
+[207](https://github.com/warpnet/salt-lint/wiki/207) | File modes should always be encapsulated in quotation marks
+[208](https://github.com/warpnet/salt-lint/wiki/208) | File modes should always contain a leading zero
+[209](https://github.com/warpnet/salt-lint/wiki/209) | Jinja comment should have spaces before and after: `{# comment #}`
+[210](https://github.com/warpnet/salt-lint/wiki/210) | Numbers that start with `0` should always be encapsulated in quotation marks
+[211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
+[212](https://github.com/warpnet/salt-lint/wiki/212) | Most files should not contain irregular spaces
+
 
 ## False Positives: Skipping Rules
 

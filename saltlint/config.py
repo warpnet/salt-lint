@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 Roald Nefs
+# Copyright (c) 2019 Warpnet B.V.
 
 import yaml
 import os

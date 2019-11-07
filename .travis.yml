@@ -2,6 +2,11 @@
 dist: bionic
 language: python
 
+cache: pip
+
+git:
+  depth: 100
+
 matrix:
   include:
     - env: TOXENV=flake8
@@ -34,6 +39,17 @@ matrix:
     - python: 3.7
       env: TOXENV=py37
       install: 
+        - pip install tox
+      script:
+        - tox
+
+    - python: 3.8
+      env: TOXENV=py38
+      install:
+        # Required due to missing dependency in Python 3.8, for more
+        # information see:
+        # https://github.com/saltstack/salt/issues/55029
+        - pip install distro
         - pip install tox
       script:
         - tox

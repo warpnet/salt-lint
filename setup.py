@@ -21,18 +21,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import io
-import sys
 from setuptools import setup, find_packages
 
 from saltlint import (__author__, __license__,
                       NAME, VERSION, DESCRIPTION)
 
-REQUIRES = ['salt', 'pathspec>=0.6.0']
-if sys.version_info.major == 3 and sys.version_info.minor == 8:
-    # Required due to missing dependency in Python 3.8, for more
-    # information see:
-    # https://github.com/saltstack/salt/issues/55029
-    REQUIRES = ['distro'] + REQUIRES
 
 # Read long description from the README.md file
 with io.open('README.md', 'r', encoding='utf-8') as readme_file:
@@ -56,7 +49,7 @@ setup(
     },
     include_package_data=True,
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
-    install_requires=REQUIRES,
+    install_requires=['salt', 'pathspec>=0.6.0'],
     license=__license__,
     zip_safe=False,
     classifiers=[

@@ -169,8 +169,8 @@ Currently, there is a `salt-lint` plugin available for the following application
 
 Application | GitHub Link | Store/Marketplace
 :-:|:--|:--
-Visual Studio Code | https://github.com/warpnet/vscode-salt-lint | https://marketplace.visualstudio.com/items?itemName=warpnet.salt-lint
-Sublime Text | https://github.com/warpnet/SublimeLinter-salt-lint | https://packagecontrol.io/packages/SublimeLinter-contrib-salt-lint
+Visual Studio Code | [warpnet/vscode-salt-lint](https://github.com/warpnet/vscode-salt-lint) | [VisualStudio Marketplace](https://marketplace.visualstudio.com/items?itemName=warpnet.salt-lint)
+Sublime Text | [warpnet/SublimeLinter-salt-lint](https://github.com/warpnet/SublimeLinter-salt-lint) | [Package Control](https://packagecontrol.io/packages/SublimeLinter-contrib-salt-lint)
 
 
 Wish to create a `salt-lint` extension for your favourite editor? We're always looking for [contributions](CONTRIBUTING.md)!

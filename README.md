@@ -37,7 +37,7 @@ Options:
   -L                    list all the rules
   -r RULESDIR           specify one or more rules directories using one or
                         more -r arguments. Any -r flags override the default
-                        rules in /path/to/salt-lint/saltlint/rules, unless 
+                        rules in /path/to/salt-lint/saltlint/rules, unless
                         -R is also used.
   -R                    Use default rules in
                         /path/to/salt-lint/saltlint/rules in addition to any
@@ -162,6 +162,18 @@ Some rules are bit of a rule of thumb. To skip a specific rule for a specific ta
   file.managed:
     - source: salt://{{unspaced_var}}/example  # noqa: 206
 ```
+
+# Plugins
+
+Currently, there is a `salt-lint` plugin available for the following applications:
+
+Application | GitHub Link | Store/Marketplace
+:-:|:--|:--
+Visual Studio Code | https://github.com/warpnet/vscode-salt-lint | https://marketplace.visualstudio.com/items?itemName=warpnet.salt-lint
+Sublime Text | https://github.com/warpnet/SublimeLinter-salt-lint | https://packagecontrol.io/packages/SublimeLinter-contrib-salt-lint
+
+
+Wish to create a `salt-lint` extension for your favourite editor? We're always looking for [contributions](CONTRIBUTING.md)!
 
 # Authors
 

@@ -134,7 +134,6 @@ To use salt-lint with [pre-commit](https://pre-commit.com),  just add the follow
 
 # Rules
 
-
 ## List of rules
 
 Rule | Description
@@ -142,7 +141,7 @@ Rule | Description
 [201](https://github.com/warpnet/salt-lint/wiki/201) | Trailing whitespace
 [202](https://github.com/warpnet/salt-lint/wiki/202) | Jinja statement should have spaces before and after: `{% statement %}`
 [203](https://github.com/warpnet/salt-lint/wiki/203) | Most files should not contain tabs
-[204](https://github.com/warpnet/salt-lint/wiki/204) | Lines should be no longer that 160 chars
+[204](https://github.com/warpnet/salt-lint/wiki/204) | Lines should be no longer than 160 chars
 [205](https://github.com/warpnet/salt-lint/wiki/205) | Use ".sls" as a Salt State file extension
 [206](https://github.com/warpnet/salt-lint/wiki/206) | Jinja variables should have spaces before and after `{{ var_name }}`
 [207](https://github.com/warpnet/salt-lint/wiki/207) | File modes should always be encapsulated in quotation marks
@@ -151,7 +150,6 @@ Rule | Description
 [210](https://github.com/warpnet/salt-lint/wiki/210) | Numbers that start with `0` should always be encapsulated in quotation marks
 [211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
 [212](https://github.com/warpnet/salt-lint/wiki/212) | Most files should not contain irregular spaces
-
 
 ## False Positives: Skipping Rules
 
@@ -172,8 +170,20 @@ Application | GitHub Link | Store/Marketplace
 Visual Studio Code | [warpnet/vscode-salt-lint](https://github.com/warpnet/vscode-salt-lint) | [VisualStudio Marketplace](https://marketplace.visualstudio.com/items?itemName=warpnet.salt-lint)
 Sublime Text | [warpnet/SublimeLinter-salt-lint](https://github.com/warpnet/SublimeLinter-salt-lint) | [Package Control](https://packagecontrol.io/packages/SublimeLinter-contrib-salt-lint)
 
-
 Wish to create a `salt-lint` extension for your favourite editor? We're always looking for [contributions](CONTRIBUTING.md)!
+
+# Fix common issues
+
+`sed` might be one of the better tools to fix common issues.
+
+Fix spacing arround `{{ var_name }}`, eg. `{{env}}` --> `{{ env }}`:\
+`sed -i -E "s/\{\{\s?([^}]*[^} ])\s?\}\}/\{\{ \1 \}\}/g"  $(find salt -name '*.sls')`
+
+Make the `dir_mode`, `file_mode` and `mode` arguments in the desired syntax:\
+`sed -i -E "s/\b(dir_|file_|)mode: 0?([0-7]{3})/\1mode: '0\2'/"  $(find salt -name '*.sls')`
+
+Add quotes arround numeric values that start with a `0`:\
+`sed -i -E "s/\b(minute|hour): (0[0-7]?)\$/\1: '\2'/"  $(find salt -name '*.sls')`
 
 # Authors
 

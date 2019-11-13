@@ -176,7 +176,7 @@ Wish to create a `salt-lint` extension for your favourite editor? We're always l
 
 `sed` might be one of the better tools to fix common issues, as shown in commands below.
 
-**Note**: these commands assume your current working directory is the salt directory/repository.
+**Note**: these commands assume your current working directory is the salt (states) directory/repository.
 
 Fix spacing arround `{{ var_name }}`, eg. `{{env}}` --> `{{ env }}`:\
 `sed -i -E "s/\{\{\s?([^}]*[^} ])\s?\}\}/\{\{ \1 \}\}/g"  $(find . -name '*.sls')`

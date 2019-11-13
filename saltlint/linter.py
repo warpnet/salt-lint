@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
-# Modified work Copyright (c) 2019 Roald Nefs
+# Modified work Copyright (c) 2019 Warpnet B.V.
 
 from __future__ import print_function
 
@@ -100,7 +100,7 @@ class RulesCollection(object):
             with codecs.open(statefile['path'], mode='rb', encoding='utf-8') as f:
                 text = f.read()
         except IOError as e:
-            print("WARNING: Coudn't open %s - %s" %
+            print("WARNING: Couldn't open %s - %s" %
                   (statefile['path'], e.strerror),
                   file=sys.stderr)
             return matches
@@ -111,7 +111,7 @@ class RulesCollection(object):
                 rule_definition = set(rule.tags)
                 rule_definition.add(rule.id)
 
-                # Check if the the file is in the rule specific ignore list.
+                # Check if the file is in the rule specific ignore list.
                 for definition in rule_definition:
                     if self.config.is_file_ignored(statefile['path'], definition):
                         skip = True

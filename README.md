@@ -161,6 +161,17 @@ Some rules are bit of a rule of thumb. To skip a specific rule for a specific ta
     - source: salt://{{unspaced_var}}/example  # noqa: 206
 ```
 
+# Plugins
+
+Currently, there is a `salt-lint` plugin available for the following applications:
+
+Application | GitHub Link | Store/Marketplace
+:-:|:--|:--
+Visual Studio Code | [warpnet/vscode-salt-lint](https://github.com/warpnet/vscode-salt-lint) | [VisualStudio Marketplace](https://marketplace.visualstudio.com/items?itemName=warpnet.salt-lint)
+Sublime Text | [warpnet/SublimeLinter-salt-lint](https://github.com/warpnet/SublimeLinter-salt-lint) | [Package Control](https://packagecontrol.io/packages/SublimeLinter-contrib-salt-lint)
+
+Wish to create a `salt-lint` extension for your favourite editor? We're always looking for [contributions](CONTRIBUTING.md)!
+
 # Fix common issues
 
 `sed` might be one of the better tools to fix common issues.

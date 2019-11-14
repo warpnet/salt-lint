@@ -98,6 +98,11 @@ class SaltLintConfig(object):
         # Parse json
         self.json = self._options.get('json', False)
 
+        # Parse add severity
+        self.add_severity = self._options.get('add_severity', False)
+        if 'add-severity' in config:
+            self.add_severity = config['add-severity']
+
         # Parse rule specific configuration, the configration can be listed by
         # the rule ID and/or tag.
         self.rules = dict()

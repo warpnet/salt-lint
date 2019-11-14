@@ -14,12 +14,16 @@ except ImportError:
 
 class Formatter(object):
 
-    def process(self, matches, colored=False):
+    def process(self, matches, colored=False, add_severity=False):
         for match in matches:
-            print(self.format(match, colored))
+            print(self.format(match, colored, add_severity))
 
-    def format(self, match, colored=False):
-        formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
+    def format(self, match, colored=False, add_severity=False):
+        if add_severity:
+            formatstr = u"{0}{sev} {1}\n{2}:{3}\n{4}\n"
+        else:
+            formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
+
         if colored:
             color = saltcolor.get_colors()
             return formatstr.format(
@@ -31,7 +35,9 @@ class Formatter(object):
                                     color['ENDC']),
                 u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
                                     color['ENDC']),
-                u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC'])
+                u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC']),
+                sev=u'{0}[{1}]{2}'.format(color['RED'], match.rule.severity,
+                                          color['ENDC'])
             )
         else:
             return formatstr.format(
@@ -39,7 +45,8 @@ class Formatter(object):
                 match.message,
                 match.filename,
                 match.linenumber,
-                match.line)
+                match.line,
+                sev=match.rule.severity)
 
 
 class JsonFormatter(object):

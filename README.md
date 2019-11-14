@@ -37,7 +37,7 @@ Options:
   -L                    list all the rules
   -r RULESDIR           specify one or more rules directories using one or
                         more -r arguments. Any -r flags override the default
-                        rules in /path/to/salt-lint/saltlint/rules, unless 
+                        rules in /path/to/salt-lint/saltlint/rules, unless
                         -R is also used.
   -R                    Use default rules in
                         /path/to/salt-lint/saltlint/rules in addition to any
@@ -54,6 +54,7 @@ Options:
                         path to directories or files to skip. This option is
                         repeatable.
   --json                parse the output as JSON
+  --add-severity        add the severity to standard output
   -c C                  Specify configuration file to use.  Defaults to
                         ".salt-lint"
 ```
@@ -112,6 +113,7 @@ rules:
       *.jinja
   210:
     ignore: 'exclude_this_file.sls'
+add-severity: True
 ```
 
 ## Pre-commit Setup

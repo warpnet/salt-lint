@@ -52,11 +52,11 @@ def run(args=None):
     parser.add_option('-x', dest='skip_list', default=[], action='append',
                       help="only check rules whose id/tags do not " +
                       "match these values")
-    parser.add_option('--nocolor', dest='colored',
+    parser.add_option('--nocolor', '--nocolour', dest='colored',
                       default=hasattr(sys.stdout, 'isatty') and sys.stdout.isatty(),
                       action='store_false',
                       help="disable colored output")
-    parser.add_option('--force-color', dest='colored',
+    parser.add_option('--force-color', '--force-colour', dest='colored',
                       action='store_true',
                       help="Try force colored output (relying on salt's code)")
     parser.add_option('--exclude', dest='exclude_paths', action='append',

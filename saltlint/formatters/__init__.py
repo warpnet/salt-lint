@@ -46,7 +46,7 @@ class Formatter(object):
                 match.filename,
                 match.linenumber,
                 match.line,
-                sev=match.rule.severity)
+                sev=u'[{0}]'.format(match.rule.severity))
 
 
 class JsonFormatter(object):

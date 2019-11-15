@@ -97,6 +97,8 @@ class SaltLintConfig(object):
 
         # Parse json
         self.json = self._options.get('json', False)
+        if 'json' in config:
+            self.json = config['json']
 
         # Parse rule specific configuration, the configration can be listed by
         # the rule ID and/or tag.

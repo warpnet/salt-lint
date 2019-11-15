@@ -152,6 +152,7 @@ Rule | Description
 [210](https://github.com/warpnet/salt-lint/wiki/210) | Numbers that start with `0` should always be encapsulated in quotation marks
 [211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
 [212](https://github.com/warpnet/salt-lint/wiki/212) | Most files should not contain irregular spaces
+[215](https://github.com/warpnet/salt-lint/wiki/215) | The line should have an even indentation
 
 ## False Positives: Skipping Rules
 

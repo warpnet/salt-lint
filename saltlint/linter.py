@@ -43,9 +43,6 @@ class SaltLintRule(object):
         # arrays are 0-based, line numbers are 1-based
         # so use prev_line_no as the counter
         for (prev_line_no, line) in enumerate(text.split("\n")):
-            if line.lstrip().startswith('#'):
-                continue
-
             rule_id_list = saltlint.utils.get_rule_skips_from_line(line)
             if self.id in rule_id_list:
                 continue

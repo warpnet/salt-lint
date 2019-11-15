@@ -13,7 +13,7 @@ class ColonFormatRule(SaltLintRule):
     tags = ['formatting']
     version_added = 'v0.1.1'
 
-    regex = re.compile(r"([\s]{1,}:)|(:\{)|(:\[)")
+    regex = re.compile(r"([\s]{1,}:)|((:\{)(?!\{))|(:\[)")
 
     def match(self, file, line):
         return self.regex.search(line)

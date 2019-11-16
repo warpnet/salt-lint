@@ -4,7 +4,7 @@
 from saltlint.linter import SaltLintRule
 
 class NewLineAtTheEndRule(SaltLintRule):
-    id = '218'
+    id = '216'
     shortdesc = 'The POSIX standard requires the last line to be a new line character.'
     description = 'The POSIX standard requires the last line to be a new line character.'
     severity = 'LOW'

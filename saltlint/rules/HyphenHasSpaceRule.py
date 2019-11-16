@@ -6,7 +6,7 @@ import re
 
 
 class HyphenHasSpaceRule(SaltLintRule):
-    id = '216'
+    id = '219'
     shortdesc = 'Hyphen character should be always followed by the one space.'
     description = 'Hyphen character should be always followed by the one space.'
     severity = 'MEDIUM'

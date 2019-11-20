@@ -54,7 +54,7 @@ Options:
                         path to directories or files to skip. This option is
                         repeatable.
   --json                parse the output as JSON
-  --add-severity        add the severity to standard output
+  --severity            add the severity to the standard output
   -c C                  Specify configuration file to use.  Defaults to
                         ".salt-lint"
 ```
@@ -113,7 +113,7 @@ rules:
       *.jinja
   210:
     ignore: 'exclude_this_file.sls'
-add-severity: True
+severity: True
 ```
 
 ## Pre-commit Setup

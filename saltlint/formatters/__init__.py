@@ -14,15 +14,41 @@ except ImportError:
 
 class Formatter(object):
 
-    def process(self, matches, colored=False, add_severity=False):
+    def process(self, matches, colored=False):
         for match in matches:
-            print(self.format(match, colored, add_severity))
+            print(self.format(match, colored))
 
-    def format(self, match, colored=False, add_severity=False):
-        if add_severity:
-            formatstr = u"{0}{sev} {1}\n{2}:{3}\n{4}\n"
+    def format(self, match, colored=False):
+        formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
+        if colored:
+            color = saltcolor.get_colors()
+            return formatstr.format(
+                u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
+                                      color['ENDC']),
+                u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
+                                    color['ENDC']),
+                u'{0}{1}{2}'.format(color['BLUE'], match.filename,
+                                    color['ENDC']),
+                u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
+                                    color['ENDC']),
+                u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC'])
+            )
         else:
-            formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
+            return formatstr.format(
+                u'[{0}]'.format(match.rule.id),
+                match.message,
+                match.filename,
+                match.linenumber,
+                match.line)
+
+
+class SeverityFormatter(object):
+    def process(self, matches, colored=False):
+        for match in matches:
+            print(self.format(match, colored))
+
+    def format(self, match, colored=False):
+        formatstr = u"{0} {sev} {1}\n{2}:{3}\n{4}\n"
 
         if colored:
             color = saltcolor.get_colors()

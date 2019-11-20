@@ -6,10 +6,7 @@
 import json
 
 # Import salt libs
-try:
-    import salt.utils.color as saltcolor
-except ImportError:
-    import salt.utils as saltcolor
+from . import color as saltcolor
 
 
 class Formatter(object):

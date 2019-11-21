@@ -65,6 +65,8 @@ def run(args=None):
                       default=[])
     parser.add_option('--json', dest='json', action='store_true', default=False,
                       help='parse the output as JSON')
+    parser.add_option('--severity', dest='severity', action='store_true', default=False,
+                      help='add the severity to the standard output')
     parser.add_option('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
     (options, parsed_args) = parser.parse_args(args if args is not None else sys.argv[1:])
 
@@ -111,6 +113,8 @@ def run(args=None):
     # Define the formatter
     if config.json:
         formatter = formatters.JsonFormatter()
+    elif config.severity:
+        formatter = formatters.SeverityFormatter()
     else:
         formatter = formatters.Formatter()
 

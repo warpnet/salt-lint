@@ -42,6 +42,39 @@ class Formatter(object):
                 match.line)
 
 
+class SeverityFormatter(object):
+    def process(self, matches, colored=False):
+        for match in matches:
+            print(self.format(match, colored))
+
+    def format(self, match, colored=False):
+        formatstr = u"{0} {sev} {1}\n{2}:{3}\n{4}\n"
+
+        if colored:
+            color = saltcolor.get_colors()
+            return formatstr.format(
+                u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
+                                      color['ENDC']),
+                u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
+                                    color['ENDC']),
+                u'{0}{1}{2}'.format(color['BLUE'], match.filename,
+                                    color['ENDC']),
+                u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
+                                    color['ENDC']),
+                u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC']),
+                sev=u'{0}[{1}]{2}'.format(color['RED'], match.rule.severity,
+                                          color['ENDC'])
+            )
+        else:
+            return formatstr.format(
+                u'[{0}]'.format(match.rule.id),
+                match.message,
+                match.filename,
+                match.linenumber,
+                match.line,
+                sev=u'[{0}]'.format(match.rule.severity))
+
+
 class JsonFormatter(object):
 
     def process(self, matches, *args, **kwargs):

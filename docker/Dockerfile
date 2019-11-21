@@ -6,7 +6,7 @@ LABEL maintainer="info@warpnet.nl"
 RUN apk add --no-cache gcc g++ build-base libzmq musl-dev zeromq-dev
 
 # Install the salt-lint package
-RUN pip install --no-cache salt-lint==v0.1.0
+RUN pip install --no-cache salt-lint==v0.2.0
 
 # Remove development utilities
 RUN apk del --no-cache gcc g++ build-base libzmq musl-dev zeromq-dev \

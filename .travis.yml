@@ -13,8 +13,11 @@ jobs:
   include:
   - python: 3.7
     name: Running linters
+    before_install:
+    - pip install codespell
     script:
     - flake8
+    - codespell --skip="./.git*"
 
   - python: 3.8
     before_install:
@@ -31,7 +34,7 @@ jobs:
   - language: generic
     name: Running hadolint
     sudo: false
-    env: 
+    env:
       HADOLINT: "${HOME}/hadolint"
     install:
       # Download hadolint binary and set it as executable

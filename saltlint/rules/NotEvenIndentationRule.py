@@ -11,7 +11,7 @@ class NotEvenIndentationRule(SaltLintRule):
     description = 'The line should have an even indentation.'
     severity = 'MEDIUM'
     tags = ['formatting']
-    version_added = 'v0.1.1'
+    version_added = 'develop'
 
     regex = re.compile(r"(^\s{1}[\w])|(^\s{3}[\w])|(^\s{5}[\w])|(^\s{7}[\w])|(^\s{9}[\w])")
 

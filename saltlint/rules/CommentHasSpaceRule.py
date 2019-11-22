@@ -11,7 +11,7 @@ class CommentHasSpaceRule(SaltLintRule):
     description = 'Comment character should be always followed by at least one space.'
     severity = 'LOW'
     tags = ['formatting']
-    version_added = 'v0.1.1'
+    version_added = 'develop'
 
     comment_regex = re.compile(r"(#[\w])")
 

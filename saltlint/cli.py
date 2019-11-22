@@ -32,14 +32,14 @@ def run(args=None):
                       help="specify one or more rules directories using "
                            "one or more -r arguments. Any -r flags override "
                            "the default rules in %s, unless -R is also used."
-                           % default_rulesdir)
+                      % default_rulesdir)
     parser.add_option('-R', action='store_true',
                       default=False,
                       dest='use_default_rules',
                       help="Use default rules in %s in addition to any extra "
                            "rules directories specified with -r. There is "
                            "no need to specify this if no -r flags are used."
-                           % default_rulesdir)
+                      % default_rulesdir)
     parser.add_option('-t', dest='tags',
                       action='append',
                       default=[],

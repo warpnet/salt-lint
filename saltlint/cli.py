@@ -82,7 +82,7 @@ def run(args=None):
         stdin_state.flush()
         states.add(stdin_state.name)
 
-    # Read, parse and validate the configration
+    # Read, parse and validate the configuration
     options_dict = vars(options)
     try:
         config = SaltLintConfig(options_dict)

@@ -50,5 +50,3 @@ class TestSkipRule(unittest.TestCase):
         runner = RunFromText(self.collection)
         results = runner.run_state(LINE_SKIP)
         self.assertEqual(0, len(results))
-
-

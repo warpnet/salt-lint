@@ -11,7 +11,7 @@ class ColonFormatRule(SaltLintRule):
     description = 'The line should have an proper colons formatting.'
     severity = 'MEDIUM'
     tags = ['formatting']
-    version_added = 'v0.1.1'
+    version_added = 'develop'
 
     regex = re.compile(r"([\s]{1,}:)|((:\{)(?!\{))|(:\[)")
 

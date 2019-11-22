@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2019 Dawid Malinowski <dawidmalina@gmail.com>
 
-from saltlint.linter import SaltLintRule
 import re
+from saltlint.linter import SaltLintRule
 
 
 class CommentHasSpaceRule(SaltLintRule):

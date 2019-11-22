@@ -103,7 +103,7 @@ class SaltLintConfig(object):
         if 'severity' in config:
             self.severity = config['severity']
 
-        # Parse rule specific configuration, the configration can be listed by
+        # Parse rule specific configuration, the configuration can be listed by
         # the rule ID and/or tag.
         self.rules = dict()
         if 'rules' in config and isinstance(config['rules'], dict):

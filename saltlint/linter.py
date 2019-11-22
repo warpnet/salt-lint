@@ -176,26 +176,16 @@ class Runner(object):
         self.tags = config.tags
         self.skip_list = config.skip_list
         self.verbosity = config.verbosity
-        self._update_exclude_paths(config.exclude_paths)
+        self.exclude_paths = config.exclude_paths
 
         # Set the checked files
         if checked_files is None:
             checked_files = set()
         self.checked_files = checked_files
 
-    def _update_exclude_paths(self, exclude_paths):
-        if exclude_paths:
-            # These will be (potentially) relative paths
-            paths = [s.strip() for s in exclude_paths]
-            self.exclude_paths = paths + [os.path.abspath(p) for p in paths]
-        else:
-            self.exclude_paths = []
-
     def is_excluded(self, file_path):
-        # Any will short-circuit as soon as something returns True, but will
-        # be poor performance for the case where the path under question is
-        # not excluded.
-        return any(file_path.startswith(path) for path in self.exclude_paths)
+        # Check if the file path matches one of the exclude paths
+        return self.exclude_paths.match_file(file_path)
 
     def run(self):
         files = list()

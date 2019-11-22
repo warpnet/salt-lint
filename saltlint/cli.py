@@ -60,7 +60,7 @@ def run(args=None):
                       action='store_true',
                       help="Try force colored output (relying on salt's code)")
     parser.add_option('--exclude', dest='exclude_paths', action='append',
-                      help='path to directories or files to skip. This option'
+                      help='Path to directories or files to skip. This option'
                            ' is repeatable.',
                       default=[])
     parser.add_option('--json', dest='json', action='store_true', default=False,

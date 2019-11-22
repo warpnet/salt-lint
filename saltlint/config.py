@@ -53,9 +53,12 @@ class SaltLintConfig(object):
             self.verbosity += config['verbosity']
 
         # Parse exclude paths
-        self.exclude_paths = self._options.get('exclude_paths', [])
+        exclude_paths = self._options.get('exclude_paths', [])
         if 'exclude_paths' in config:
-            self.exclude_paths += config['exclude_paths']
+            exclude_paths += config['exclude_paths']
+        self.exclude_paths = pathspec.PathSpec.from_lines(
+            'gitwildmatch', exclude_paths
+        )
 
         # Parse skip list
         skip_list = self._options.get('skip_list', [])

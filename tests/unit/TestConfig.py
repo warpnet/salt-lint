@@ -71,5 +71,3 @@ class TestConfig(unittest.TestCase):
         self.assertFalse(
             self.config.is_file_ignored('test.jinja', 'formatting')
         )
-
-

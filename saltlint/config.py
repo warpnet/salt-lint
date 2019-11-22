@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 Roald Nefs
+# Copyright (c) 2019 Warpnet B.V.
 
 import yaml
 import os
@@ -97,6 +97,13 @@ class SaltLintConfig(object):
 
         # Parse json
         self.json = self._options.get('json', False)
+        if 'json' in config:
+            self.json = config['json']
+
+        # Parse add severity
+        self.severity = self._options.get('severity', False)
+        if 'severity' in config:
+            self.severity = config['severity']
 
         # Parse rule specific configuration, the configration can be listed by
         # the rule ID and/or tag.

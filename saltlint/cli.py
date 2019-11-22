@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
-# Modified work Copyright (c) 2019 Roald Nefs
+# Modified work Copyright (c) 2019 Warpnet B.V.
 
 from __future__ import print_function
 
@@ -52,11 +52,11 @@ def run(args=None):
     parser.add_option('-x', dest='skip_list', default=[], action='append',
                       help="only check rules whose id/tags do not " +
                       "match these values")
-    parser.add_option('--nocolor', dest='colored',
+    parser.add_option('--nocolor', '--nocolour', dest='colored',
                       default=hasattr(sys.stdout, 'isatty') and sys.stdout.isatty(),
                       action='store_false',
                       help="disable colored output")
-    parser.add_option('--force-color', dest='colored',
+    parser.add_option('--force-color', '--force-colour', dest='colored',
                       action='store_true',
                       help="Try force colored output (relying on salt's code)")
     parser.add_option('--exclude', dest='exclude_paths', action='append',
@@ -65,6 +65,8 @@ def run(args=None):
                       default=[])
     parser.add_option('--json', dest='json', action='store_true', default=False,
                       help='parse the output as JSON')
+    parser.add_option('--severity', dest='severity', action='store_true', default=False,
+                      help='add the severity to the standard output')
     parser.add_option('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
     (options, parsed_args) = parser.parse_args(args if args is not None else sys.argv[1:])
 
@@ -111,6 +113,8 @@ def run(args=None):
     # Define the formatter
     if config.json:
         formatter = formatters.JsonFormatter()
+    elif config.severity:
+        formatter = formatters.SeverityFormatter()
     else:
         formatter = formatters.Formatter()
 

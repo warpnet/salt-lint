@@ -135,5 +135,5 @@ def run(args=None):
     # Return the exit code
     if len(matches):
         return 2
-    else:
-        return 0
+
+    return 0

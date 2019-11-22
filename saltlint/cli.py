@@ -91,7 +91,7 @@ def run(args=None):
         return 2
 
     # Show a help message on the screen
-    if len(states) == 0 and not (options.listrules or options.listtags):
+    if not states and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
@@ -133,7 +133,7 @@ def run(args=None):
         os.unlink(stdin_state.name)
 
     # Return the exit code
-    if len(matches):
+    if matches:
         return 2
 
     return 0

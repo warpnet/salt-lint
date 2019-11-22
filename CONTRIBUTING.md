@@ -3,6 +3,61 @@
 When contributing to this repository, please first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change.
 
+## Things to keep in mind when creating new rules
+
+1. Set the version to 'develop':
+
+```python
+# -*- coding: utf-8 -*-
+# Copyright (c) 2019 Your name <your@email.com>
+
+from saltlint.linter import SaltLintRule
+
+class NewlyAddedRule(SaltLintRule):
+    id = '999'
+    shortdesc = 'This is an example'
+    description = 'This too is an example'
+    severity = 'LOW'
+    tags = ['formatting']
+    version_added = 'develop'
+```
+
+Versions will be correctly set when a new release is made.
+
+2. Include an entry to your new rule in [README.md](README.md)
+
+All rules are documented in the README, and on the wiki. We ask you to at least supply an entry
+to the [Rules Section](README.md#rules) in your Pull Request.
+
+```markdown
+[999](https://github.com/warpnet/salt-lint/wiki/999) | This is an example
+```
+
+3. Inside your pull request, please supply information that needs to be added to the wiki
+
+Documentation is important for linters, as such - we ask you to supply the following documentation for your new check:
+
+````markdown
+## This is an example
+
+### Problematic code
+```yaml
+/tmp/testfile:
+    file.managed:
+      - content:u"\u000B""foobar"
+```
+
+### Correct code
+```yaml
+/tmp/testfile:
+    file.managed:
+      - content: "foobar"
+```
+
+### Rationale
+Some explanation as to why this check exists, and why the problematic code is actually bad.
+````
+
 ## Pull Request Process
 
 Please note we have a code of conduct, please follow it in all your interactions with the project. The workflow advice below mirrors [SaltStack's own guide](https://docs.saltstack.com/en/latest/topics/development/contributing.html#sending-a-github-pull-request) and is well worth reading.
@@ -57,8 +112,9 @@ git push -u origin add-cool-feature
 
 8. Open a new pull request.
 Click on `Pull Request` on the right near the top of the page,
-[https://github.com/my-account/salt-lint/pull/new/add-cool-feature](https://github.com/my-account/salt-lint/pull/new/add-cool-feature)
-Choose `develop` as the base branch. Review that the proposed changes are what you expect. Write a descriptive comment. Include links to related issues (e.g. 'Fixes #1.') in the comment field. Click `Create pull request`.
+[https://github.com/my-account/salt-lint/pull/new/add-cool-feature](https://github.com/my-account/salt-lint/pull/new/add-cool-feature).
+
+Choose **develop** as the base branch. Review that the proposed changes are what you expect. Write a descriptive comment. Include links to related issues (e.g. 'Fixes #1.') in the comment field. Click `Create pull request`.
 
 9. Salt-lint project members will review your pull request and automated tests will run on it.
 

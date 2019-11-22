@@ -3,9 +3,8 @@
 # Copyright (c) 2018 Ansible Project
 # Modified work Copyright (c) 2019 Warpnet B.V.
 
-from saltlint.linter import SaltLintRule
-
 import os
+from saltlint.linter import SaltLintRule
 
 
 class FileExtensionRule(SaltLintRule):

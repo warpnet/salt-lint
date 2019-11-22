@@ -33,13 +33,13 @@ class Formatter(object):
                                     color['ENDC']),
                 u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC'])
             )
-        else:
-            return formatstr.format(
-                u'[{0}]'.format(match.rule.id),
-                match.message,
-                match.filename,
-                match.linenumber,
-                match.line)
+
+        return formatstr.format(
+            u'[{0}]'.format(match.rule.id),
+            match.message,
+            match.filename,
+            match.linenumber,
+            match.line)
 
 
 class SeverityFormatter(object):
@@ -65,14 +65,14 @@ class SeverityFormatter(object):
                 sev=u'{0}[{1}]{2}'.format(color['RED'], match.rule.severity,
                                           color['ENDC'])
             )
-        else:
-            return formatstr.format(
-                u'[{0}]'.format(match.rule.id),
-                match.message,
-                match.filename,
-                match.linenumber,
-                match.line,
-                sev=u'[{0}]'.format(match.rule.severity))
+
+        return formatstr.format(
+            u'[{0}]'.format(match.rule.id),
+            match.message,
+            match.filename,
+            match.linenumber,
+            match.line,
+            sev=u'[{0}]'.format(match.rule.severity))
 
 
 class JsonFormatter(object):

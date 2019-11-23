@@ -13,6 +13,6 @@ class TrailingWhitespaceRule(SaltLintRule):
     tags = ['formatting']
     version_added = 'v0.0.1'
 
-    def match(self, file, line):
+    def match(self, _, line):
         line = line.replace("\r", "")
         return line.rstrip() != line

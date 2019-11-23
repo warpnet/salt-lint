@@ -92,7 +92,8 @@ class RulesCollection(object):
     def extend(self, more):
         self.rules.extend(more)
 
-    def run(self, statefile, tags=set(), skip_list=frozenset()):
+    # pylint: disable=dangerous-default-value
+    def run(self, statefile, tags=[], skip_list=frozenset()):
         text = ""
         matches = list()
 

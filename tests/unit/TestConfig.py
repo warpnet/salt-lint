@@ -53,7 +53,7 @@ class TestConfig(unittest.TestCase):
         self.assertNotIn('200', self.config.skip_list)
 
         # Check 'exclude_paths'
-        self.assertIn('exclude_this_file', self.config.exclude_paths)
+        self.assertTrue(self.config.exclude_paths.match_file('exclude_this_file'))
         self.assertEqual(3, len(self.config.exclude_paths))
 
     def test_is_file_ignored(self):

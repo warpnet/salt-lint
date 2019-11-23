@@ -12,15 +12,24 @@ except ImportError:
     import salt.utils as saltcolor
 
 
-class Formatter(object):
+class BaseFormatter(object):
 
-    def process(self, matches, colored=False):
+    def __init__(self, colored=False):
+        self.colored = colored
+
+    def process(self, matches):
         for match in matches:
-            print(self.format(match, colored))
+            print(self.format(match))
 
-    def format(self, match, colored=False):
+    def format(self, match):
+        raise NotImplementedError()
+
+
+class Formatter(BaseFormatter):
+
+    def format(self, match):
         formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
-        if colored:
+        if self.colored:
             color = saltcolor.get_colors()
             return formatstr.format(
                 u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
@@ -42,15 +51,12 @@ class Formatter(object):
             match.line)
 
 
-class SeverityFormatter(object):
-    def process(self, matches, colored=False):
-        for match in matches:
-            print(self.format(match, colored))
+class SeverityFormatter(BaseFormatter):
 
-    def format(self, match, colored=False):
+    def format(self, match):
         formatstr = u"{0} {sev} {1}\n{2}:{3}\n{4}\n"
 
-        if colored:
+        if self.colored:
             color = saltcolor.get_colors()
             return formatstr.format(
                 u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
@@ -75,7 +81,7 @@ class SeverityFormatter(object):
             sev=u'[{0}]'.format(match.rule.severity))
 
 
-class JsonFormatter(object):
+class JsonFormatter(BaseFormatter):
 
     def process(self, matches):
         items = []

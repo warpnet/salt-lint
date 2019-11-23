@@ -38,6 +38,6 @@ class NoIrregularSpacesRule(SaltLintRule):
         u"\u3000",  # Ideographic Space
         ]
 
-    def match(self, file, line):
+    def match(self, _, line):
         res = [i for i in self.irregular_spaces if i in line]
         return len(res) != 0

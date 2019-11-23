@@ -17,5 +17,5 @@ class FileModeQuotationRule(SaltLintRule):
 
     bracket_regex = re.compile(r"^\s+- ((dir_)|(file_))?mode: [0-9]{3,4}")
 
-    def match(self, file, line):
+    def match(self, _, line):
         return self.bracket_regex.search(line)

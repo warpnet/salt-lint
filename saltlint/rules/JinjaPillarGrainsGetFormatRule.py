@@ -19,5 +19,5 @@ class JinjaPillarGrainsGetFormatRule(SaltLintRule):
 
     bracket_regex = re.compile(r"{{( |\-|\+)?.(pillar|grains).get\[.+}}")
 
-    def match(self, file, line):
+    def match(self, _, line):
         return self.bracket_regex.search(line)

@@ -14,5 +14,5 @@ class NoTabsRule(SaltLintRule):
     tags = ['formatting']
     version_added = 'v0.0.1'
 
-    def match(self, file, line):
+    def match(self, _, line):
         return '\t' in line

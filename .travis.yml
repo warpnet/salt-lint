@@ -17,6 +17,7 @@ jobs:
     - pip install codespell
     - pip install pylint
     script:
+    - flake8 --version
     - flake8
     - codespell --version
     - codespell --skip="./.git*"

@@ -21,7 +21,7 @@ class SaltLintConfigError(Exception):
 
 class SaltLintConfig(object):
 
-    def __init__(self, options=dict()):
+    def __init__(self, options={}):  # pylint: disable=dangerous-default-value
         self._options = options
         # Configuration file to use, defaults to ".salt-lint".
         config = options.get('c')

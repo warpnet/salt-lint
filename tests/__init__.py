@@ -9,7 +9,7 @@ from saltlint.config import SaltLintConfig
 
 
 class RunFromText(object):
-    """Use Runner on temporary files created from unittest text snippets."""
+    """Use Runner on temporary files created from unit-test text snippets."""
 
     def __init__(self, collection):
         self.collection = collection

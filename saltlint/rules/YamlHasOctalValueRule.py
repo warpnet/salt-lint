@@ -17,5 +17,5 @@ class YamlHasOctalValueRule(SaltLintRule):
 
     bracket_regex = re.compile(r"(?<=:)\s{0,}0[0-9]{1,}\s{0,}((?={#)|(?=#)|(?=$))")
 
-    def match(self, file, line):
+    def match(self, _, line):
         return self.bracket_regex.search(line)

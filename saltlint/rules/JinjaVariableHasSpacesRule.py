@@ -17,5 +17,5 @@ class JinjaVariableHasSpacesRule(SaltLintRule):
 
     bracket_regex = re.compile(r"{{[^ \-\+]|{{[-\+][^ ]|[^ \-\+]}}|[^ ][-\+]}}")
 
-    def match(self, file, line):
+    def match(self, _, line):
         return self.bracket_regex.search(line)

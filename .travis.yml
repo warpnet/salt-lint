@@ -17,11 +17,12 @@ jobs:
     - pip install codespell
     - pip install pylint
     script:
+    - flake8 --version
     - flake8
     - codespell --version
     - codespell --skip="./.git*"
     - pylint --version
-    - pylint --disable=missing-docstring,invalid-name,unused-argument,no-self-use,useless-object-inheritance,too-many-instance-attributes,too-few-public-methods,too-many-locals,deprecated-module,no-member,not-callable,too-many-statements,too-many-branches,too-many-arguments,duplicate-code,dangerous-default-value $(find . -type f -name "*.py")
+    - pylint --rcfile=.pylintrc $(find . -type f -name "*.py")
 
   - python: 3.8
     before_install:

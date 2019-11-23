@@ -16,7 +16,7 @@ class FileExtensionRule(SaltLintRule):
     done = []  # already noticed path list
     version_added = 'v0.0.1'
 
-    def match(self, file, line):
+    def match(self, file, _):
         if file['type'] != 'state':
             return False
 

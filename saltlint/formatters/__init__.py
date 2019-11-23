@@ -37,13 +37,22 @@ def get_colors(use=True):
     return colors
 
 
-class Formatter(object):
+class BaseFormatter(object):
 
-    def process(self, matches, colored=False):
+    def __init__(self, colored=False):
+        self.colored = colored
+
+    def process(self, matches):
         for match in matches:
-            print(self.format(match, colored))
+            print(self.format(match))
 
-    def format(self, match, colored=False):
+    def format(self, match):
+        raise NotImplementedError()
+
+
+class Formatter(BaseFormatter):
+
+    def format(self, match):
         formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
 
         color = get_colors(self.colored)
@@ -60,12 +69,9 @@ class Formatter(object):
         )
 
 
-class SeverityFormatter(object):
-    def process(self, matches, colored=False):
-        for match in matches:
-            print(self.format(match, colored))
+class SeverityFormatter(BaseFormatter):
 
-    def format(self, match, colored=False):
+    def format(self, match):
         formatstr = u"{0} {sev} {1}\n{2}:{3}\n{4}\n"
 
         color = get_colors(self.colored)
@@ -84,7 +90,7 @@ class SeverityFormatter(object):
         )
 
 
-class JsonFormatter(object):
+class JsonFormatter(BaseFormatter):
 
     def process(self, matches, *args, **kwargs):
         items = []

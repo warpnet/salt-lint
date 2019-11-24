@@ -31,14 +31,14 @@ def run(args=None):
     parser.add_argument('-r', action='append', dest='rulesdir',
                         default=[], type=str,
                         help="specify one or more rules directories using "
-                            "one or more -r arguments. Any -r flags override "
-                            "the default rules in %s, unless -R is also used."
+                             "one or more -r arguments. Any -r flags override "
+                             "the default rules in %s, unless -R is also used."
                         % default_rulesdir)
     parser.add_argument('-R', action='store_true', default=False,
                         dest='use_default_rules',
                         help="Use default rules in %s in addition to any extra "
-                            "rules directories specified with -r. There is "
-                            "no need to specify this if no -r flags are used."
+                             "rules directories specified with -r. There is "
+                             "no need to specify this if no -r flags are used."
                         % default_rulesdir)
     parser.add_argument('-t', dest='tags', action='append', default=[],
                         help="only check rules whose id/tags match these values")
@@ -59,7 +59,7 @@ def run(args=None):
                         help="Try force colored output (relying on salt's code)")
     parser.add_argument('--exclude', dest='exclude_paths', action='append',
                         help='path to directories or files to skip. This option'
-                            ' is repeatable.',
+                             ' is repeatable.',
                         default=[])
     parser.add_argument('--json', dest='json', action='store_true', default=False,
                         help='parse the output as JSON')

@@ -11,7 +11,7 @@ class HyphenHasSpaceRule(SaltLintRule):
     description = 'Hyphen character should be always followed by the one space.'
     severity = 'MEDIUM'
     tags = ['formatting']
-    version_added = 'v0.1.1'
+    version_added = 'develop'
 
     comment_regex = re.compile(r"(-[\s]{2,}\w)|(\s{2,}-[\w])")
 

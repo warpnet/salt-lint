@@ -152,7 +152,7 @@ Rule | Description
 [210](https://github.com/warpnet/salt-lint/wiki/210) | Numbers that start with `0` should always be encapsulated in quotation marks
 [211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
 [212](https://github.com/warpnet/salt-lint/wiki/212) | Most files should not contain irregular spaces
-[213](https://github.com/warpnet/salt-lint/wiki/213) | Hyphen character should be always followed by the one space
+[219](https://github.com/warpnet/salt-lint/wiki/219) | Hyphen character should be always followed by the one space
 
 ## False Positives: Skipping Rules
 

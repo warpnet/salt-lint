@@ -16,4 +16,5 @@ class HyphenHasSpaceRule(SaltLintRule):
     comment_regex = re.compile(r"(-[\s]{2,}\w)|(\s{2,}-[\w])")
 
     def match(self, file, line):
+        # pylint: disable=unused-argument
         return self.comment_regex.search(line)

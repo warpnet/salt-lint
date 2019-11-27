@@ -16,4 +16,5 @@ class CommentHasSpaceRule(SaltLintRule):
     comment_regex = re.compile(r"(#[\w])")
 
     def match(self, file, line):
+        # pylint: disable=unused-argument
         return self.comment_regex.search(line)

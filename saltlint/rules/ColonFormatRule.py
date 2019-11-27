@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2019 Dawid Malinowski <dawidmalina@gmail.com>
 
-from saltlint.linter import SaltLintRule
 import re
+from saltlint.linter import SaltLintRule
 
 
 class ColonFormatRule(SaltLintRule):
@@ -16,4 +16,5 @@ class ColonFormatRule(SaltLintRule):
     regex = re.compile(r"([\s]{1,}:)|((:\{)(?!\{))|(:\[)")
 
     def match(self, file, line):
+        # pylint: disable=unused-argument
         return self.regex.search(line)

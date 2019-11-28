@@ -19,6 +19,18 @@ BAD_LINES = '''
     - contents: This is line 2
 '''
 
+BAD_LINES_AT_THE_BEGINING = '''
+
+
+/path/to/file1:
+  file.managed:
+    - contents: This is line 1
+
+/path/to/file2:
+  file.managed:
+    - contents: This is line 2
+'''
+
 GOOD_LINES = '''
 /path/to/file1:
   file.managed:
@@ -39,6 +51,10 @@ class TestNoTwoEmptyLinesRule(unittest.TestCase):
 
     def test_bad_lines(self):
         results = self.runner.run_state(BAD_LINES)
+        self.assertEqual(1, len(results))
+
+    def test_bad_lines_at_the_begining(self):
+        results = self.runner.run_state(BAD_LINES_AT_THE_BEGINING)
         self.assertEqual(1, len(results))
 
     def test_good_lines(self):

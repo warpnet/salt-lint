@@ -15,6 +15,5 @@ class ColonFormatRule(SaltLintRule):
 
     regex = re.compile(r"([\s]{1,}:)|((:\{)(?!\{))|(:\[)")
 
-    def match(self, file, line):
-        # pylint: disable=unused-argument
+    def match(self, _, line):
         return self.regex.search(line)

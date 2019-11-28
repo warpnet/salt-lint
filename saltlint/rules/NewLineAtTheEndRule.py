@@ -10,7 +10,7 @@ class NewLineAtTheEndRule(SaltLintRule):
     description = 'The POSIX standard requires the last line to be a new line character.'
     severity = 'LOW'
     tags = ['formatting']
-    version_added = 'v0.1.1'
+    version_added = 'develop'
 
     def matchtext(self, _, text):
         lines = text.splitlines()

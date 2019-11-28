@@ -15,6 +15,5 @@ class NotEvenIndentationRule(SaltLintRule):
 
     regex = re.compile(r"(^\s{1}[\w])|(^\s{3}[\w])|(^\s{5}[\w])|(^\s{7}[\w])|(^\s{9}[\w])")
 
-    def match(self, file, line):
-        # pylint: disable=unused-argument
+    def match(self, _, line):
         return self.regex.search(line)

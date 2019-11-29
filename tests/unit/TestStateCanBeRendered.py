@@ -12,14 +12,16 @@ BAD_SLS_FILE = '''
 # the following code snippet would fail:
 /path/to/file1
   file.managed:
-    - contents : This is line 1
+    - contents: This is line 1
+
 '''
 
 GOOD_SLS_FILE = '''
 # the following code snippet would fail:
 /path/to/file1:
     file.managed:
-      - contents:[]
+      - contents: This is line 1
+
 '''
 
 

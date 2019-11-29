@@ -4,7 +4,7 @@
 import unittest
 
 from saltlint.linter import RulesCollection
-from saltlint.rules.NewLineAtTheEndRule import NewLineAtTheEndRule
+from saltlint.rules.NewLineAtEndOfFileRule import NewLineAtEndOfFileRule
 from tests import RunFromText
 
 
@@ -22,11 +22,11 @@ GOOD_LAST_LINE = '''
 '''
 
 
-class TestNewLineAtTheEndRule(unittest.TestCase):
+class TestNewLineAtEndOfFileRule(unittest.TestCase):
     collection = RulesCollection()
 
     def setUp(self):
-        self.collection.register(NewLineAtTheEndRule())
+        self.collection.register(NewLineAtEndOfFileRule())
         self.runner = RunFromText(self.collection)
 
     def test_bad_last_line(self):

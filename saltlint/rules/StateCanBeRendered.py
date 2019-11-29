@@ -13,7 +13,7 @@ class StateCanBeRendered(SaltLintRule):
     description = 'Rendered sls file should be valid.'
     severity = 'HIGH'
     tags = ['formatting']
-    version_added = 'v0.1.1'
+    version_added = 'develop'
 
     def matchtext(self, file, text):
         __opts__ = salt.config.minion_config('/etc/salt/minion')

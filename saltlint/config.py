@@ -21,6 +21,8 @@ class SaltLintConfigError(Exception):
 
 class SaltLintConfig(object):
 
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self, options={}):  # pylint: disable=dangerous-default-value
         self._options = options
         # Configuration file to use, defaults to ".salt-lint".

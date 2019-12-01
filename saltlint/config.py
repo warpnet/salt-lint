@@ -128,6 +128,9 @@ class SaltLintConfig(object):
                 self.rules[str(name)]['ignore'] = pathspec.PathSpec.from_lines(
                     'gitwildmatch', rule['ignore'].splitlines())
 
+        # Parse states.
+        self.states = self._options.get('state')
+
     def is_file_ignored(self, filepath, rule):
         rule = str(rule)
         if rule not in self.rules or 'ignore' not in self.rules[rule]:

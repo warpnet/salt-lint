@@ -79,7 +79,7 @@ def run(args=None):
 
     stdin_state = None
     states = []
-    matches = list()
+    matches = []
     checked_files = set()
 
     # Read input from stdin

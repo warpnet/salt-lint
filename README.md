@@ -29,34 +29,42 @@ pip install git+https://github.com/warpnet/salt-lint.git
 The following is the output from `salt-lint --help`, providing an overview of the basic command line options:
 
 ```bash
-Usage: salt-lint [options] init.sls [state ...]
+usage: salt-lint [-h] [--version] [-L] [-r RULESDIR] [-R] [-t TAGS] [-T] [-v]
+                 [-x SKIP_LIST] [--nocolor] [--force-color]
+                 [--exclude EXCLUDE_PATHS] [--json] [--severity] [-c C]
+                 [state [state ...]]
 
-Options:
-  --version             show program's version number and exit
+positional arguments:
+  state                 Specify one or more states to lint.
+
+optional arguments:
   -h, --help            show this help message and exit
-  -L                    list all the rules
-  -r RULESDIR           specify one or more rules directories using one or
+  --version             show program's version number and exit
+  -L                    List all the rules.
+  -r RULESDIR           Specify one or more rules directories using one or
                         more -r arguments. Any -r flags override the default
-                        rules in /path/to/salt-lint/saltlint/rules, unless
-                        -R is also used.
-  -R                    Use default rules in
-                        /path/to/salt-lint/saltlint/rules in addition to any
-                        extra rules directories specified with -r. There is
-                        no need to specify this if no -r flags are used.
-  -t TAGS               only check rules whose id/tags match these values
-  -T                    list all the tags
-  -v                    Increase verbosity level
-  -x SKIP_LIST          only check rules whose id/tags do not match these
-                        values
-  --nocolor             disable colored output
-  --force-color         Try force colored output (relying on salt's code)
-  --exclude=EXCLUDE_PATHS
-                        path to directories or files to skip. This option is
+                        rules in /path/to/salt-lint/saltlint/rules, unless -R
+                        is also used.
+  -R                    Use default rules in /path/to/salt-lint/saltlint/rules
+                        in addition to any extra rules directories specified
+                        with -r. There is no need to specify this if no -r
+                        flags are used.
+  -t TAGS               Only check rules whose id/tags match these values.
+  -T                    List all the tags.
+  -v                    Increase verbosity level.
+  -x SKIP_LIST          Only check rules whose id/tags do not match these
+                        values.
+  --nocolor, --nocolour
+                        Disable colored output.
+  --force-color, --force-colour
+                        Try force colored output (relying on salt's code).
+  --exclude EXCLUDE_PATHS
+                        Path to directories or files to skip. This option is
                         repeatable.
-  --json                parse the output as JSON
-  --severity            add the severity to the standard output
-  -c C                  Specify configuration file to use.  Defaults to
-                        ".salt-lint"
+  --json                Parse the output as JSON.
+  --severity            Add the severity to the standard output.
+  -c C                  Specify configuration file to use. Defaults to ".salt-
+                        lint".
 ```
 
 ## Linting Salt State files

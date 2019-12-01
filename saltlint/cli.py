@@ -27,51 +27,58 @@ def run(args=None):
                         version='{} {}'.format(NAME, VERSION))
 
     parser.add_argument('-L', dest='listrules', default=False,
-                        action='store_true', help="list all the rules")
+                        action='store_true', help="List all the rules.")
     parser.add_argument('-r', action='append', dest='rulesdir',
                         default=[], type=str,
-                        help="specify one or more rules directories using "
+                        help="Specify one or more rules directories using "
                              "one or more -r arguments. Any -r flags override "
                              "the default rules in %s, unless -R is also used."
                         % default_rulesdir)
     parser.add_argument('-R', action='store_true', default=False,
                         dest='use_default_rules',
-                        help="Use default rules in %s in addition to any extra "
-                             "rules directories specified with -r. There is "
-                             "no need to specify this if no -r flags are used."
+                        help="Use default rules in %s in addition to any "
+                             "extra rules directories specified with -r. "
+                             "There is no need to specify this if no -r flags "
+                             "are used."
                         % default_rulesdir)
     parser.add_argument('-t', dest='tags', action='append', default=[],
-                        help="only check rules whose id/tags match these values")
+                        help="Only check rules whose id/tags match these "
+                             "values.")
     parser.add_argument('-T', dest='listtags', action='store_true',
-                        help="list all the tags")
+                        help="List all the tags.")
     parser.add_argument('-v', dest='verbosity', action='count',
-                        help="Increase verbosity level",
+                        help="Increase verbosity level.",
                         default=0)
     parser.add_argument('-x', dest='skip_list', default=[], action='append',
-                        help="only check rules whose id/tags do not " +
-                        "match these values")
+                        help="Only check rules whose id/tags do not "
+                             "match these values.")
     parser.add_argument('--nocolor', '--nocolour', dest='colored',
                         default=hasattr(sys.stdout, 'isatty') and sys.stdout.isatty(),
                         action='store_false',
-                        help="disable colored output")
+                        help="Disable colored output.")
     parser.add_argument('--force-color', '--force-colour', dest='colored',
                         action='store_true',
-                        help="Try force colored output (relying on salt's code)")
-    parser.add_argument('--exclude', dest='exclude_paths', action='append',
-                        help='path to directories or files to skip. This option'
-                             ' is repeatable.',
-                        default=[])
+                        help="Try force colored output (relying on salt's "
+                             "code).")
+    parser.add_argument('--exclude', dest='exclude_paths',
+                        action='append', default=[],
+                        help="Path to directories or files to skip. This option "
+                             "is repeatable.")
     parser.add_argument('--json', dest='json', action='store_true', default=False,
-                        help='parse the output as JSON')
-    parser.add_argument('--severity', dest='severity', action='store_true', default=False,
-                        help='add the severity to the standard output')
-    parser.add_argument('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
+                        help='Parse the output as JSON.')
+    parser.add_argument('--severity', dest='severity',
+                        action='store_true', default=False,
+                        help='Add the severity to the standard output.')
+    parser.add_argument('-c', help="Specify configuration file to use. "
+                                   "Defaults to \".salt-lint\".")
+    parser.add_argument('state', nargs='*', type=str,
+                        help="Specify one or more states to lint.")
 
     # Parse the arguments
-    (options, parsed_args) = parser.parse_known_args(args if args is not None else sys.argv[1:])
+    options = parser.parse_args(args if args is not None else sys.argv[1:])
 
     stdin_state = None
-    states = set(parsed_args)
+    states = []
     matches = list()
     checked_files = set()
 
@@ -80,7 +87,7 @@ def run(args=None):
         stdin_state = tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False)
         stdin_state.write(sys.stdin.read())
         stdin_state.flush()
-        states.add(stdin_state.name)
+        states.append(stdin_state.name)
 
     # Read, parse and validate the configuration
     options_dict = vars(options)
@@ -90,12 +97,15 @@ def run(args=None):
         print(exc)
         return 2
 
+    # Read the states from the configuration
+    states.extend(config.states)
+
     # Show a help message on the screen
     if not states and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
-    # Collect the rules from the configution
+    # Collect the rules from the configuration
     rules = RulesCollection(config)
     for rulesdir in config.rulesdirs:
         rules.extend(RulesCollection.create_from_directory(rulesdir, config))

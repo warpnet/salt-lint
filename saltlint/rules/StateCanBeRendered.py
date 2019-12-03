@@ -18,6 +18,8 @@ class StateCanBeRendered(SaltLintRule):
 
     def matchtext(self, file, _):
         __opts__ = salt.config.minion_config('/etc/salt/minion')
+        __grains__ = salt.loader.grains(__opts__)
+        __opts__['grains'] = __grains__
         __opts__['file_client'] = 'local'
         __opts__['cachedir'] = '/tmp/_cache'
         __utils__ = salt.loader.utils(__opts__)

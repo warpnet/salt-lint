@@ -21,6 +21,8 @@ class SaltLintConfigError(Exception):
 
 class SaltLintConfig(object):
 
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self, options={}):  # pylint: disable=dangerous-default-value
         self._options = options
         # Configuration file to use, defaults to ".salt-lint".
@@ -127,6 +129,9 @@ class SaltLintConfig(object):
                 # Retrieve the pathspec.
                 self.rules[str(name)]['ignore'] = pathspec.PathSpec.from_lines(
                     'gitwildmatch', rule['ignore'].splitlines())
+
+        # Parse states.
+        self.states = self._options.get('state')
 
     def is_file_ignored(self, filepath, rule):
         rule = str(rule)

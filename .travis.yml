@@ -53,7 +53,6 @@ jobs:
   - python: 3.7
     stage: Deploy
     name: Publishing current Git tagged version of dist to PyPI
-    if: repo == "warpnet/salt-lint" AND tag IS present AND branch == "master" AND type NOT IN (cron, pull_request)
     before_install: []
     # Deploy a new release to PyPi for every new tag on the 'master' branch on the
     # repository 'warpnet/salt-lint'.

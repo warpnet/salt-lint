@@ -11,25 +11,31 @@ from tests import RunFromText
 
 
 GOOD_STATEMENT_LINE = '''
-example_test:
+example_file:
   file.managed:
-    - name: /etc/test
-    - user: root
-    - group: {{ salt['pillar.get']('item') }} test
-    - something: {{ grains['item'] }}
-    - content: |
-        {{ salt['pillar.get']('test') }}
+    - name: /tmp/good.txt
+    - contents: |
+        {{ salt['pillar.get']('item') }}
+        {{ pillar.get('item') }}
+        {{ pillar['item'] }}
+        {{ salt['grains.get']('saltversion') }}
+        {{ grains.get('saltversion') }}
+        {{ grains['saltversion'] }}
 '''
 
 BAD_STATEMENT_LINE = '''
-example_test:
+example_file:
   file.managed:
-    - name: /etc/test
-    - user: root
-    - group: {{ pillar.get('item') }} test
-    - something: {{ grains.get('item')}}
-    - content: |
-        {{ salt['pillar.get']('test') }}
+    - name: /tmp/bad.txt
+    - contents: |
+        {{ salt['pillar.get']('item') }}
+        {{ pillar.get('item') }}
+        {{ pillar['item'] }}
+        {{ pillar.get['item'] }} # this line is broken
+        {{ salt['grains.get']('saltversion') }}
+        {{ grains.get('saltversion') }}
+        {{ grains['saltversion'] }}
+        {{ grains.get['saltversion'] }} # this line is broken
 '''
 
 class TestJinjaPillarGrainsGetFormatRule(unittest.TestCase):

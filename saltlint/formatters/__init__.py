@@ -12,22 +12,22 @@ def get_colors(use=True):
     strings.
     """
     colors = {
-        "BLACK": "\033[0;30m", # black
-        "DARK_GRAY": "\033[1;30m", # bold, black
-        "RED": "\033[0;31m",# red
-        "LIGHT_RED": "\033[1;31m" , # bold, red
-        "GREEN": "\033[0;32m", # green
-        "LIGHT_GREEN": "\033[1;32m", # bold, green
-        "BLUE": "\033[0;34m", # blue
-        "LIGHT_BLUE": "\033[1;34m", # bold, blue
-        "MAGENTA": "\033[0;35m", # magenta,
-        "LIGHT_MAGENTA": "\033[1;35m", # bold, magenta
-        "CYAN": "\033[0;36m", # cyan
-        "LIGHT_CYAN": "\033[1;36m", # bold, cyan
-        "LIGHT_GRAY": "\033[0;37m", # white
-        "WHITE": "\033[1;37m", # bold, white
-        "DEFAULT_COLOR": "\033[00m", # default
-        "ENDC": "\033[0m", # reset
+        "BLACK": "\033[0;30m",
+        "DARK_GRAY": "\033[1;30m",
+        "RED": "\033[0;31m",
+        "LIGHT_RED": "\033[1;31m",
+        "GREEN": "\033[0;32m",
+        "LIGHT_GREEN": "\033[1;32m",
+        "BLUE": "\033[0;34m",
+        "LIGHT_BLUE": "\033[1;34m",
+        "MAGENTA": "\033[0;35m",
+        "LIGHT_MAGENTA": "\033[1;35m",
+        "CYAN": "\033[0;36m",
+        "LIGHT_CYAN": "\033[1;36m",
+        "LIGHT_GRAY": "\033[0;37m",
+        "WHITE": "\033[1;37m",
+        "DEFAULT_COLOR": "\033[00m",
+        "ENDC": "\033[0m",
     }
 
     if not use:

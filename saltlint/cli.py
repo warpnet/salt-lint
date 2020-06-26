@@ -114,9 +114,9 @@ def run(args=None):
     if config.json:
         formatter = formatters.JsonFormatter()
     elif config.severity:
-        formatter = formatters.SeverityFormatter()
+        formatter = formatters.SeverityFormatter(config.colored)
     else:
-        formatter = formatters.Formatter()
+        formatter = formatters.Formatter(config.colored)
 
     for state in states:
         runner = Runner(rules, state, config, checked_files)
@@ -126,7 +126,7 @@ def run(args=None):
     matches.sort(key=lambda x: (x.filename, x.linenumber, x.rule.id))
 
     # Show the matches on the screen
-    formatter.process(matches, config.colored)
+    formatter.process(matches)
 
     # Delete stdin temporary file
     if stdin_state:

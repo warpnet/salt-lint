@@ -9,9 +9,7 @@ import os
 import re
 import sys
 import codecs
-
-# import Salt libs
-from salt.ext import six
+import six
 
 import saltlint.utils
 from saltlint.config import SaltLintConfig

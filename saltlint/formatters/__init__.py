@@ -5,77 +5,92 @@
 
 import json
 
-# Import salt libs
-try:
-    import salt.utils.color as saltcolor
-except ImportError:
-    import salt.utils as saltcolor
+
+def get_colors(use=True):
+    """
+    Return the colors as a dict, pass False to return the colors as empty
+    strings.
+    """
+    colors = {
+        "BLACK": "\033[0;30m",
+        "DARK_GRAY": "\033[1;30m",
+        "RED": "\033[0;31m",
+        "LIGHT_RED": "\033[1;31m",
+        "GREEN": "\033[0;32m",
+        "LIGHT_GREEN": "\033[1;32m",
+        "BLUE": "\033[0;34m",
+        "LIGHT_BLUE": "\033[1;34m",
+        "MAGENTA": "\033[0;35m",
+        "LIGHT_MAGENTA": "\033[1;35m",
+        "CYAN": "\033[0;36m",
+        "LIGHT_CYAN": "\033[1;36m",
+        "LIGHT_GRAY": "\033[0;37m",
+        "WHITE": "\033[1;37m",
+        "DEFAULT_COLOR": "\033[00m",
+        "ENDC": "\033[0m",
+    }
+
+    if not use:
+        for color in colors:
+            colors[color] = ''
+
+    return colors
 
 
-class Formatter(object):
+class BaseFormatter(object):
 
-    def process(self, matches, colored=False):
+    def __init__(self, colored=False):
+        self.colored = colored
+
+    def process(self, matches):
         for match in matches:
-            print(self.format(match, colored))
+            print(self.format(match))
 
-    def format(self, match, colored=False):
+    def format(self, match):
+        raise NotImplementedError()
+
+
+class Formatter(BaseFormatter):
+
+    def format(self, match):
         formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
-        if colored:
-            color = saltcolor.get_colors()
-            return formatstr.format(
-                u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
-                                      color['ENDC']),
-                u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
-                                    color['ENDC']),
-                u'{0}{1}{2}'.format(color['BLUE'], match.filename,
-                                    color['ENDC']),
-                u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
-                                    color['ENDC']),
-                u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC'])
-            )
-        else:
-            return formatstr.format(
-                u'[{0}]'.format(match.rule.id),
-                match.message,
-                match.filename,
-                match.linenumber,
-                match.line)
+
+        color = get_colors(self.colored)
+        return formatstr.format(
+            u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
+                                  color['ENDC']),
+            u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['BLUE'], match.filename,
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC'])
+        )
 
 
-class SeverityFormatter(object):
-    def process(self, matches, colored=False):
-        for match in matches:
-            print(self.format(match, colored))
+class SeverityFormatter(BaseFormatter):
 
-    def format(self, match, colored=False):
+    def format(self, match):
         formatstr = u"{0} {sev} {1}\n{2}:{3}\n{4}\n"
 
-        if colored:
-            color = saltcolor.get_colors()
-            return formatstr.format(
-                u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
-                                      color['ENDC']),
-                u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
-                                    color['ENDC']),
-                u'{0}{1}{2}'.format(color['BLUE'], match.filename,
-                                    color['ENDC']),
-                u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
-                                    color['ENDC']),
-                u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC']),
-                sev=u'{0}[{1}]{2}'.format(color['RED'], match.rule.severity,
-                                          color['ENDC'])
-            )
-        else:
-            return formatstr.format(
-                u'[{0}]'.format(match.rule.id),
-                match.message,
-                match.filename,
-                match.linenumber,
-                match.line,
-                sev=u'[{0}]'.format(match.rule.severity))
+        color = get_colors(self.colored)
+        return formatstr.format(
+            u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
+                                  color['ENDC']),
+            u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['BLUE'], match.filename,
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC']),
+            sev=u'{0}[{1}]{2}'.format(color['RED'], match.rule.severity,
+                                      color['ENDC'])
+        )
 
 
-class JsonFormatter(object):
+class JsonFormatter(BaseFormatter):
 
     def process(self, matches, *args, **kwargs):
         items = []

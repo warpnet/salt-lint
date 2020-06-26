@@ -5,9 +5,7 @@ import yaml
 import os
 import sys
 import pathspec
-
-# Import Salt libs
-from salt.ext import six
+import six
 
 import saltlint.utils
 

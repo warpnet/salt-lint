@@ -49,7 +49,7 @@ setup(
     },
     include_package_data=True,
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
-    install_requires=['salt', 'pathspec>=0.6.0'],
+    install_requires=['six', 'pyyaml', 'pathspec>=0.6.0'],
     license=__license__,
     zip_safe=False,
     classifiers=[

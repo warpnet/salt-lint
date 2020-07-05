@@ -10,30 +10,36 @@ Please note we have a code of conduct, please follow it in all your interactions
 1. [Fork warpnet/salt-lint](https://github.com/warpnet/salt-lint/fork) on GitHub.
 
 2. Make a local clone of your fork.
+
 ```bash
 git clone git@github.com:my-account/salt-lint.git
 cd salt-lint
 ```
 
 3. Add [warpnet/salt-lint](https://github.com/warpnet/salt-lint) as a git remote.
+
 ```bash
 git remote add upstream https://github.com/warpnet/salt-lint.git
 ```
 
 4. Create a new branch in your clone. Create your branch from the develop branch.
+
 ```bash
 git fetch upstream
 git checkout -b add-cool-feature upstream/develop
 ```
 
 5. Edit and commit changes to your branch.
+
 ```
 vim path/to/file1 path/to/file2
 git diff
 git add path/to/file1 path/to/file2
 git commit
 ```
+
 Write a short, descriptive commit title and a longer commit message if necessary.
+
 ```
 Add cool feature
 
@@ -48,14 +54,17 @@ Fixes #1
 ```
 
 6. Push your locally-committed changes to your GitHub fork.
+
 ```
 git push -u origin add-cool-feature
 ```
 
 7. Find the branch on your GitHub salt fork.
+
 [https://github.com/my-account/salt-lint/branches/add-cool-feature](salt-lint)
 
 8. Open a new pull request.
+
 Click on `Pull Request` on the right near the top of the page,
 [https://github.com/my-account/salt-lint/pull/new/add-cool-feature](https://github.com/my-account/salt-lint/pull/new/add-cool-feature)
 Choose `develop` as the base branch. Review that the proposed changes are what you expect. Write a descriptive comment. Include links to related issues (e.g. 'Fixes #1.') in the comment field. Click `Create pull request`.
@@ -134,9 +143,9 @@ members of the project's leadership.
 ### Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+available at [contributor-covenant.org/version/1/4/code-of-conduct.html](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
 
-[homepage]: https://www.contributor-covenant.org
+homepage: [contributor-covenant.org](https://www.contributor-covenant.org)
 
 For answers to common questions about this code of conduct, see
-https://www.contributor-covenant.org/faq
+[contributor-covenant.org/faq](https://www.contributor-covenant.org/faq)

@@ -1,14 +1,14 @@
 name: Lint
-
 on:
   push:
     branches: [ master, develop ]
   pull_request:
     branches: [ master, develop ]
-
 jobs:
   markdown:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Problem Matcher for markdownlint-cli
       uses: xt0rted/markdownlint-problem-matcher@v1.0.0

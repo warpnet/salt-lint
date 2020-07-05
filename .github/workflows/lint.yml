@@ -21,7 +21,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: dockerlint
-      uses: luke142367/Docker-Lint-Action@v1.0.0
+      uses: brpaz/hadolint-action@v1.1.0
+      with:
+        dockerfile: docker/Dockerfile
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TARGET: docker/Dockerfile

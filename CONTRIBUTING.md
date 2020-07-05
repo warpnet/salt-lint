@@ -31,7 +31,7 @@ git checkout -b add-cool-feature upstream/develop
 
 5. Edit and commit changes to your branch.
 
-```
+```bash
 vim path/to/file1 path/to/file2
 git diff
 git add path/to/file1 path/to/file2
@@ -40,7 +40,7 @@ git commit
 
 Write a short, descriptive commit title and a longer commit message if necessary.
 
-```
+```code
 Add cool feature
 
 Fixes #1
@@ -55,7 +55,7 @@ Fixes #1
 
 6. Push your locally-committed changes to your GitHub fork.
 
-```
+```bash
 git push -u origin add-cool-feature
 ```
 

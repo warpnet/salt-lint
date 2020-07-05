@@ -1,0 +1,17 @@
+name: Lint
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+jobs:
+  markdown:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: markdownlint-cli
+      uses: nosborn/github-action-markdown-cli@v1.1.1
+      with:
+        files: .
+        config_file: ".markdownlint.yaml"

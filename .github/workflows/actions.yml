@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         python-version: [2.7, 3.6, 3.7, 3.8]
-    
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -37,3 +37,4 @@ jobs:
     - name: Coverage report
       run: |
         coverage report -m
+

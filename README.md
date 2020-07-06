@@ -7,6 +7,10 @@
 
 The project is heavily based on [ansible-lint](https://github.com/ansible/ansible-lint), which was created by [Will Thames](https://github.com/willthames) and is now maintained as part of the [Ansible](https://www.ansible.com/) by [Red Hat](https://www.redhat.com) project.
 
+# Demo
+
+![salt-lint demo](demo.gif)
+
 # Installing
 
 ## Using Pip

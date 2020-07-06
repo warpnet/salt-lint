@@ -15,3 +15,12 @@ jobs:
       with:
         files: .
         config_file: ".markdownlint.yaml"
+  docker:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: dockerlint
+      uses: brpaz/hadolint-action@v1.1.0
+      with:
+        dockerfile: docker/Dockerfile

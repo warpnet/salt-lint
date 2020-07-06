@@ -24,6 +24,3 @@ jobs:
       uses: brpaz/hadolint-action@v1.1.0
       with:
         dockerfile: docker/Dockerfile
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TARGET: docker/Dockerfile

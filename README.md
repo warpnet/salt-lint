@@ -1,12 +1,15 @@
-[![PyPI](https://img.shields.io/pypi/v/salt-lint.svg?style=for-the-badge)](https://pypi.org/project/salt-lint)
-[![Travis (.org)](https://img.shields.io/travis/warpnet/salt-lint/master.svg?style=for-the-badge)](https://travis-ci.org/warpnet/salt-lint)
-[![Coveralls](https://img.shields.io/coveralls/github/warpnet/salt-lint/master.svg?style=for-the-badge)](https://coveralls.io/github/warpnet/salt-lint)
+[![PyPI](https://img.shields.io/pypi/v/salt-lint.svg)](https://pypi.org/project/salt-lint)
+[![GitHub Actions CI/CD](https://github.com/ansible/ansible-lint/workflows/gh/badge.svg)](https://github.com/warpnet/salt-lint/actions?query=workflow%3Agh+branch%3Amaster+event%3Apush)
 
 # Salt-lint
 
 `salt-lint` checks Salt State files (SLS) for practices and behavior that could potentially be improved.
 
 The project is heavily based on [ansible-lint](https://github.com/ansible/ansible-lint), which was created by [Will Thames](https://github.com/willthames) and is now maintained as part of the [Ansible](https://www.ansible.com/) by [Red Hat](https://www.redhat.com) project.
+
+# Demo
+
+![salt-lint demo](demo.gif)
 
 # Installing
 

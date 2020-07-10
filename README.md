@@ -1,9 +1,10 @@
 [![PyPI](https://img.shields.io/pypi/v/salt-lint.svg)](https://pypi.org/project/salt-lint)
-[![GitHub Actions CI/CD](https://github.com/ansible/ansible-lint/workflows/gh/badge.svg)](https://github.com/warpnet/salt-lint/actions?query=workflow%3Agh+branch%3Amaster+event%3Apush)
+![GitHub Actions: test](https://github.com/warpnet/salt-lint/workflows/test/badge.svg?branch=master)
+![GitHub Actions: lint](https://github.com/warpnet/salt-lint/workflows/lint/badge.svg?branch=master)
 
 # Salt-lint
 
-`salt-lint` checks Salt State files (SLS) for practices and behavior that could potentially be improved.
+`salt-lint` checks Salt State files (SLS) for best practices and behavior that could potentially be improved.
 
 The project is heavily based on [ansible-lint](https://github.com/ansible/ansible-lint), which was created by [Will Thames](https://github.com/willthames) and is now maintained as part of the [Ansible](https://www.ansible.com/) by [Red Hat](https://www.redhat.com) project.
 
@@ -65,6 +66,16 @@ Options:
 ## Linting Salt State files
 
 It's important to note that `salt-lint` accepts a list of Salt State files or a list of directories.
+
+## Docker
+
+salt-lint is available on [Dockerhub](https://hub.docker.com/warpnetbv/salt-lint).
+
+Example usage:
+
+```bash
+docker run -v $(pwd):/data:ro --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" | xargs --no-run-if-empty salt-lint'
+```
 
 ## GitHub Action
 

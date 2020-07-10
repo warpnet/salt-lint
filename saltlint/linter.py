@@ -55,7 +55,7 @@ class SaltLintRule(object):
             if isinstance(result, six.string_types):
                 message = result
             matches.append(Match(prev_line_no+1, line,
-                           file['path'], self, message))
+                                 file['path'], self, message))
 
         return matches
 
@@ -213,7 +213,7 @@ class Runner(object):
             if self.verbosity > 0:
                 print("Examining %s of type %s" % (file['path'], file['type']))
             matches.extend(self.rules.run(file, tags=set(self.tags),
-                           skip_list=self.skip_list))
+                                          skip_list=self.skip_list))
         # update list of checked files
         self.checked_files.update([x['path'] for x in files])
 

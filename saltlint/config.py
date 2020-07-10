@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2019 Warpnet B.V.
 
-import yaml
 import os
 import sys
+import yaml
 import pathspec
 import six
 

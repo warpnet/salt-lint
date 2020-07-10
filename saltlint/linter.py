@@ -92,7 +92,7 @@ class RulesCollection(object):
 
     def run(self, statefile, tags=set(), skip_list=frozenset()):
         text = ""
-        matches = list()
+        matches = []
 
         try:
             with codecs.open(statefile['path'], mode='rb', encoding='utf-8') as f:
@@ -196,13 +196,13 @@ class Runner(object):
         return any(file_path.startswith(path) for path in self.exclude_paths)
 
     def run(self):
-        files = list()
+        files = []
         for state in self.states:
             if self.is_excluded(state[0]):
                 continue
             files.append({'path': state[0], 'type': state[1]})
 
-        matches = list()
+        matches = []
 
         # remove duplicates from files list
         files = [value for n, value in enumerate(files) if value not in files[:n]]

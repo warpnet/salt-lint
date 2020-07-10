@@ -20,10 +20,11 @@ RUN set -eux \
 FROM alpine:3.11 as production
 LABEL maintainer="info@warpnet.nl" \
       repo="https://github.com/warpnet/salt-lint"
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3018
 RUN set -eux \
- && apk add --no-cache bash git python3 \
+ && apk add --no-cache bash git python3
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN set -eux \
  && find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf \
  && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf \
  && addgroup -S -g 800 linter \

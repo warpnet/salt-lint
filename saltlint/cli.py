@@ -32,14 +32,14 @@ def run(args=None):
                       help="specify one or more rules directories using "
                            "one or more -r arguments. Any -r flags override "
                            "the default rules in %s, unless -R is also used."
-                           % default_rulesdir)
+                      % default_rulesdir)
     parser.add_option('-R', action='store_true',
                       default=False,
                       dest='use_default_rules',
                       help="Use default rules in %s in addition to any extra "
                            "rules directories specified with -r. There is "
                            "no need to specify this if no -r flags are used."
-                           % default_rulesdir)
+                      % default_rulesdir)
     parser.add_option('-t', dest='tags',
                       action='append',
                       default=[],
@@ -72,7 +72,7 @@ def run(args=None):
 
     stdin_state = None
     states = set(parsed_args)
-    matches = list()
+    matches = []
     checked_files = set()
 
     # Read input from stdin
@@ -82,7 +82,7 @@ def run(args=None):
         stdin_state.flush()
         states.add(stdin_state.name)
 
-    # Read, parse and validate the configration
+    # Read, parse and validate the configuration
     options_dict = vars(options)
     try:
         config = SaltLintConfig(options_dict)
@@ -91,7 +91,7 @@ def run(args=None):
         return 2
 
     # Show a help message on the screen
-    if len(states) == 0 and not (options.listrules or options.listtags):
+    if not states and not (options.listrules or options.listtags):
         parser.print_help(file=sys.stderr)
         return 1
 
@@ -133,7 +133,7 @@ def run(args=None):
         os.unlink(stdin_state.name)
 
     # Return the exit code
-    if len(matches):
+    if matches:
         return 2
-    else:
-        return 0
+
+    return 0

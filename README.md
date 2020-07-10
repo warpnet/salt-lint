@@ -183,13 +183,13 @@ Wish to create a `salt-lint` extension for your favourite editor? We're always l
 
 **Note**: these commands assume your current working directory is the salt (states) directory/repository.
 
-Fix spacing arround `{{ var_name }}`, eg. `{{env}}` --> `{{ env }}`:\
+Fix spacing around `{{ var_name }}`, eg. `{{env}}` --> `{{ env }}`:\
 `sed -i -E "s/\{\{\s?([^}]*[^} ])\s?\}\}/\{\{ \1 \}\}/g"  $(find . -name '*.sls')`
 
 Make the `dir_mode`, `file_mode` and `mode` arguments in the desired syntax:\
 `sed -i -E "s/\b(dir_|file_|)mode: 0?([0-7]{3})/\1mode: '0\2'/"  $(find . -name '*.sls')`
 
-Add quotes arround numeric values that start with a `0`:\
+Add quotes around numeric values that start with a `0`:\
 `sed -i -E "s/\b(minute|hour): (0[0-7]?)\$/\1: '\2'/"  $(find . -name '*.sls')`
 
 # Authors

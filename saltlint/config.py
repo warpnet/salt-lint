@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2019 Warpnet B.V.
 
-import yaml
 import os
 import sys
+import yaml
 import pathspec
 import six
 
@@ -19,7 +19,7 @@ class SaltLintConfigError(Exception):
 
 class SaltLintConfig(object):
 
-    def __init__(self, options=dict()):
+    def __init__(self, options={}):
         self._options = options
         # Configuration file to use, defaults to ".salt-lint".
         config = options.get('c')
@@ -36,7 +36,7 @@ class SaltLintConfig(object):
         self._parse(content)
 
     def _parse(self, content):
-        config = dict()
+        config = {}
 
         # Parse the YAML content
         if content:
@@ -103,14 +103,14 @@ class SaltLintConfig(object):
         if 'severity' in config:
             self.severity = config['severity']
 
-        # Parse rule specific configuration, the configration can be listed by
+        # Parse rule specific configuration, the configuration can be listed by
         # the rule ID and/or tag.
-        self.rules = dict()
+        self.rules = {}
         if 'rules' in config and isinstance(config['rules'], dict):
             # Read rule specific configuration from the config dict.
             for name, rule in six.iteritems(config['rules']):
                 # Store the keys as strings.
-                self.rules[str(name)] = dict()
+                self.rules[str(name)] = {}
 
                 if 'ignore' not in rule:
                     continue

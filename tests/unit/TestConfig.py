@@ -36,9 +36,9 @@ class TestConfig(unittest.TestCase):
         fp.seek(0)
         self.fp = fp
 
-        # Specify the temporary file as if it wass passed as a command line
+        # Specify the temporary file as if it was passed as a command line
         # argument.
-        self.config = SaltLintConfig(dict(c = self.fp.name))
+        self.config = SaltLintConfig(dict(c=self.fp.name))
 
     def tearDown(self):
         # Close the temporary configuration file.
@@ -71,5 +71,3 @@ class TestConfig(unittest.TestCase):
         self.assertFalse(
             self.config.is_file_ignored('test.jinja', 'formatting')
         )
-
-

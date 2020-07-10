@@ -66,6 +66,16 @@ Options:
 
 It's important to note that `salt-lint` accepts a list of Salt State files or a list of directories.
 
+## Docker
+
+salt-lint is available on [Dockerhub](https://hub.docker.com/warpnetbv/salt-lint).
+
+Example usage:
+
+```bash
+docker run -v $(pwd):/data:ro --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" | xargs --no-run-if-empty salt-lint'
+```
+
 ## GitHub Action
 
 Salt-lint is available on the GitHub [marketplace](https://github.com/marketplace/actions/salt-lint) as a GitHub Action. The `salt-lint-action` allows you to run ``salt-lint`` with no additional options.

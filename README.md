@@ -3,7 +3,7 @@
 
 # Salt-lint
 
-`salt-lint` checks Salt State files (SLS) for practices and behavior that could potentially be improved.
+`salt-lint` checks Salt State files (SLS) for best practices and behavior that could potentially be improved.
 
 The project is heavily based on [ansible-lint](https://github.com/ansible/ansible-lint), which was created by [Will Thames](https://github.com/willthames) and is now maintained as part of the [Ansible](https://www.ansible.com/) by [Red Hat](https://www.redhat.com) project.
 

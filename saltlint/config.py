@@ -3,9 +3,9 @@
 
 import os
 import sys
-import yaml
 import pathspec
 import six
+import yaml
 
 import saltlint.utils
 

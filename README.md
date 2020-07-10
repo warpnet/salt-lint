@@ -1,5 +1,6 @@
 [![PyPI](https://img.shields.io/pypi/v/salt-lint.svg)](https://pypi.org/project/salt-lint)
-[![GitHub Actions CI/CD](https://github.com/ansible/ansible-lint/workflows/gh/badge.svg)](https://github.com/warpnet/salt-lint/actions?query=workflow%3Agh+branch%3Amaster+event%3Apush)
+![GitHub Actions: test](https://github.com/warpnet/salt-lint/workflows/test/badge.svg?branch=master)
+![GitHub Actions: lint](https://github.com/warpnet/salt-lint/workflows/lint/badge.svg?branch=master)
 
 # Salt-lint
 

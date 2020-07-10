@@ -33,6 +33,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
     - name: Lint with flake8
       run: |
         pip install wheel flake8
@@ -46,9 +50,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
     - name: Lint with codespell
       run: |
-        pip install wheel codespell
+        pip install wheel
+        pip install codespell
         codespell --skip="./.git*"
 
   pylint:
@@ -56,6 +65,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
     - name: Lint with pylint
       run: |
         pip install wheel pylint

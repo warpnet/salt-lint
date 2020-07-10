@@ -140,12 +140,18 @@ To use salt-lint with [pre-commit](https://pre-commit.com),  just add the follow
 # For use with pre-commit.
 # See usage instructions at http://pre-commit.com
 
--   id: salt-lint
-    name: Salt-lint
-    description: This hook runs salt-lint.
-    entry: salt-lint
-    language: python
-    files: \.(sls)$
+-   repo: https://github.com/warpnet/salt-lint
+    rev: v0.3.0
+    hooks:
+      - id: salt-lint
+```
+
+Optionally override the default file selection as follows:
+
+```yaml
+      ...
+      - id: salt-lint
+        files: \.(sls|jinja|tmpl)$
 ```
 
 # Rules

@@ -1,5 +1,5 @@
 [![PyPI](https://img.shields.io/pypi/v/salt-lint.svg)](https://pypi.org/project/salt-lint)
-![GitHub Actions: test](https://github.com/warpnet/salt-lint/workflows/test/badge.svg?branch=master)
+![GitHub Actions: test](https://github.com/warpnet/salt-lint/workflows/build/badge.svg?branch=master)
 ![GitHub Actions: lint](https://github.com/warpnet/salt-lint/workflows/lint/badge.svg?branch=master)
 
 # Salt-lint
@@ -69,7 +69,7 @@ It's important to note that `salt-lint` accepts a list of Salt State files or a 
 
 ## Docker
 
-salt-lint is available on [Dockerhub](https://hub.docker.com/warpnetbv/salt-lint).
+salt-lint is available on [Dockerhub](https://hub.docker.com/r/warpnetbv/salt-lint).
 
 Example usage:
 

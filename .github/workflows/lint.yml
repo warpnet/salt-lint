@@ -72,7 +72,8 @@ jobs:
       run: |
         python setup.py install
         pip install pylint
-        pylint --disable=missing-docstring,invalid-name,unused-argument,\
+        pylint --ignore=build \
+        --disable=missing-docstring,invalid-name,unused-argument,\
         no-self-use,useless-object-inheritance,too-many-instance-attributes,\
         too-few-public-methods,too-many-locals,deprecated-module,no-member,\
         not-callable,too-many-statements,too-many-branches,too-many-arguments,\

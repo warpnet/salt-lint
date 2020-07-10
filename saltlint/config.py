@@ -2,10 +2,10 @@
 # Copyright (c) 2019 Warpnet B.V.
 
 import os
-import sys
-import yaml
 import pathspec
 import six
+import sys
+import yaml
 
 import saltlint.utils
 

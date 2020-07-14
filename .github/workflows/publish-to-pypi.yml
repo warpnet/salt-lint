@@ -10,9 +10,15 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
+    - name: Install wheel
+      run: >-
+        python -m
+        pip install
+        wheel
+        --user
     - name: Build salt-lint
       run: >-
-        python setup.py sdist bdist_wheel
+        pythonsetup.py sdist bdist_wheel
     - name: Publish salt-lint to Test PyPI
       uses: pypa/gh-action-pypi-publish@master
       with:

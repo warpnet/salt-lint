@@ -1,5 +1,9 @@
 name: Build and publish salt-lint to PyPi
-on: push
+on:
+  push:
+    branches:
+    - master
+
 jobs:
   build-n-publish:
     name: Build and publish salt-lint to PyPi

@@ -10,7 +10,7 @@ import sys
 import tempfile
 import codecs
 
-from saltlint import formatters, NAME, VERSION
+from saltlint import formatters
 from saltlint.config import SaltLintConfig, SaltLintConfigError, default_rulesdir
 from saltlint.linter import RulesCollection, Runner
 

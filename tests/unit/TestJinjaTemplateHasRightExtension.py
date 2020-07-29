@@ -6,7 +6,6 @@ import unittest
 
 from saltlint.config import SaltLintConfig
 from saltlint.linter import Runner, RulesCollection
-from saltlint.rules.FileExtensionRule import FileExtensionRule
 from saltlint.rules.JinjaTemplateHasRightExtensionRule import JinjaTemplateHasRightExtensionRule
 
 class TestJinjaTemplateHasRightExtensionRule(unittest.TestCase):

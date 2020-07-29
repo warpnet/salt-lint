@@ -1,0 +1,18 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Security Groups"
+
+Resources:
+  {%- for sg in sceptre_user_data %}
+  {{ sg.Name }}:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: {{ sg.GroupDescription }}
+      SecurityGroupIngress:
+        {%- for ing in sg.SecurityGroupIngress %}
+        - IpProtocol: {{ ing.IpProtocol }}
+          FromPort: {{ ing.FromPort }}
+          ToPort: {{ ing.ToPort }}
+          CidrIp: {{ ing.CidrIp }}
+        {%- endfor %}
+  {%- endfor %}

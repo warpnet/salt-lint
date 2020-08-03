@@ -10,6 +10,7 @@ import sys
 import tempfile
 import codecs
 
+from saltlint import NAME, VERSION
 from saltlint import formatters
 from saltlint.config import SaltLintConfig, SaltLintConfigError, default_rulesdir
 from saltlint.linter import RulesCollection, Runner
@@ -22,8 +23,9 @@ def run(args=None):
     if sys.version_info[0] < 3:
         sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(prog=NAME)
 
+    parser.add_argument('--version', action='version', version='%(prog)s {}'.format(VERSION))
     parser.add_argument('-L', dest='listrules', default=False,
                         action='store_true', help="list all the rules")
     parser.add_argument('-r', action='append', dest='rulesdir',

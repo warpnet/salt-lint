@@ -33,7 +33,7 @@ pip install git+https://github.com/warpnet/salt-lint.git
 The following is the output from `salt-lint --help`, providing an overview of the basic command line options:
 
 ```bash
-usage: salt-lint [-h] [-L] [-r RULESDIR] [-R] [-t TAGS] [-T] [-v] [-x SKIP_LIST] [--nocolor] [--force-color]
+usage: salt-lint [-h] [--version] [-L] [-r RULESDIR] [-R] [-t TAGS] [-T] [-v] [-x SKIP_LIST] [--nocolor] [--force-color]
                  [--exclude EXCLUDE_PATHS] [--json] [--severity] [-c C]
                  files [files ...]
 
@@ -42,6 +42,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  --version             show program's version number and exit
   -L                    list all the rules
   -r RULESDIR           specify one or more rules directories using one or more -r arguments. Any -r flags
                         override the default rules in /path/to/salt-lint/saltlint/rules, unless -R is also used.

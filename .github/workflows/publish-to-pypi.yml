@@ -2,7 +2,7 @@ name: Build and publish salt-lint to PyPi
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - v*
 

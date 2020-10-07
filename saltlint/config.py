@@ -43,7 +43,7 @@ class SaltLintConfig(object):
             try:
                 config = yaml.safe_load(content)
             except Exception as exc:
-                raise SaltLintConfigError("invalid config: {}".format(exc))
+                raise SaltLintConfigError("invalid config: {}".format(exc)) from exc
 
         # Parse verbosity
         self.verbosity = self._options.get('verbosity', 0)

@@ -14,5 +14,5 @@ if __name__ == "__main__":
     except IOError as exc:
         if exc.errno != errno.EPIPE:
             raise
-    except RuntimeError as e:
-        raise SystemExit(str(e))
+    except RuntimeError as exc:
+        raise SystemExit(str(exc)) from exc

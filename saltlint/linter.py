@@ -79,7 +79,8 @@ class RulesCollection(object):
         self.config = config
 
     def register(self, obj):
-        self.rules.append(obj)
+        if not any(rule.id == obj.id for rule in self.rules):
+            self.rules.append(obj)
 
     def __iter__(self):
         return iter(self.rules)

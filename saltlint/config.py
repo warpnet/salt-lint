@@ -6,6 +6,7 @@ import sys
 import pathspec
 import six
 import yaml
+from future.utils import raise_from
 
 import saltlint.utils
 
@@ -42,8 +43,8 @@ class SaltLintConfig(object):
         if content:
             try:
                 config = yaml.safe_load(content)
-            except Exception as exc:
-                raise SaltLintConfigError("invalid config: {}".format(exc))
+            except yaml.YAMLError as exc:
+                raise_from(SaltLintConfigError("invalid config: {}".format(exc)), exc)
 
         # Parse verbosity
         self.verbosity = self._options.get('verbosity', 0)

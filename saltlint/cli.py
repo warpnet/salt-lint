@@ -69,7 +69,8 @@ def run(args=None):
     parser.add_argument('--severity', dest='severity', action='store_true', default=False,
                         help='add the severity to the standard output')
     parser.add_argument('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
-    parser.add_argument(dest='files', nargs='+', help='One or more files or paths.')
+    # The files argument is optional as STDIN is always read
+    parser.add_argument(dest='files', nargs='*', help='One or more files or paths.', default=[])
 
     options = parser.parse_args(args if args is not None else sys.argv[1:])
 
@@ -78,7 +79,7 @@ def run(args=None):
     matches = []
     checked_files = set()
 
-    # Read input from stdin
+    # Read input from STDIN
     if not sys.stdin.isatty():
         stdin_state = tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False)
         stdin_state.write(sys.stdin.read())

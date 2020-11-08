@@ -6,6 +6,77 @@
 import json
 
 
+class BaseFormatter(object):
+
+    def __init__(self, colored=False):
+        self.colored = colored
+
+    def process(self, problems):
+        for problem in problems:
+            print(self.format(problem))
+
+    def format(self, problem):
+        raise NotImplementedError()
+
+
+class Formatter(BaseFormatter):
+
+    def format(self, problem):
+        formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
+
+        color = get_colors(self.colored)
+        return formatstr.format(
+            u'{0}[{1}]{2}'.format(color['RED'], problem.rule.id,
+                                  color['ENDC']),
+            u'{0}{1}{2}'.format(color['LIGHT_RED'], problem.message,
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['BLUE'], problem.filename,
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['CYAN'], str(problem.linenumber),
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['MAGENTA'], problem.line, color['ENDC'])
+        )
+
+
+class SeverityFormatter(BaseFormatter):
+
+    def format(self, problem):
+        formatstr = u"{0} {sev} {1}\n{2}:{3}\n{4}\n"
+
+        color = get_colors(self.colored)
+        return formatstr.format(
+            u'{0}[{1}]{2}'.format(color['RED'], problem.rule.id,
+                                  color['ENDC']),
+            u'{0}{1}{2}'.format(color['LIGHT_RED'], problem.message,
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['BLUE'], problem.filename,
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['CYAN'], str(problem.linenumber),
+                                color['ENDC']),
+            u'{0}{1}{2}'.format(color['MAGENTA'], problem.line, color['ENDC']),
+            sev=u'{0}[{1}]{2}'.format(color['RED'], problem.rule.severity,
+                                      color['ENDC'])
+        )
+
+
+class JsonFormatter(BaseFormatter):
+    def process(self, problems, *args, **kwargs):
+        items = []
+        for problem in problems:
+            items.append(self.format(problem))
+        print(json.dumps(items))
+
+    def format(self, problem):
+        return {
+            'id': problem.rule.id,
+            'message': problem.message,
+            'filename': problem.filename,
+            'linenumber': problem.linenumber,
+            'line': problem.line,
+            'severity': problem.rule.severity,
+        }
+
+
 def get_colors(use=True):
     """
     Return the colors as a dict, pass False to return the colors as empty
@@ -35,74 +106,3 @@ def get_colors(use=True):
             colors[color] = ''
 
     return colors
-
-
-class BaseFormatter(object):
-
-    def __init__(self, colored=False):
-        self.colored = colored
-
-    def process(self, matches):
-        for match in matches:
-            print(self.format(match))
-
-    def format(self, match):
-        raise NotImplementedError()
-
-
-class Formatter(BaseFormatter):
-
-    def format(self, match):
-        formatstr = u"{0} {1}\n{2}:{3}\n{4}\n"
-
-        color = get_colors(self.colored)
-        return formatstr.format(
-            u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
-                                  color['ENDC']),
-            u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['BLUE'], match.filename,
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC'])
-        )
-
-
-class SeverityFormatter(BaseFormatter):
-
-    def format(self, match):
-        formatstr = u"{0} {sev} {1}\n{2}:{3}\n{4}\n"
-
-        color = get_colors(self.colored)
-        return formatstr.format(
-            u'{0}[{1}]{2}'.format(color['RED'], match.rule.id,
-                                  color['ENDC']),
-            u'{0}{1}{2}'.format(color['LIGHT_RED'], match.message,
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['BLUE'], match.filename,
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['CYAN'], str(match.linenumber),
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['MAGENTA'], match.line, color['ENDC']),
-            sev=u'{0}[{1}]{2}'.format(color['RED'], match.rule.severity,
-                                      color['ENDC'])
-        )
-
-
-class JsonFormatter(BaseFormatter):
-    def process(self, matches, *args, **kwargs):
-        items = []
-        for match in matches:
-            items.append(self.format(match))
-        print(json.dumps(items))
-
-    def format(self, match):
-        return {
-            'id': match.rule.id,
-            'message': match.message,
-            'filename': match.filename,
-            'linenumber': match.linenumber,
-            'line': match.line,
-            'severity': match.rule.severity,
-        }

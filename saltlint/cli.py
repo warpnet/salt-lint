@@ -10,20 +10,86 @@ import sys
 import tempfile
 import codecs
 
-from saltlint import NAME, VERSION
+from saltlint import NAME, VERSION, DESCRIPTION
 from saltlint import formatters
 from saltlint.config import SaltLintConfig, SaltLintConfigError, default_rulesdir
 from saltlint.linter import RulesCollection, Runner
 
 
 def run(args=None):
+    """Run the linter and return the exit code."""
     # Wrap `sys.stdout` in an object that automatically encodes an unicode
     # string into utf-8, in Python 2 only. The default encoding for Python 3
     # is already utf-8.
     if sys.version_info[0] < 3:
         sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
-    parser = argparse.ArgumentParser(prog=NAME)
+    parser = init_argument_parser()
+    options = parser.parse_args(args if args is not None else sys.argv[1:])
+
+    stdin_file = None
+    file_names = set(options.files)
+    checked_files = set()
+
+    # Read input from STDIN
+    if not sys.stdin.isatty():
+        stdin_file = tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False)
+        stdin_file.write(sys.stdin.read())
+        stdin_file.flush()
+        file_names.add(stdin_file.name)
+
+    # Read, parse and validate the configuration
+    options_dict = vars(options)
+    try:
+        config = SaltLintConfig(options_dict)
+    except SaltLintConfigError as exc:
+        print(exc)
+        return 2
+
+    # Show a help message on the screen
+    if not file_names and not (options.listrules or options.listtags):
+        parser.print_help(file=sys.stderr)
+        return 1
+
+    # Collect the rules from the configuration
+    rules = RulesCollection(config)
+    for rulesdir in config.rulesdirs:
+        rules.extend(RulesCollection.create_from_directory(rulesdir, config))
+
+    # Show the rules listing
+    if options.listrules:
+        print(rules)
+        return 0
+
+    # Show the tags listing
+    if options.listtags:
+        print(rules.listtags())
+        return 0
+
+    formatter = initialize_formatter(config)
+
+    problems = []
+    for file_name in file_names:
+        runner = Runner(rules, file_name, config, checked_files)
+        problems.extend(runner.run())
+
+    # Delete stdin temporary file
+    if stdin_file:
+        os.unlink(stdin_file.name)
+
+    if problems:
+        sorted_problems = sort_problems(problems)
+        formatter.process(sorted_problems)
+        return 2
+    return 0
+
+
+def init_argument_parser():
+    """Returns a new initialzed argument parser."""
+    parser = argparse.ArgumentParser(prog=NAME, description=DESCRIPTION)
+
+    # The files argument is optional as STDIN is always read
+    parser.add_argument(dest='files', metavar='FILE', nargs='*', default=[], help='one or more files or paths')
 
     parser.add_argument('--version', action='version', version='%(prog)s {}'.format(VERSION))
     parser.add_argument('-L', dest='listrules', default=False,
@@ -69,75 +135,29 @@ def run(args=None):
     parser.add_argument('--severity', dest='severity', action='store_true', default=False,
                         help='add the severity to the standard output')
     parser.add_argument('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
-    # The files argument is optional as STDIN is always read
-    parser.add_argument(dest='files', nargs='*', help='One or more files or paths.', default=[])
 
-    options = parser.parse_args(args if args is not None else sys.argv[1:])
+    return parser
 
-    stdin_state = None
-    states = set(options.files)
-    matches = []
-    checked_files = set()
 
-    # Read input from STDIN
-    if not sys.stdin.isatty():
-        stdin_state = tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False)
-        stdin_state.write(sys.stdin.read())
-        stdin_state.flush()
-        states.add(stdin_state.name)
-
-    # Read, parse and validate the configuration
-    options_dict = vars(options)
-    try:
-        config = SaltLintConfig(options_dict)
-    except SaltLintConfigError as exc:
-        print(exc)
-        return 2
-
-    # Show a help message on the screen
-    if not states and not (options.listrules or options.listtags):
-        parser.print_help(file=sys.stderr)
-        return 1
-
-    # Collect the rules from the configuration
-    rules = RulesCollection(config)
-    for rulesdir in config.rulesdirs:
-        rules.extend(RulesCollection.create_from_directory(rulesdir, config))
-
-    # Show the rules listing
-    if options.listrules:
-        print(rules)
-        return 0
-
-    # Show the tags listing
-    if options.listtags:
-        print(rules.listtags())
-        return 0
-
-    # Define the formatter
+def initialize_formatter(config):
+    """Return the initialized output formatter based upon the configuration."""
     if config.json:
-        formatter = formatters.JsonFormatter()
+        return formatters.JsonFormatter()
     elif config.severity:
-        formatter = formatters.SeverityFormatter(config.colored)
-    else:
-        formatter = formatters.Formatter(config.colored)
+        return formatters.SeverityFormatter(config.colored)
+    return formatters.Formatter(config.colored)
 
-    for state in states:
-        runner = Runner(rules, state, config, checked_files)
-        matches.extend(runner.run())
 
-    # Sort the matches
-    matches.sort(key=lambda x: (x.filename, x.linenumber, x.rule.id))
+def sort_problems(problems):
+    """Returns the sorted list of problems."""
+    # Note: sort() doesn't return the sorted list; rather, it sorts the list
+    # in place
+    problems.sort(
+        key=lambda problem: (
+            problem.filename,
+            problem.linenumber,
+            problem.rule.id
+        )
+    )
+    return problems
 
-    # Show the matches on the screen
-    formatter.process(matches)
-
-    # Delete stdin temporary file
-    if stdin_state:
-        os.unlink(stdin_state.name)
-
-    # Return the exit code
-    if matches:
-        return 2
-
-    return 0

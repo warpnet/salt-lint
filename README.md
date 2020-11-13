@@ -67,7 +67,7 @@ optional arguments:
 
 It's important to note that `salt-lint` accepts a list of Salt State files or a list of directories.
 
-## Docker
+## Docker & Podman
 
 salt-lint is available on [Dockerhub](https://hub.docker.com/r/warpnetbv/salt-lint).
 
@@ -75,6 +75,12 @@ Example usage:
 
 ```bash
 docker run -v $(pwd):/data:ro --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" | xargs --no-run-if-empty salt-lint'
+```
+
+On a system with SELinux, change `:ro` to `:Z`. Example below uses podman:
+
+```bash
+podman run -v $(pwd):/data:Z --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" | xargs --no-run-if-empty salt-lint'
 ```
 
 ## GitHub Action

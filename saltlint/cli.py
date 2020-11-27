@@ -85,11 +85,12 @@ def run(args=None):
 
 
 def init_argument_parser():
-    """Returns a new initialzed argument parser."""
+    """Returns a new initialized argument parser."""
     parser = argparse.ArgumentParser(prog=NAME, description=DESCRIPTION)
 
     # The files argument is optional as STDIN is always read
-    parser.add_argument(dest='files', metavar='FILE', nargs='*', default=[], help='one or more files or paths')
+    parser.add_argument(dest='files', metavar='FILE', nargs='*', default=[],
+                        help='one or more files or paths')
 
     parser.add_argument('--version', action='version', version='%(prog)s {}'.format(VERSION))
     parser.add_argument('-L', dest='listrules', default=False,
@@ -145,7 +146,8 @@ def initialize_formatter(config):
         return formatters.JsonFormatter()
     elif config.severity:
         return formatters.SeverityFormatter(config.colored)
-    return formatters.Formatter(config.colored)
+    else:
+        return formatters.Formatter(config.colored)
 
 
 def sort_problems(problems):
@@ -160,4 +162,3 @@ def sort_problems(problems):
         )
     )
     return problems
-

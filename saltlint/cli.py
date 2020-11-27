@@ -142,12 +142,11 @@ def init_argument_parser():
 
 def initialize_formatter(config):
     """Return the initialized output formatter based upon the configuration."""
-    if config.json:
+    if config.json:  # pylint: disable=R1705
         return formatters.JsonFormatter()
-    elif config.severity:
+    elif config.severity:  # pylint: disable=R1705
         return formatters.SeverityFormatter(config.colored)
-    else:
-        return formatters.Formatter(config.colored)
+    return formatters.Formatter(config.colored)
 
 
 def sort_problems(problems):

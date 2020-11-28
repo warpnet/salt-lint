@@ -3,7 +3,7 @@
 
 import re
 from saltlint.linter.rule import Rule
-
+from saltlint.utils import get_rule_skips_from_text
 
 class CmdRunQuietRule(Rule):
     id = '901'
@@ -14,17 +14,25 @@ class CmdRunQuietRule(Rule):
     tags = ['deprecation']
     version_added = 'develop'
 
-    regex = re.compile(r"^\s{2}cmd\.run:(?:\n.+)+\n^\s{4}- quiet\s?.*", re.MULTILINE)
+    regex = re.compile(r"^.+\n^\s{2}cmd\.run:(?:\n.+)+\n^\s{4}- quiet\s?.*", re.MULTILINE)
 
     def matchtext(self, file, text):
         results = []
 
         for match in re.finditer(self.regex, text):
-            # Get the location of the last character in the regex match
+            # Get the location of the regex match
+            start = match.start()
             end = match.end()
+
             # Get the line number of the last character
             lines = text[:end].splitlines()
             line_no = len(lines)
+
+            # Skip result if noqa for this rule ID is found in section
+            section = text[start:end]
+            if self.id in get_rule_skips_from_text(section):
+                continue
+
             # Append the match to the results
             results.append((line_no, lines[-1], self.shortdesc))
 

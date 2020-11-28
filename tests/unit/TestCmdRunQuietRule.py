@@ -33,6 +33,11 @@ getpip2:
   cmd.run:
     - name: /usr/bin/python /usr/local/sbin/get-pip.py
     - quiet
+
+getpip3:
+  cmd.run:
+    - name: /usr/bin/python /usr/local/sbin/get-pip.py
+    - quiet # noqa: 901
 '''
 
 class TestCmdRunQuietRule(unittest.TestCase):

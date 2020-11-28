@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 Warpnet B.V.
+# Copyright (c) 2020 Warpnet B.V.
 
 import unittest
 
-from saltlint.config import SaltLintConfig
-from saltlint.linter import Runner, RulesCollection
+from saltlint.config import Configuration
+from saltlint.linter.runner import Runner
+from saltlint.linter.collection import RulesCollection
 from saltlint.rules.FileExtensionRule import FileExtensionRule
 
 
@@ -16,11 +17,11 @@ class TestLineTooLongRule(unittest.TestCase):
 
     def test_file_positive(self):
         path = 'tests/test-extension-success.sls'
-        runner = Runner(self.collection, path, SaltLintConfig())
+        runner = Runner(self.collection, path, Configuration())
         self.assertEqual([], runner.run())
 
     def test_file_negative(self):
         path = 'tests/test-extension-failure'
-        runner = Runner(self.collection, path, SaltLintConfig())
+        runner = Runner(self.collection, path, Configuration())
         errors = runner.run()
         self.assertEqual(1, len(errors))

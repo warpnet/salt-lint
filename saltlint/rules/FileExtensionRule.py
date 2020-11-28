@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2016 Tsukinowa Inc. <info@tsukinowa.jp>
 # Copyright (c) 2018 Ansible Project
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2020 Warpnet B.V.
 
 import os
-from saltlint.linter import SaltLintRule
+from saltlint.linter.rule import Rule
 
 
-class FileExtensionRule(SaltLintRule):
+class FileExtensionRule(Rule):
     id = '205'
     shortdesc = 'Use ".sls" as a Salt State file extension'
     description = 'Salt State files should have the ".sls" extension'

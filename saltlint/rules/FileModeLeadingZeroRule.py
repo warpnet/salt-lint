@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2016 Will Thames and contributors
 # Copyright (c) 2018 Ansible Project
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2020 Warpnet B.V.
 
 import re
-from saltlint.linter import SaltLintRule
+from saltlint.linter.rule import Rule
 
 
-class FileModeLeadingZeroRule(SaltLintRule):
+class FileModeLeadingZeroRule(Rule):
     id = '208'
     shortdesc = 'File modes should always contain a leading zero'
     description = 'File modes should always contain a leading zero'

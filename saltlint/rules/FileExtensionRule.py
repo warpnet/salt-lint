@@ -4,7 +4,7 @@
 # Modified work Copyright (c) 2020 Warpnet B.V.
 
 import os
-from saltlint.linter import Rule
+from saltlint.linter.rule import Rule
 
 
 class FileExtensionRule(Rule):

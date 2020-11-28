@@ -13,7 +13,8 @@ import codecs
 from saltlint import NAME, VERSION, DESCRIPTION
 from saltlint import formatters
 from saltlint.config import Configuration, SaltLintConfigError, default_rulesdir
-from saltlint.linter import RulesCollection, Runner
+from saltlint.linter.collection import RulesCollection
+from saltlint.linter.runner import Runner
 
 
 def run(args=None):

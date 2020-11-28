@@ -4,7 +4,7 @@
 
 import tempfile
 
-from saltlint.linter import Runner
+from saltlint.linter.runner import Runner
 from saltlint.config import Configuration
 
 

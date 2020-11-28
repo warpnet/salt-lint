@@ -3,7 +3,7 @@
 # Copyright (c) 2018 Ansible Project
 # Modified work Copyright (c) 2020 Warpnet B.V.
 
-from saltlint.linter import Rule
+from saltlint.linter.rule import Rule
 
 
 class NoTabsRule(Rule):

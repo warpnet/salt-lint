@@ -5,7 +5,7 @@
 
 import unittest
 
-from saltlint.linter import RulesCollection
+from saltlint.linter.collection import RulesCollection
 from saltlint.rules.TrailingWhitespaceRule import TrailingWhitespaceRule
 from tests import RunFromText
 

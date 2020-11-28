@@ -2,7 +2,7 @@
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
 # Modified work Copyright (c) 2020 Warpnet B.V.
 
-from saltlint.linter import Rule
+from saltlint.linter.rule import Rule
 
 
 class TrailingWhitespaceRule(Rule):

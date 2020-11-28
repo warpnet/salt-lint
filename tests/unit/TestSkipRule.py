@@ -5,7 +5,7 @@
 
 import unittest
 
-from saltlint.linter import RulesCollection
+from saltlint.linter.collection import RulesCollection
 from saltlint.rules.LineTooLongRule import LineTooLongRule
 from saltlint.rules.JinjaVariableHasSpacesRule import JinjaVariableHasSpacesRule
 from tests import RunFromText

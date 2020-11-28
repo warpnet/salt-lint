@@ -6,7 +6,7 @@ import re
 import six
 
 from saltlint.utils import get_rule_skips_from_line
-from saltlint.linter import Match
+from saltlint.linter.match import Match
 
 
 class Rule(object):

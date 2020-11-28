@@ -4,7 +4,8 @@
 import unittest
 
 from saltlint.config import Configuration
-from saltlint.linter import Runner, RulesCollection
+from saltlint.linter.runner import Runner
+from saltlint.linter.collection import RulesCollection
 from saltlint.rules.FileExtensionRule import FileExtensionRule
 
 

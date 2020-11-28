@@ -18,7 +18,7 @@ BAD_COMMENT_LINE = '''
 {#-set example='bad'+#}
 '''
 
-class TestLineTooLongRule(unittest.TestCase):
+class TestJinjaCommentHasSpaces(unittest.TestCase):
     collection = RulesCollection()
 
     def setUp(self):

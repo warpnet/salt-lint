@@ -29,4 +29,3 @@ class CmdRunQuietRule(Rule):
             results.append((line_no, lines[-1], self.shortdesc))
 
         return results
-

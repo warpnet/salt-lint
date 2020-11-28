@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2020 Warpnet B.V.
 
 import unittest
 
-from saltlint.linter import RulesCollection
+from saltlint.linter.collection import RulesCollection
 from saltlint.rules.NoIrregularSpacesRule import NoIrregularSpacesRule
 from tests import RunFromText
 

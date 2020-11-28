@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2018 Will Thames <will@thames.id.au>
 # Copyright (c) 2018 Ansible by Red Hat
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2020 Warpnet B.V.
 
 import unittest
 
-from saltlint.linter import RulesCollection
+from saltlint.linter.collection import RulesCollection
 from saltlint.rules.YamlHasOctalValueRule import YamlHasOctalValueRule
 from tests import RunFromText
 
@@ -28,6 +28,12 @@ testdirectory02:
 apache_disable_default_site:
   apache_site.disabled:
     - name: 000-default
+
+# MAC addresses shouldn't be matched, for more information see:
+# https://github.com/warpnet/salt-lint/issues/202
+infoblox_remove_record:
+  infoblox_host_record.absent:
+    - mac: 4c:f2:d3:1b:2e:05
 '''
 
 BAD_NUMBER_STATE = '''

@@ -1,11 +1,11 @@
 # Copyright (c) 2013-2018 Will Thames <will@thames.id.au>
 # Copyright (c) 2018 Ansible by Red Hat
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2020 Warpnet B.V.
 
 import tempfile
 
-from saltlint.linter import Runner
-from saltlint.config import SaltLintConfig
+from saltlint.linter.runner import Runner
+from saltlint.config import Configuration
 
 
 class RunFromText(object):
@@ -15,7 +15,7 @@ class RunFromText(object):
         self.collection = collection
 
     def _call_runner(self, path):
-        runner = Runner(self.collection, path, SaltLintConfig())
+        runner = Runner(self.collection, path, Configuration())
         return runner.run()
 
     def run_state(self, state_text):

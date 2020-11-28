@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2020 Warpnet B.V.
 
 import glob
 import imp
@@ -31,3 +31,12 @@ def get_rule_skips_from_line(line):
         noqa_text = line.split('# noqa')[1]
         rule_id_list = noqa_text.split()
     return rule_id_list
+
+
+def get_rule_skips_from_text(text):
+    rule_id_list = []
+    for line in text.splitlines():
+        rule_id_list.extend(get_rule_skips_from_line(line))
+
+    # Return a list of unique ids
+    return list(set(rule_id_list))

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2016 Will Thames and contributors
 # Copyright (c) 2018 Ansible Project
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2020 Warpnet B.V.
 
 import re
-from saltlint.linter import SaltLintRule
+from saltlint.linter import Rule
 
 
-class FileModeQuotationRule(SaltLintRule):
+class FileModeQuotationRule(Rule):
     id = '207'
     shortdesc = 'File modes should always be encapsulated in quotation marks'
     description = 'File modes should always be encapsulated in quotation marks'

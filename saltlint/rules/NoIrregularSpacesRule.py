@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2020 Warpnet B.V.
 
-from saltlint.linter import SaltLintRule
+from saltlint.linter import Rule
 
 
-class NoIrregularSpacesRule(SaltLintRule):
+class NoIrregularSpacesRule(Rule):
     id = '212'
     shortdesc = 'Most files should not contain irregular spaces'
     description = 'Irregular spaces can cause unexpected display issues, use spaces'

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2020 Warpnet B.V.
 
 from __future__ import print_function
 
@@ -12,7 +12,7 @@ import codecs
 
 from saltlint import NAME, VERSION, DESCRIPTION
 from saltlint import formatters
-from saltlint.config import SaltLintConfig, SaltLintConfigError, default_rulesdir
+from saltlint.config import Configuration, SaltLintConfigError, default_rulesdir
 from saltlint.linter import RulesCollection, Runner
 
 
@@ -41,7 +41,7 @@ def run(args=None):
     # Read, parse and validate the configuration
     options_dict = vars(options)
     try:
-        config = SaltLintConfig(options_dict)
+        config = Configuration(options_dict)
     except SaltLintConfigError as exc:
         print(exc)
         return 2
@@ -52,25 +52,25 @@ def run(args=None):
         return 1
 
     # Collect the rules from the configuration
-    rules = RulesCollection(config)
+    collection = RulesCollection(config)
     for rulesdir in config.rulesdirs:
-        rules.extend(RulesCollection.create_from_directory(rulesdir, config))
+        collection.extend(RulesCollection.create_from_directory(rulesdir, config))
 
     # Show the rules listing
     if options.listrules:
-        print(rules)
+        print(collection)
         return 0
 
     # Show the tags listing
     if options.listtags:
-        print(rules.listtags())
+        print(collection.listtags())
         return 0
 
     formatter = initialize_formatter(config)
 
     problems = []
     for file_name in file_names:
-        runner = Runner(rules, file_name, config, checked_files)
+        runner = Runner(collection, file_name, config, checked_files)
         problems.extend(runner.run())
 
     # Delete stdin temporary file

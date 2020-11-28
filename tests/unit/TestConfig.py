@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 Warpnet B.V.
+# Copyright (c) 2020 Warpnet B.V.
 
 import unittest
 import tempfile
 
-from saltlint.config import SaltLintConfig
+from saltlint.config import Configuration
 
 
 SALT_LINT_CONFIG = '''
@@ -38,7 +38,7 @@ class TestConfig(unittest.TestCase):
 
         # Specify the temporary file as if it was passed as a command line
         # argument.
-        self.config = SaltLintConfig(dict(c=self.fp.name))
+        self.config = Configuration(dict(c=self.fp.name))
 
     def tearDown(self):
         # Close the temporary configuration file.

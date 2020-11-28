@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 Warpnet B.V.
+# Copyright (c) 2020 Warpnet B.V.
 
 """A command-line utility that checks for best practices in SaltStack.
 """

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2020 Warpnet B.V.
 
-from saltlint.linter import SaltLintRule
+from saltlint.linter import Rule
 
 
-class TrailingWhitespaceRule(SaltLintRule):
+class TrailingWhitespaceRule(Rule):
     id = '201'
     shortdesc = 'Trailing whitespace'
     description = 'There should not be any trailing whitespace'

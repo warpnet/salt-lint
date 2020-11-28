@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 Warpnet B.V.
+# Copyright (c) 2020 Warpnet B.V.
 
 import os
 import sys
@@ -18,7 +18,7 @@ class SaltLintConfigError(Exception):
     pass
 
 
-class SaltLintConfig(object):
+class Configuration(object):
 
     def __init__(self, options={}):
         self._options = options

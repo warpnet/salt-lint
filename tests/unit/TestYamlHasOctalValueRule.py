@@ -28,6 +28,12 @@ testdirectory02:
 apache_disable_default_site:
   apache_site.disabled:
     - name: 000-default
+
+# MAC addresses shouldn't be matched, for more information see:
+# https://github.com/warpnet/salt-lint/issues/202
+infoblox_remove_record:
+  infoblox_host_record.absent:
+    - mac: 4c:f2:d3:1b:2e:05
 '''
 
 BAD_NUMBER_STATE = '''

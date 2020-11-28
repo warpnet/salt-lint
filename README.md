@@ -164,6 +164,10 @@ Optionally override the default file selection as follows:
 
 ## List of rules
 
+### Formatting
+
+Disable formatting checks using `-x formatting`
+
 Rule | Description
 :-:|:--
 [201](https://github.com/warpnet/salt-lint/wiki/201) | Trailing whitespace
@@ -179,6 +183,25 @@ Rule | Description
 [211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
 [212](https://github.com/warpnet/salt-lint/wiki/212) | Most files should not contain irregular spaces
 [213](https://github.com/warpnet/salt-lint/wiki/213) | SaltStack recommends using `cmd.run` together with `onchanges`, rather than `cmd.wait`
+
+### Jinja
+
+Disable jinja checks using `-x jinja`
+
+Rule | Description
+:-:|:--
+[202](https://github.com/warpnet/salt-lint/wiki/202) | Jinja statement should have spaces before and after: `{% statement %}`
+[206](https://github.com/warpnet/salt-lint/wiki/206) | Jinja variables should have spaces before and after `{{ var_name }}`
+[209](https://github.com/warpnet/salt-lint/wiki/209) | Jinja comment should have spaces before and after: `{# comment #}`
+[211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
+
+### Deprecations
+
+Disable deprecation checks using `-x deprecation`
+
+Rule | Description
+:-:|:--
+[901](https://github.com/warpnet/salt-lint/wiki/901) | Using the `quiet` argument with `cmd.run` is deprecated. Use `output_loglevel: quiet`
 
 ## False Positives: Skipping Rules
 

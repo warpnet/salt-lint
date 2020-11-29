@@ -5,6 +5,7 @@
 
 import re
 from saltlint.linter.rule import Rule
+from saltlint.utils import LANGUAGE_JINJA, LANGUAGE_SLS
 
 
 class JinjaStatementHasSpacesRule(Rule):
@@ -12,6 +13,7 @@ class JinjaStatementHasSpacesRule(Rule):
     shortdesc = 'Jinja statement should have spaces before and after: {% statement %}'
     description = 'Jinja statement should have spaces before and after: ``{% statement %}``'
     severity = 'LOW'
+    languages = [LANGUAGE_SLS, LANGUAGE_JINJA]
     tags = ['formatting', 'jinja']
     version_added = 'v0.0.2'
 

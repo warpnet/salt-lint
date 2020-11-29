@@ -5,6 +5,7 @@
 
 import re
 from saltlint.linter.rule import Rule
+from saltlint.utils import LANGUAGE_SLS
 
 
 class FileModeQuotationRule(Rule):
@@ -12,10 +13,11 @@ class FileModeQuotationRule(Rule):
     shortdesc = 'File modes should always be encapsulated in quotation marks'
     description = 'File modes should always be encapsulated in quotation marks'
     severity = 'HIGH'
+    languages = [LANGUAGE_SLS]
     tags = ['formatting']
     version_added = 'v0.0.3'
 
-    bracket_regex = re.compile(r"^\s+- ((dir_)|(file_))?mode: [0-9]{3,4}")
+    regex = re.compile(r"^\s+- ((dir_)|(file_))?mode: [0-9]{3,4}")
 
     def match(self, file, line):
-        return self.bracket_regex.search(line)
+        return self.regex.search(line)

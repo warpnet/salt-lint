@@ -5,6 +5,7 @@
 
 import re
 from saltlint.linter.rule import Rule
+from saltlint.utils import LANGUAGE_JINJA, LANGUAGE_SLS
 
 
 class JinjaPillarGrainsGetFormatRule(Rule):
@@ -14,6 +15,7 @@ class JinjaPillarGrainsGetFormatRule(Rule):
                   "like salt['pillar.get']('item'), grains['item1'] or " \
                   " pillar.get('item')"
     severity = 'HIGH'
+    languages = [LANGUAGE_SLS, LANGUAGE_JINJA]
     tags = ['formatting', 'jinja']
     version_added = 'v0.0.10'
 

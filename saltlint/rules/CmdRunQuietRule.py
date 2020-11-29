@@ -4,6 +4,8 @@
 import re
 from saltlint.linter.rule import Rule
 from saltlint.utils import get_rule_skips_from_text
+from saltlint.utils import LANGUAGE_SLS
+
 
 class CmdRunQuietRule(Rule):
     id = '901'
@@ -11,6 +13,7 @@ class CmdRunQuietRule(Rule):
     description = 'Using the quiet argument with cmd.run is deprecated. Use output_loglevel: quiet'
 
     severity = 'HIGH'
+    languages = [LANGUAGE_SLS]
     tags = ['deprecation']
     version_added = 'develop'
 

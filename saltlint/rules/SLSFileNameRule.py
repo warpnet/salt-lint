@@ -7,8 +7,10 @@ from saltlint.linter.rule import Rule
 
 class SLSFileNameRule(Rule):
     id = '214'
-    shortdesc = 'SLS file with a period in the name (besides the suffix period) can not be referenced'
-    description = 'SLS file with a period in the name (besides the suffix period) can not be referenced'
+    shortdesc = ('SLS file with a period in the name (besides the suffix period) can not be '
+                 'referenced')
+    description = ('SLS file with a period in the name (besides the suffix period) can not be '
+                   'referenced')
     severity = 'HIGH'
     tags = ['formatting']
     version_added = 'develop'

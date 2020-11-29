@@ -35,7 +35,7 @@ class Rule(object):
         """
         Returns True if the file type is in the supported languages or no
         language is specified for the linting rule and False otherwise.
-        
+
         The file type is determined based upon the file extension.
         """
         if not self.languages or get_file_type(file["path"]) in self.languages:

@@ -19,7 +19,7 @@ class RunFromText(object):
         return runner.run()
 
     def run_state(self, state_text):
-        with tempfile.NamedTemporaryFile() as fp:
+        with tempfile.NamedTemporaryFile(suffix=".sls") as fp:
             fp.write(state_text.encode())
             fp.seek(0)
             results = self._call_runner(fp.name)

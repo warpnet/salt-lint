@@ -5,6 +5,7 @@
 
 import re
 from saltlint.linter.rule import Rule
+from saltlint.utils import LANGUAGE_SLS
 
 
 class YamlHasOctalValueRule(Rule):
@@ -12,6 +13,7 @@ class YamlHasOctalValueRule(Rule):
     shortdesc = 'Numbers that start with `0` should always be encapsulated in quotation marks'
     description = 'Numbers that start with `0` should always be encapsulated in quotation marks'
     severity = 'HIGH'
+    languages = [LANGUAGE_SLS]
     tags = ['formatting']
     version_added = 'v0.0.6'
 

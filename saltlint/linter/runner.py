@@ -6,18 +6,20 @@ from __future__ import print_function
 
 import os
 
+from saltlint.utils import get_file_type
+
 
 class Runner(object):
 
     def __init__(self, collection, file_name, config, checked_files=None):
         self.collection = collection
 
-        self.states = set()
+        self.files = set()
         # Assume the provided file name is a directory
         if os.path.isdir(file_name):
-            self.states.add((os.path.join(file_name, 'init.sls'), 'state'))
+            self.files.add((os.path.join(file_name, 'init.sls'), 'state'))
         else:
-            self.states.add((file_name, 'state'))
+            self.files.add((file_name, get_file_type(file_name)))
 
         # Get configuration options
         self.config = config
@@ -49,9 +51,9 @@ class Runner(object):
 
     def run(self):
         files = []
-        for index, state in enumerate(self.states):
-            file_path = state[0]
-            file_type = state[1]
+        for index, file in enumerate(self.files):
+            file_path = file[0]
+            file_type = file[1]
             file_dict = {'path': file_path, 'type': file_type}
             # Skip excluded files
             if self.is_excluded(file_path):

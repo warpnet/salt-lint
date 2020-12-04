@@ -12,7 +12,7 @@ class CronStateHasIdentifierRule(Rule):
     shortdesc = 'It is recommended to use an identifier with cron.present'
     description = 'It is recommended to use an identifier with cron.present'
 
-    severity: 'LOW'
+    severity = 'LOW'
     languages = [LANGUAGE_SLS]
     tags = ['recommendation']
     version_added = 'develop'

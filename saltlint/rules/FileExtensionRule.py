@@ -13,16 +13,15 @@ class FileExtensionRule(Rule):
     description = 'Salt State files should have the ".sls" extension'
     severity = 'MEDIUM'
     tags = ['formatting']
-    done = []  # already noticed path list
     version_added = 'v0.0.1'
 
-    def match(self, file, line):
-        if file['type'] != 'state':
-            return False
-
+    def matchtext(self, file, text):
+        results = []
         path = file['path']
         ext = os.path.splitext(path)
-        if ext[1] not in ['.sls'] and path not in self.done:
-            self.done.append(path)
-            return True
-        return False
+        if ext[1] not in ['.sls']:
+            line_no = 1
+            lines = text.splitlines()
+            line = lines[0] if len(lines) > 0 else ''
+            results.append((line_no, line, self.shortdesc))
+        return results

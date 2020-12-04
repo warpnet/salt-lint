@@ -3,6 +3,7 @@
 
 import re
 from saltlint.linter.rule import Rule
+from saltlint.utils import LANGUAGE_SLS
 
 
 class CmdWaitRecommendRule(Rule):
@@ -11,6 +12,7 @@ class CmdWaitRecommendRule(Rule):
     description = 'SaltStack recommends using cmd.run together with onchanges, rather than cmd.wait'
 
     severity = 'LOW'
+    languages = [LANGUAGE_SLS]
     tags = ['formatting']
     version_added = 'develop'
 

@@ -4,6 +4,7 @@
 # Modified work Copyright (c) 2020 Warpnet B.V.
 
 from saltlint.linter.rule import Rule
+from saltlint.utils import LANGUAGE_SLS
 
 
 class NoTabsRule(Rule):
@@ -11,6 +12,7 @@ class NoTabsRule(Rule):
     shortdesc = 'Most files should not contain tabs'
     description = 'Tabs can cause unexpected display issues, use spaces'
     severity = 'LOW'
+    languages = [LANGUAGE_SLS]
     tags = ['formatting']
     version_added = 'v0.0.1'
 

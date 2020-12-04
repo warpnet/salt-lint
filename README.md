@@ -183,6 +183,7 @@ Rule | Description
 [211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
 [212](https://github.com/warpnet/salt-lint/wiki/212) | Most files should not contain irregular spaces
 [213](https://github.com/warpnet/salt-lint/wiki/213) | SaltStack recommends using `cmd.run` together with `onchanges`, rather than `cmd.wait`
+[214](https://github.com/warpnet/salt-lint/wiki/214) | SLS file with a period in the name (besides the suffix period) can not be referenced
 
 ### Jinja
 

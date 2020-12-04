@@ -5,6 +5,7 @@
 
 import re
 from saltlint.linter.rule import Rule
+from saltlint.utils import LANGUAGE_JINJA, LANGUAGE_SLS
 
 
 class JinjaCommentHasSpacesRule(Rule):
@@ -12,6 +13,7 @@ class JinjaCommentHasSpacesRule(Rule):
     shortdesc = 'Jinja comment should have spaces before and after: {# comment #}'
     description = 'Jinja comment should have spaces before and after: ``{# comment #}``'
     severity = 'LOW'
+    languages = [LANGUAGE_SLS, LANGUAGE_JINJA]
     tags = ['formatting', 'jinja']
     version_added = 'v0.0.5'
 

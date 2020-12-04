@@ -20,14 +20,18 @@ class FileManagedReplaceContentRule(Rule):
     # Find the full file.managed state
     regex = re.compile(r"^\s{2}file\.managed:.*(?:\n\s{4}.+)*", re.MULTILINE)
     # Regex for finding the content source option
-    regex_options= re.compile(r"^\s{4}-\s(?:source:|contents:|contents_pillar:|contents_grains:|replace:\s[F|f]alse).*$", re.MULTILINE)
+    regex_options= re.compile(
+        r"^\s{4}-\s(?:source:|contents:|contents_pillar:|contents_grains:|replace:\s[F|f]alse).*$",
+        re.MULTILINE
+    )
 
     def matchtext(self, file, text):
         results = []
 
         # Find all file.managed states in the specified sls file
         for match in re.finditer(self.regex, text):
-            # Continue if the file.managed state includes a content source or replace is set to False
+            # Continue if the file.managed state includes a content source
+            # or replace is set to False
             if re.search(self.regex_options, match.group(0)):
                 continue
 

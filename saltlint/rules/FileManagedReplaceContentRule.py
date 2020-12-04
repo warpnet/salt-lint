@@ -21,7 +21,6 @@ class FileManagedReplaceContentRule(Rule):
     regex = re.compile(r"^\s{2}file\.managed:.*(?:\n\s{4}.+)*", re.MULTILINE)
     # Regex for finding the content source option
     regex_options= re.compile(r"^\s{4}-\s(?:source:|contents:|contents_pillar:|contents_grains:|replace:\s[F|f]alse).*$", re.MULTILINE)
-    #regex_options= re.compile(r"^\s{4}-\s(?:(?:source|contents|contents_pillar|contents_grains):|(?:replace:\s[F|f]alse)).*$", re.MULTILINE)
 
     def matchtext(self, file, text):
         results = []

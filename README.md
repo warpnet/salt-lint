@@ -10,7 +10,7 @@ The project is heavily based on [ansible-lint](https://github.com/ansible/ansibl
 
 # Demo
 
-![salt-lint demo](demo.gif)
+[![salt-lint demo](demo.gif)](https://asciinema.org/a/377244)
 
 # Installing
 

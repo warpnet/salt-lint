@@ -10,7 +10,7 @@ The project is heavily based on [ansible-lint](https://github.com/ansible/ansibl
 
 # Demo
 
-![salt-lint demo](demo.gif)
+[![salt-lint demo](demo.gif)](https://asciinema.org/a/377244)
 
 # Installing
 
@@ -195,6 +195,14 @@ Rule | Description
 [206](https://github.com/warpnet/salt-lint/wiki/206) | Jinja variables should have spaces before and after `{{ var_name }}`
 [209](https://github.com/warpnet/salt-lint/wiki/209) | Jinja comment should have spaces before and after: `{# comment #}`
 [211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
+
+### Recommendations
+
+Disable recommendation checks using `-x recommendation`
+
+rule | Description
+:-:|:--
+[801](https://github.com/warpnet/salt-lint/wiki/801) | It is recommended to use an identifier with `cron.present`
 
 ### Deprecations
 

@@ -10,8 +10,8 @@ from saltlint.utils import LANGUAGE_SLS
 
 class YamlHasOctalValueRule(Rule):
     id = '210'
-    shortdesc = 'Numbers that start with `0` should always be encapsulated in quotation marks'
-    description = 'Numbers that start with `0` should always be encapsulated in quotation marks'
+    shortdesc = "Numbers that start with '0' should always be encapsulated in quotation marks"
+    description = "Numbers that start with '0' should always be encapsulated in quotation marks"
     severity = 'HIGH'
     languages = [LANGUAGE_SLS]
     tags = ['formatting']

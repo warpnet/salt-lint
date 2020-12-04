@@ -10,8 +10,8 @@ from saltlint.utils import LANGUAGE_JINJA, LANGUAGE_SLS
 
 class JinjaStatementHasSpacesRule(Rule):
     id = '202'
-    shortdesc = 'Jinja statement should have spaces before and after: {% statement %}'
-    description = 'Jinja statement should have spaces before and after: ``{% statement %}``'
+    shortdesc = "Jinja statement should have spaces before and after: '{% statement %}'"
+    description = "Jinja statement should have spaces before and after: '{% statement %}'"
     severity = 'LOW'
     languages = [LANGUAGE_SLS, LANGUAGE_JINJA]
     tags = ['formatting', 'jinja']

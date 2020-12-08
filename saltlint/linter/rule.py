@@ -100,7 +100,9 @@ class DeprecationRule(Rule):
 
     @property
     def shortdesc(self):
-        return "State '{}' is deprecated since SaltStack version '{}'".format(self.state, self.deprecated_since)
+        return "State '{}' is deprecated since SaltStack version '{}'".format(
+            self.state, self.deprecated_since
+        )
 
     @property
     def description(self):

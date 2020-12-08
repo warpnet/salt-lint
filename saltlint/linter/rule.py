@@ -111,7 +111,7 @@ class DeprecationRule(Rule):
     @property
     def regex(self):
         return re.compile(
-            r"^\s{2}" + self.state.replace(".", r"\.") + r"(\s+)?:.*$"
+            r"^\s{2}" + self.state.replace(".", r"\.") + "(?=:|$)"
         )
 
     def match(self, file, line):

@@ -24,8 +24,11 @@ class TestSLSFileNameRule(unittest.TestCase):
         runner = Runner(self.collection, path, Configuration())
         self.assertEqual([], runner.run())
 
+        path = 'tests/test-extension-failure.extra.jinja'
+        runner = Runner(self.collection, path, Configuration())
+        self.assertEqual([], runner.run())
+
     def test_file_negative(self):
         path = 'tests/test-extension-failure.extra.sls'
         runner = Runner(self.collection, path, Configuration())
-        errors = runner.run()
-        self.assertEqual(1, len(errors))
+        self.assertEqual(1, len(runner.run()))

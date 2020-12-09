@@ -7,6 +7,7 @@ import six
 
 from saltlint.utils import get_rule_skips_from_line, get_file_type
 from saltlint.linter.match import Match
+from saltlint.utils import LANGUAGE_SLS
 
 
 class Rule(object):
@@ -86,3 +87,32 @@ class Rule(object):
             matches.append(Match(line, section, file['path'], self, message))
 
         return matches
+
+
+class DeprecationRule(Rule):
+    id = None
+    state = None
+    deprecated_since = None
+
+    severity = 'HIGH'
+    languages = [LANGUAGE_SLS]
+    tags = ['deprecation']
+
+    @property
+    def shortdesc(self):
+        return "State '{}' is deprecated since SaltStack version '{}'".format(
+            self.state, self.deprecated_since
+        )
+
+    @property
+    def description(self):
+        return self.shortdesc
+
+    @property
+    def regex(self):
+        return re.compile(
+            r"^\s{2}" + self.state.replace(".", r"\.") + "(?=:|$)"
+        )
+
+    def match(self, file, line):
+        return self.regex.search(line)

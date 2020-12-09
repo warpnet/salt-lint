@@ -10,8 +10,8 @@ from saltlint.utils import LANGUAGE_JINJA, LANGUAGE_SLS
 
 class JinjaCommentHasSpacesRule(Rule):
     id = '209'
-    shortdesc = 'Jinja comment should have spaces before and after: {# comment #}'
-    description = 'Jinja comment should have spaces before and after: ``{# comment #}``'
+    shortdesc = "Jinja comment should have spaces before and after: '{# comment #}'"
+    description = "Jinja comment should have spaces before and after: '{# comment #}'"
     severity = 'LOW'
     languages = [LANGUAGE_SLS, LANGUAGE_JINJA]
     tags = ['formatting', 'jinja']

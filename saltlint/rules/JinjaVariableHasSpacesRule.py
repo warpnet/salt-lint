@@ -10,8 +10,8 @@ from saltlint.utils import LANGUAGE_JINJA, LANGUAGE_SLS
 
 class JinjaVariableHasSpacesRule(Rule):
     id = '206'
-    shortdesc = 'Jinja variables should have spaces before and after: {{ var_name }}'
-    description = 'Jinja variables should have spaces before and after: ``{{ var_name }}``'
+    shortdesc = "Jinja variables should have spaces before and after: '{{ var_name }}'"
+    description = "Jinja variables should have spaces before and after: '{{ var_name }}'"
     severity = 'LOW'
     languages = [LANGUAGE_SLS, LANGUAGE_JINJA]
     tags = ['formatting', 'jinja']

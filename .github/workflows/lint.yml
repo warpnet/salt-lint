@@ -20,7 +20,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: dockerlint
@@ -57,7 +57,7 @@ jobs:
     - name: Lint with codespell
       run: |
         pip install codespell
-        codespell --skip="./.git*"
+        codespell --skip="./.git*,./saltlint/rules/FileManagedReplaceContentRule.py"
 
   pylint:
     runs-on: ubuntu-latest

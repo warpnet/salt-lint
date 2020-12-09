@@ -2,11 +2,11 @@
 # Copyright (c) 2020 Warpnet B.V.
 
 import re
-from saltlint.linter.rule import Rule
+from saltlint.linter.rule import DeprecationRule
 from saltlint.utils import LANGUAGE_SLS
 
 
-class CmdWaitRecommendRule(Rule):
+class CmdWaitRecommendRule(DeprecationRule):
     id = '213'
     shortdesc = 'SaltStack recommends using cmd.run together with onchanges, rather than cmd.wait'
     description = 'SaltStack recommends using cmd.run together with onchanges, rather than cmd.wait'

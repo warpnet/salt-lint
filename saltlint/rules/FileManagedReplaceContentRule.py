@@ -21,7 +21,9 @@ class FileManagedReplaceContentRule(Rule):
     regex = re.compile(r"^\s{2}file\.managed:.*(?:\n(?:\s{4}|\s{2}-).+)*", re.MULTILINE)
     # Regex for finding the content source option
     regex_options= re.compile(
-        r"^(?:\s{2}|\s{4})-\s(?:source:|contents:|contents_pillar:|contents_grains:|replace:\s[F|f]alse).*$",
+        (r"^(?:\s{2}|\s{4})"
+         r"-\s(?:source:|contents:|contents_pillar:|contents_grains:|replace:"
+         r"\s[F|f]alse).*$"),
         re.MULTILINE
     )
 

@@ -55,10 +55,10 @@ cis_grub_permissions:
 BAD_FILE_STATE = '''
 cis_grub.cfg:
   file.managed:
-    - name: /boot/grub.cfg
-    - user: root
-    - group: root
-    - mode: '0700'
+  - name: /boot/grub.cfg
+  - user: root
+  - group: root
+  - mode: '0700'
 
 cis_systemid_only_set_once:
   file.managed:

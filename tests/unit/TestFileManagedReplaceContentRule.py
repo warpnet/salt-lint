@@ -19,11 +19,11 @@ cis_grub.cfg:
 
 cis_systemid_only_set_once:
   file.managed:
-    - name: /tmp/systemid
-    - user: root
-    - group: root
-    - replace: False
-    - contents_grains: osmajorrelease
+  - name: /tmp/systemid
+  - user: root
+  - group: root
+  - replace: False
+  - contents_grains: osmajorrelease
 
 user:
   user.present:
@@ -50,6 +50,19 @@ cis_grub_permissions:
     - user: root
     - group: root
     - mode: '0700'
+
+# Allow options to be encapsulated by Jinja statements
+cis_grub_jinja:
+  file.managed:
+    - name: /boot/grub.cfg
+    - user: root
+    - group: root
+    - mode: '0700'
+{% if grub.source_path is not defined %}
+    - source: salt://grub/files/grub.cfg
+{% else %}
+    - source: {{ grub.source_path  }}
+{% endif %}
 '''
 
 BAD_FILE_STATE = '''

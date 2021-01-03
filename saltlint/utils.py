@@ -51,6 +51,6 @@ def get_file_type(file_name):
 
     if extension == ".sls":
         return LANGUAGE_SLS
-    if extension in [".jinja", ".jinja2"]:
+    if extension in [".jinja", ".jinja2", ".j2"]:
         return LANGUAGE_JINJA
     return None

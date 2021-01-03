@@ -9,4 +9,3 @@
     entry: salt-lint
     language: python
     files: \.(sls)$
-

@@ -1,6 +1,5 @@
 [![PyPI](https://img.shields.io/pypi/v/salt-lint.svg)](https://pypi.org/project/salt-lint)
-![GitHub Actions: test](https://github.com/warpnet/salt-lint/workflows/build/badge.svg?branch=main)
-![GitHub Actions: lint](https://github.com/warpnet/salt-lint/workflows/lint/badge.svg?branch=main)
+![GitHub Actions](https://github.com/warpnet/salt-lint/workflows/gh/badge.svg?branch=main)
 
 # Salt-lint
 

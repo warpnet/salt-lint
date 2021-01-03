@@ -26,7 +26,9 @@ repos:
   rev: v2.0.0
   hooks:
   - id: codespell
-    args: ['--skip="./.git*,./saltlint/rules/FileManagedReplaceContentRule.py"']
+    args:
+    - '--skip="./.git*,./saltlint/rules/FileManagedReplaceContentRule.py"'
+    - '-L alse'
 - repo: https://github.com/PyCQA/pylint.git
   rev: master
   hooks:

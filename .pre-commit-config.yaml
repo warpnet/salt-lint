@@ -7,11 +7,12 @@ repos:
   - id: trailing-whitespace
   - id: mixed-line-ending
   - id: check-merge-conflict
-- repo: https://github.com/jumanjihouse/pre-commit-hooks.git
-  rev: 2.1.4
-  hooks:
-  - id: markdownlint
-    args: ["-r '~MD013,~MD029,~MD041'"]
+# TODO(roaldnefs): re-enable once it's fixed on a GitHub workflow run
+# - repo: https://github.com/jumanjihouse/pre-commit-hooks.git
+#   rev: 2.1.4
+#   hooks:
+#   - id: markdownlint
+#     args: ["-r ~MD013,~MD029,~MD041"]
 - repo: https://github.com/IamTheFij/docker-pre-commit.git
   rev: v2.0.0
   hooks:

@@ -229,7 +229,7 @@ Application | GitHub Link | Store/Marketplace
 :-:|:--|:--
 Visual Studio Code | [warpnet/vscode-salt-lint](https://github.com/warpnet/vscode-salt-lint) | [VisualStudio Marketplace](https://marketplace.visualstudio.com/items?itemName=warpnet.salt-lint)
 Sublime Text | [warpnet/SublimeLinter-salt-lint](https://github.com/warpnet/SublimeLinter-salt-lint) | [Package Control](https://packagecontrol.io/packages/SublimeLinter-contrib-salt-lint)
-Vim dense-analysis/ale plugin| [warpnet/SublimeLinter-salt-lint](https://github.com/dense-analysis/ale) | [Package Control](https://github.com/dense-analysis/ale)
+Vim ([ALE plugin](https://github.com/dense-analysis/ale)) | [dense-analysis/ale](https://github.com/dense-analysis/ale) | [GitHub](https://github.com/dense-analysis/ale)
 
 Wish to create a `salt-lint` extension for your favourite editor? We're always looking for [contributions](CONTRIBUTING.md)!
 

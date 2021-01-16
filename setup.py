@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2018 Will Thames <will@thames.id.au>
 # Copyright (c) 2018 Ansible by Red Hat
-# Modified work Copyright (c) 2019 Warpnet B.V.
+# Modified work Copyright (c) 2019-2021 Warpnet B.V.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +20,33 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import io
 from setuptools import setup, find_packages
 
 from saltlint import (__author__, __license__,
                       NAME, VERSION, DESCRIPTION)
 
 
-# Read long description from the README.md file
-with io.open('README.md', 'r', encoding='utf-8') as readme_file:
-    long_description = readme_file.read()
+def long_description():
+    """
+    Returns the long description containing both the README.md and CHANGELOG.md
+    files.
+    """
+    # Read content from the README.md file
+    with open('README.md') as readme_file:
+        readme = readme_file.read()
+
+    # Read content from the CHANGELOG.md file
+    with open('README.md') as changelog_file:
+        changelog = changelog_file.read()
+
+    return readme + changelog
 
 
 setup(
     name=NAME,
     version=VERSION,
     description=DESCRIPTION.split('\n')[0],
-    long_description=long_description,
+    long_description=long_description(),
     long_description_content_type='text/markdown',
     author=__author__,
     author_email='info@warpnet.nl',

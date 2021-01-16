@@ -1,33 +1,33 @@
+# salt-lint
+
 [![PyPI](https://img.shields.io/pypi/v/salt-lint.svg)](https://pypi.org/project/salt-lint)
 ![GitHub Actions](https://github.com/warpnet/salt-lint/workflows/gh/badge.svg?branch=main)
-
-# Salt-lint
 
 `salt-lint` checks Salt State files (SLS) for best practices and behavior that could potentially be improved.
 
 The project is heavily based on [ansible-lint](https://github.com/ansible/ansible-lint), which was created by [Will Thames](https://github.com/willthames) and is now maintained as part of the [Ansible](https://www.ansible.com/) by [Red Hat](https://www.redhat.com) project.
 
-# Demo
+## Demo
 
-[![salt-lint demo](demo.gif)](https://asciinema.org/a/377244)
+[![salt-lint demo](https://raw.githubusercontent.com/warpnet/salt-lint/main/demo.gif?raw=true)](https://asciinema.org/a/377244)
 
-# Installing
+## Installing
 
-## Using Pip
+### Using Pip
 
 ```bash
 pip install salt-lint
 ```
 
-## From Source
+### From Source
 
 ```bash
 pip install git+https://github.com/warpnet/salt-lint.git
 ```
 
-# Usage
+## Usage
 
-## Command Line Options
+### Command Line Options
 
 The following is the output from `salt-lint --help`, providing an overview of the basic command line options:
 
@@ -62,11 +62,11 @@ optional arguments:
   -c C                  Specify configuration file to use. Defaults to ".salt-lint"
 ```
 
-## Linting Salt State files
+### Linting Salt State files
 
 It's important to note that `salt-lint` accepts a list of Salt State files or a list of directories.
 
-## Docker & Podman
+### Docker & Podman
 
 salt-lint is available on [Dockerhub](https://hub.docker.com/r/warpnetbv/salt-lint).
 
@@ -82,7 +82,7 @@ On a system with SELinux, change `:ro` to `:Z`. Example below uses podman:
 podman run -v $(pwd):/data:Z --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" | xargs --no-run-if-empty salt-lint'
 ```
 
-## GitHub Action
+### GitHub Action
 
 Salt-lint is available on the GitHub [marketplace](https://github.com/marketplace/actions/salt-lint) as a GitHub Action. The `salt-lint-action` allows you to run ``salt-lint`` with no additional options.
 
@@ -103,9 +103,9 @@ jobs:
         ACTION_STATE_NAME: init.sls
 ```
 
-# Configuring
+## Configuring
 
-## Configuration File
+### Configuration File
 
 Salt-lint supports local configuration via a `.salt-lint` configuration file. Salt-lint checks the working directory for the presence of this file and applies any configuration found there. The configuration file location can also be overridden via the `-c path/to/file` CLI flag.
 
@@ -135,7 +135,7 @@ rules:
 severity: True
 ```
 
-## Pre-commit Setup
+### Pre-commit Setup
 
 To use salt-lint with [pre-commit](https://pre-commit.com),  just add the following to your local repo's `.pre-commit-config.yaml` file. Prior to version 0.12.0 of [pre-commit](https://pre-commit.com) the file was `hooks.yaml` (now `.pre-commit-config.yaml`).
 
@@ -159,11 +159,11 @@ Optionally override the default file selection as follows:
         files: \.(sls|jinja|tmpl)$
 ```
 
-# Rules
+## Rules
 
-## List of rules
+### List of rules
 
-### Formatting
+#### Formatting
 
 Disable formatting checks using `-x formatting`
 
@@ -184,7 +184,7 @@ Rule | Description
 [213](https://github.com/warpnet/salt-lint/wiki/213) | SaltStack recommends using `cmd.run` together with `onchanges`, rather than `cmd.wait`
 [214](https://github.com/warpnet/salt-lint/wiki/214) | SLS file with a period in the name (besides the suffix period) can not be referenced
 
-### Jinja
+#### Jinja
 
 Disable jinja checks using `-x jinja`
 
@@ -195,7 +195,7 @@ Rule | Description
 [209](https://github.com/warpnet/salt-lint/wiki/209) | Jinja comment should have spaces before and after: `{# comment #}`
 [211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
 
-### Recommendations
+#### Recommendations
 
 Disable recommendation checks using `-x recommendation`
 
@@ -203,7 +203,7 @@ rule | Description
 :-:|:--
 [801](https://github.com/warpnet/salt-lint/wiki/801) | It is recommended to use an identifier with `cron.present`
 
-### Deprecations
+#### Deprecations
 
 Disable deprecation checks using `-x deprecation`
 
@@ -211,7 +211,7 @@ Rule | Description
 :-:|:--
 [901](https://github.com/warpnet/salt-lint/wiki/901) | Using the `quiet` argument with `cmd.run` is deprecated. Use `output_loglevel: quiet`
 
-## False Positives: Skipping Rules
+### False Positives: Skipping Rules
 
 Some rules are bit of a rule of thumb. To skip a specific rule for a specific task, inside your state add `# noqa [rule_id]` at the end of the line. You can skip multiple rules via a space-separated list. Example:
 
@@ -221,7 +221,7 @@ Some rules are bit of a rule of thumb. To skip a specific rule for a specific ta
     - source: salt://{{unspaced_var}}/example  # noqa: 206
 ```
 
-# Plugins
+## Plugins
 
 Currently, there is a `salt-lint` plugin available for the following applications:
 
@@ -233,7 +233,7 @@ Vim ([ALE plugin](https://github.com/dense-analysis/ale)) | [dense-analysis/ale]
 
 Wish to create a `salt-lint` extension for your favourite editor? We're always looking for [contributions](CONTRIBUTING.md)!
 
-# Fix common issues
+## Fix common issues
 
 `sed` might be one of the better tools to fix common issues, as shown in commands below.
 
@@ -248,6 +248,6 @@ Make the `dir_mode`, `file_mode` and `mode` arguments in the desired syntax:\
 Add quotes around numeric values that start with a `0`:\
 `sed -i -E "s/\b(minute|hour): (0[0-7]?)\$/\1: '\2'/"  $(find . -name '*.sls')`
 
-# Authors
+## Acknowledgement
 
 The project is heavily based on [ansible-lint](https://github.com/ansible/ansible-lint), with the modified work by [Warpnet B.V.](https://github.com/warpnet).  [ansible-lint](https://github.com/ansible/ansible-lint) was created by [Will Thames](https://github.com/willthames) and is now maintained as part of the [Ansible](https://www.ansible.com/) by [Red Hat](https://www.redhat.com) project.

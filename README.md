@@ -195,14 +195,6 @@ Rule | Description
 [209](https://github.com/warpnet/salt-lint/wiki/209) | Jinja comment should have spaces before and after: `{# comment #}`
 [211](https://github.com/warpnet/salt-lint/wiki/211) | `pillar.get` or `grains.get` should be formatted differently
 
-#### Recommendations
-
-Disable recommendation checks using `-x recommendation`
-
-rule | Description
-:-:|:--
-[801](https://github.com/warpnet/salt-lint/wiki/801) | It is recommended to use an identifier with `cron.present`
-
 #### Deprecations
 
 Disable deprecation checks using `-x deprecation`

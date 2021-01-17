@@ -15,7 +15,7 @@ class CmdRunQuietRule(Rule):
     severity = 'HIGH'
     languages = [LANGUAGE_SLS]
     tags = ['deprecation']
-    version_added = 'develop'
+    version_added = 'v0.5.0'
 
     regex = re.compile(r"^.+\n^\s{2}cmd\.run:(?:\n.+)+\n^\s{4}- quiet\s?.*", re.MULTILINE)
 

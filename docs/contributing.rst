@@ -21,10 +21,10 @@ Please note we have a code of conduct, please follow it in all your interactions
 
     git remote add upstream https://github.com/warpnet/salt-lint.git
 
-4. Create a new branch in your clone. Create your branch from the develop branch::
+4. Create a new branch in your clone. Create your branch from the main branch::
 
     git fetch upstream
-    git checkout -b add-cool-feature upstream/develop
+    git checkout -b add-cool-feature upstream/main
 
 5. Edit and commit changes to your branch::
 
@@ -52,7 +52,7 @@ Write a short, descriptive commit title and a longer commit message if necessary
 
 7. Find the branch on your GitHub salt fork.
 
-8. Open a new pull request. Click on `Pull Request` on the right near the top of you fork. Choose `develop` as the base branch. Review that the proposed changes are what you expect. Write a descriptive comment. Include links to related issues (e.g. 'Fixes #1.') in the comment field. Click `Create pull request`.
+8. Open a new pull request. Click on `Pull Request` on the right near the top of you fork. Choose `main` as the base branch. Review that the proposed changes are what you expect. Write a descriptive comment. Include links to related issues (e.g. 'Fixes #1.') in the comment field. Click `Create pull request`.
 
 9. Salt-lint project members will review your pull request and automated tests will run on it.
 

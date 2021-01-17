@@ -1,7 +1,12 @@
 # salt-lint
 
-[![PyPI](https://img.shields.io/pypi/v/salt-lint.svg)](https://pypi.org/project/salt-lint)
-![GitHub Actions](https://github.com/warpnet/salt-lint/workflows/gh/badge.svg?branch=main)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
+[![PyPI - Format](https://img.shields.io/pypi/format/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
+[![License](https://img.shields.io/github/license/warpnet/salt-lint?style=for-the-badge)](https://raw.githubusercontent.com/warpnet/salt-lint/main/LICENSE)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/warpnet/salt-lint/tests?label=CI&logo=github&style=for-the-badge)](https://github.com/warpnet/salt-lint/actions)
+[![GitHub contributors](https://img.shields.io/github/contributors/warpnet/salt-lint?logo=github&style=for-the-badge)](https://github.com/warpnet/salt-lint/graphs/contributors)
+
 
 `salt-lint` checks Salt State files (SLS) for best practices and behavior that could potentially be improved.
 
@@ -146,7 +151,7 @@ To use salt-lint with [pre-commit](https://pre-commit.com),  just add the follow
 # See usage instructions at http://pre-commit.com
 
 -   repo: https://github.com/warpnet/salt-lint
-    rev: v0.4.0
+    rev: v0.5.0
     hooks:
       - id: salt-lint
 ```

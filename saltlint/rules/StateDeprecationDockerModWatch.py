@@ -8,4 +8,4 @@ class StateDeprecationDockerModWatch(DeprecationRule):
     id = '909'
     state = 'docker.mod_watch'
     deprecated_since = '2017.7.0'
-    version_added = 'develop'
+    version_added = 'v0.5.0'

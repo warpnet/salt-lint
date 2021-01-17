@@ -45,11 +45,12 @@ def get_rule_skips_from_text(text):
     # Return a list of unique ids
     return list(set(rule_id_list))
 
+
 def get_file_type(file_name):
     extension = os.path.splitext(file_name)[1].lower()
 
     if extension == ".sls":
         return LANGUAGE_SLS
-    if extension in [".jinja", ".jinja2"]:
+    if extension in [".jinja", ".jinja2", ".j2"]:
         return LANGUAGE_JINJA
     return None

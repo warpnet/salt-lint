@@ -15,7 +15,7 @@ class SLSFileNameRule(Rule):
     severity = 'HIGH'
     languages = [LANGUAGE_SLS]
     tags = ['formatting']
-    version_added = 'develop'
+    version_added = 'v0.5.0'
 
     def matchtext(self, file, text):
         results = []

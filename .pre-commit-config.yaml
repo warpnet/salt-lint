@@ -1,0 +1,37 @@
+---
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks.git
+  rev: v3.3.0
+  hooks:
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+  - id: mixed-line-ending
+  - id: check-merge-conflict
+# TODO(roaldnefs): re-enable once it's fixed on a GitHub workflow run
+# - repo: https://github.com/jumanjihouse/pre-commit-hooks.git
+#   rev: 2.1.4
+#   hooks:
+#   - id: markdownlint
+#     args: ["-r ~MD013,~MD029,~MD041"]
+- repo: https://github.com/IamTheFij/docker-pre-commit.git
+  rev: v2.0.0
+  hooks:
+  - id: hadolint
+    files: docker/Dockerfile
+- repo: https://gitlab.com/pycqa/flake8.git
+  rev: 3.8.4
+  hooks:
+  - id: flake8
+    exclude: '^$|.git|tests|env|docs'
+- repo: https://github.com/codespell-project/codespell.git
+  rev: v2.0.0
+  hooks:
+  - id: codespell
+    args:
+    - '--skip="./.git*,./saltlint/rules/FileManagedReplaceContentRule.py"'
+    - '-L alse'
+- repo: https://github.com/PyCQA/pylint.git
+  rev: master
+  hooks:
+  - id: pylint
+    exclude: ^docs/

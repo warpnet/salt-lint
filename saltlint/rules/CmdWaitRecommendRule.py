@@ -14,7 +14,7 @@ class CmdWaitRecommendRule(DeprecationRule):
     severity = 'LOW'
     languages = [LANGUAGE_SLS]
     tags = ['formatting']
-    version_added = 'develop'
+    version_added = 'v0.5.0'
 
     regex = re.compile(r"^\s{2}cmd\.wait:(\s+)?$")
 

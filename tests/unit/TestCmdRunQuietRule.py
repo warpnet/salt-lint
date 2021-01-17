@@ -38,6 +38,14 @@ getpip3:
   cmd.run:
     - name: /usr/bin/python /usr/local/sbin/get-pip.py
     - quiet # noqa: 901
+
+# Allow quiet option to be encapsulated by Jinja statements
+get_pip_jinja:
+  cmd.run:
+    - name: /usr/bin/python /usr/local/sbin/get-pip.py
+{% if pillar.get('quiet') %}
+    - quiet
+{% endif %}
 '''
 
 class TestCmdRunQuietRule(unittest.TestCase):
@@ -54,7 +62,7 @@ class TestCmdRunQuietRule(unittest.TestCase):
     def test_statement_negative(self):
         runner = RunFromText(self.collection)
         results = runner.run_state(BAD_QUIET_STATE)
-        self.assertEqual(2, len(results))
+        self.assertEqual(3, len(results))
 
         # Check line numbers of the results
         self.assertEqual(9, results[0].linenumber)

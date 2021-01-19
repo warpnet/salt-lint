@@ -2,6 +2,9 @@
 All notable changes in **salt-lint** are documented below.
 
 ## [Unreleased]
+### Fixed
+- Ensure all excluded paths from both the CLI and configuration are passed to the runner ([#231](https://github.com/warpnet/salt-lint/pull/231)).
+
 ## [0.5.0] (2021-01-17)
 ### Added
 - Rule 213 to recommend using cmd.run together with onchanges ([#207](https://github.com/warpnet/salt-lint/pull/207)).

@@ -2,6 +2,7 @@
 All notable changes in **salt-lint** are documented below.
 
 ## [Unreleased]
+## [0.5.1] (2021-01-19)
 ### Fixed
 - Ensure all excluded paths from both the CLI and configuration are passed to the runner ([#231](https://github.com/warpnet/salt-lint/pull/231)).
 
@@ -13,4 +14,5 @@ All notable changes in **salt-lint** are documented below.
 - This `CHANGELOG.md` file to be able to list all notable changes for each version of **salt-lint** ([#223](https://github.com/warpnet/salt-lint/pull/223)).
 
 [Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.4.2...HEAD
+[0.5.1]: https://github.com/warpnet/salt-lint/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/warpnet/salt-lint/compare/v0.4.2...v0.5.0

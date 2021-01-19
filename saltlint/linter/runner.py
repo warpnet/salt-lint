@@ -38,7 +38,8 @@ class Runner(object):
             # These will be (potentially) relative paths
             paths = [path.strip() for path in exclude_paths]
             self.exclude_paths = paths + [os.path.abspath(path) for path in paths]
-        self.exclude_paths = []
+        else:
+            self.exclude_paths = []
 
     def is_excluded(self, file_path):
         # Any will short-circuit as soon as something returns True, but will

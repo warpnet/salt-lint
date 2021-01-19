@@ -36,7 +36,7 @@ def long_description():
         readme = readme_file.read()
 
     # Read content from the CHANGELOG.md file
-    with open('README.md') as changelog_file:
+    with open('CHANGELOG.md') as changelog_file:
         changelog = changelog_file.read()
 
     return readme + changelog

@@ -3,7 +3,7 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
 [![PyPI - Format](https://img.shields.io/pypi/format/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
-[![License](https://img.shields.io/github/license/warpnet/salt-lint?style=for-the-badge)](https://raw.githubusercontent.com/warpnet/salt-lint/main/LICENSE)
+[![PyPI - License](https://img.shields.io/pypi/l/salt-lint?style=for-the-badge)](https://raw.githubusercontent.com/warpnet/salt-lint/main/LICENSE)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/warpnet/salt-lint/tests?label=CI&logo=github&style=for-the-badge)](https://github.com/warpnet/salt-lint/actions)
 [![GitHub contributors](https://img.shields.io/github/contributors/warpnet/salt-lint?logo=github&style=for-the-badge)](https://github.com/warpnet/salt-lint/graphs/contributors)
 

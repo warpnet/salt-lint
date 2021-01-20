@@ -1,0 +1,5 @@
+include README.md CHANGELOG.md CODE_OF_CONDUCT.md
+include LICENSE LICENSE.ansible-lint
+include tox.ini
+recursive-include docs *.py *.rst Makefile make.bat requirements.txt
+recursive-include tests test-extension-failure test-extension-failure.extra.sls test-extension-success.sls

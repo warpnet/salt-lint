@@ -2,6 +2,9 @@
 All notable changes in **salt-lint** are documented below.
 
 ## [Unreleased]
+### Fixed
+- Append the contents of the `CHANGELOG.md` file to the long description of the package instead of the duplicate `README.md` contents ([#234](https://github.com/warpnet/salt-lint/pull/234)).
+
 ## [0.5.1] (2021-01-19)
 ### Fixed
 - Ensure all excluded paths from both the CLI and configuration are passed to the runner ([#231](https://github.com/warpnet/salt-lint/pull/231)).

@@ -78,13 +78,13 @@ salt-lint is available on [Dockerhub](https://hub.docker.com/r/warpnetbv/salt-li
 Example usage:
 
 ```bash
-docker run -v $(pwd):/data:ro --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" | xargs --no-run-if-empty salt-lint'
+docker run -v $(pwd):/data:ro --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" -print0 | xargs -0 --no-run-if-empty salt-lint'
 ```
 
 On a system with SELinux, change `:ro` to `:Z`. Example below uses podman:
 
 ```bash
-podman run -v $(pwd):/data:Z --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" | xargs --no-run-if-empty salt-lint'
+podman run -v $(pwd):/data:Z --entrypoint=/bin/bash -it warpnetbv/salt-lint:latest -c 'find /data -type f -name "*.sls" -print0 | xargs -0 --no-run-if-empty salt-lint'
 ```
 
 ### GitHub Action

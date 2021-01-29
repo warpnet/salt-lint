@@ -2,6 +2,8 @@
 All notable changes in **salt-lint** are documented below.
 
 ## [Unreleased]
+
+## [0.5.2] (2021-01-29)
 ### Fixed
 - Append the contents of the `CHANGELOG.md` file to the long description of the package instead of the duplicate `README.md` contents ([#234](https://github.com/warpnet/salt-lint/pull/234)).
 - Ignore Jinja specific rules in Jinja escaped blocks ([#236](https://github.com/warpnet/salt-lint/pull/236)).
@@ -17,6 +19,7 @@ All notable changes in **salt-lint** are documented below.
 - Rules 901-915 to check for deprecated states and state options ([#214](https://github.com/warpnet/salt-lint/pull/214)).
 - This `CHANGELOG.md` file to be able to list all notable changes for each version of **salt-lint** ([#223](https://github.com/warpnet/salt-lint/pull/223)).
 
-[Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.4.2...HEAD
+[Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.5.2...HEAD
+[0.5.2]: https://github.com/warpnet/salt-lint/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/warpnet/salt-lint/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/warpnet/salt-lint/compare/v0.4.2...v0.5.0

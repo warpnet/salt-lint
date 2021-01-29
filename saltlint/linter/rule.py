@@ -123,7 +123,7 @@ class JinjaRule(Rule):
             escaped_text = pre_text + newlines + post_text
 
         # Call the matchlines() on the parent class with the escaped text
-        matches = super().matchlines(file, escaped_text)
+        matches = super(JinjaRule, self).matchlines(file, escaped_text)  # pylint: disable=R1725
         return matches
 
 

@@ -3,7 +3,7 @@
 
 import os
 import sys
-import pathspec
+import pathspec  # type: ignore
 import yaml
 
 import saltlint.utils

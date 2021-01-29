@@ -12,6 +12,12 @@ from tests import RunFromText
 
 GOOD_STATEMENT_LINE = '''
 {%- set example='good' +%}
+
+{% raw %}
+    # The following line should be ignored as it is placed in a Jinja escape
+    # block
+    {%-set example='bad'+%}
+{% endraw %}
 '''
 
 BAD_STATEMENT_LINE = '''

@@ -12,6 +12,12 @@ from tests import RunFromText
 
 GOOD_COMMENT_LINE = '''
 {#- set example='good' +#}
+
+{% raw %}
+    # The following line should be ignored as it is placed in a Jinja escape
+    # block
+    {#-set example='bad'+#}
+{% endraw %}
 '''
 
 BAD_COMMENT_LINE = '''

@@ -7,7 +7,7 @@ import six
 
 from saltlint.utils import get_rule_skips_from_line, get_file_type
 from saltlint.linter.match import Match
-from saltlint.utils import LANGUAGE_SLS
+from saltlint.utils import LANGUAGE_SLS, LANGUAGE_JINJA
 
 
 class Rule(object):
@@ -86,6 +86,44 @@ class Rule(object):
         for line, section, message in results:
             matches.append(Match(line, section, file['path'], self, message))
 
+        return matches
+
+
+class JinjaRule(Rule):
+    languages = [LANGUAGE_SLS, LANGUAGE_JINJA]
+    tags = ['formatting', 'jinja']
+
+    # Regex for matching all escaped Jinja blocks in the text
+    jinja_escape_regex = re.compile(
+        r"{%[+-]?\s?raw\s?[+-]?%}.*{%[+-]?\s?endraw\s?[+-]?%}",
+        re.DOTALL | re.MULTILINE
+    )
+
+    def matchlines(self, file, text):
+        """
+        Match the text line by line but ignore all escaped Jinja blocks, e.g.
+        content between {% raw %} and {% endraw %}.
+
+        Returns a list of Match objects.
+        """
+        escaped_text = text
+        # Replace escaped Jinja blocks with the same number of empty lines
+        for match in self.jinja_escape_regex.finditer(text):
+            start = match.start()
+            end = match.end()
+            # Get the number of newlines in the escaped match
+            lines = text[start:end].splitlines()
+            num_of_lines = len(lines) - 1
+
+            # Replace escaped Jinja block in the escaped text by newlines to
+            # keep all the line numbers consistent
+            pre_text = escaped_text[:start]
+            post_text = escaped_text[end:]
+            newlines = '\n' * num_of_lines
+            escaped_text = pre_text + newlines + post_text
+
+        # Call the matchlines() on the parent class with the escaped text
+        matches = super().matchlines(file, escaped_text)
         return matches
 
 

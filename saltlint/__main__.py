@@ -4,7 +4,6 @@
 
 import sys
 import errno
-from future.utils import raise_from
 
 from saltlint.cli import run
 
@@ -16,4 +15,4 @@ if __name__ == "__main__":
         if exc.errno != errno.EPIPE:
             raise
     except RuntimeError as exc:
-        raise_from(SystemExit(str(exc)), exc)
+        raise SystemExit(str(exc)) from exc

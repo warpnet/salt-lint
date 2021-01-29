@@ -8,7 +8,6 @@ import argparse
 import os
 import sys
 import tempfile
-import codecs
 
 from saltlint import NAME, VERSION, DESCRIPTION
 from saltlint import formatters
@@ -19,12 +18,6 @@ from saltlint.linter.runner import Runner
 
 def run(args=None):
     """Run the linter and return the exit code."""
-    # Wrap `sys.stdout` in an object that automatically encodes an unicode
-    # string into utf-8, in Python 2 only. The default encoding for Python 3
-    # is already utf-8.
-    if sys.version_info[0] < 3:
-        sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
-
     parser = init_argument_parser()
     options = parser.parse_args(args if args is not None else sys.argv[1:])
 

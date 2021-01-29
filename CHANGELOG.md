@@ -2,6 +2,8 @@
 All notable changes in **salt-lint** are documented below.
 
 ## [Unreleased]
+### Deprecated
+- Drop Python 2.7 support ((#239)[https://github.com/warpnet/salt-lint/pull/239]).
 
 ## [0.5.2] (2021-01-29)
 ### Fixed

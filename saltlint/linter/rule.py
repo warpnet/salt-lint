@@ -3,7 +3,6 @@
 # Modified work Copyright (c) 2020 Warpnet B.V.
 
 import re
-import six
 
 from saltlint.utils import get_rule_skips_from_line, get_file_type
 from saltlint.linter.match import Match
@@ -66,7 +65,7 @@ class Rule(object):
             if not result:
                 continue
             message = None
-            if isinstance(result, six.string_types):
+            if isinstance(result, str):
                 message = result
             matches.append(Match(prev_line_no+1, line,
                                  file['path'], self, message))
@@ -123,7 +122,7 @@ class JinjaRule(Rule):
             escaped_text = pre_text + newlines + post_text
 
         # Call the matchlines() on the parent class with the escaped text
-        matches = super(JinjaRule, self).matchlines(file, escaped_text)  # pylint: disable=R1725
+        matches = super().matchlines(file, escaped_text)
         return matches
 
 

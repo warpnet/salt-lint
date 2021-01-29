@@ -2,8 +2,6 @@
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
 # Modified work Copyright (c) 2020 Warpnet B.V.
 
-from __future__ import print_function
-
 import os
 
 from saltlint.utils import get_file_type

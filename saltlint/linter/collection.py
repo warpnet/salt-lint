@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
-# Modified work Copyright (c) 2020 Warpnet B.V.
-
-from __future__ import print_function
+# Modified work Copyright (c) 2020-2021 Warpnet B.V.
 
 from collections import defaultdict
 import os

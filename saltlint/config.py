@@ -4,9 +4,7 @@
 import os
 import sys
 import pathspec
-import six
 import yaml
-from future.utils import raise_from
 
 import saltlint.utils
 
@@ -44,7 +42,9 @@ class Configuration(object):
             try:
                 config = yaml.safe_load(content)
             except yaml.YAMLError as exc:
-                raise_from(SaltLintConfigError("invalid config: {}".format(exc)), exc)
+                raise SaltLintConfigError(
+                    "invalid config: {}".format(exc)
+                ) from exc
 
         # Parse verbosity
         self.verbosity = self._options.get('verbosity', 0)
@@ -69,7 +69,7 @@ class Configuration(object):
         self.tags = self._options.get('tags', [])
         if 'tags' in config:
             self.tags += config['tags']
-        if isinstance(self.tags, six.string_types):
+        if isinstance(self.tags, str):
             self.tags = self.tags.split(',')
 
         # Parse use default rules
@@ -109,16 +109,17 @@ class Configuration(object):
         self.rules = {}
         if 'rules' in config and isinstance(config['rules'], dict):
             # Read rule specific configuration from the config dict.
-            for name, rule in six.iteritems(config['rules']):
+            for name, rule in config['rules'].items():
                 # Store the keys as strings.
                 self.rules[str(name)] = {}
 
                 if 'ignore' not in rule:
                     continue
 
-                if not isinstance(rule['ignore'], six.string_types):
+                if not isinstance(rule['ignore'], str):
                     raise SaltLintConfigError(
-                        'invalid config: ignore should contain file patterns')
+                        'invalid config: ignore should contain file patterns'
+                    )
 
                 # Retrieve the pathspec.
                 self.rules[str(name)]['ignore'] = pathspec.PathSpec.from_lines(

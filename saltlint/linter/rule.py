@@ -2,6 +2,7 @@
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
 # Modified work Copyright (c) 2020 Warpnet B.V.
 
+from typing import List, Optional
 import re
 
 from saltlint.utils import get_rule_skips_from_line, get_file_type
@@ -11,10 +12,10 @@ from saltlint.utils import LANGUAGE_SLS, LANGUAGE_JINJA
 
 class Rule(object):
 
-    id = None
-    shortdesc = None
-    description = None
-    languages = []
+    id: Optional[str] = None
+    shortdesc: Optional[str] = None
+    description: Optional[str] = None
+    languages: List[str] = []
     match = None
     matchtext = None
 
@@ -127,9 +128,9 @@ class JinjaRule(Rule):
 
 
 class DeprecationRule(Rule):
-    id = None
-    state = None
-    deprecated_since = None
+    id: Optional[str] = None
+    state: Optional[str] = None
+    deprecated_since: Optional[str] = None
 
     severity = 'HIGH'
     languages = [LANGUAGE_SLS]

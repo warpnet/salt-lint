@@ -1,14 +1,38 @@
-# salt-lint
-
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
-[![PyPI - Format](https://img.shields.io/pypi/format/salt-lint?logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/salt-lint/)
-[![PyPI - License](https://img.shields.io/pypi/l/salt-lint?style=for-the-badge)](https://raw.githubusercontent.com/warpnet/salt-lint/main/LICENSE)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/warpnet/salt-lint/tests?label=CI&logo=github&style=for-the-badge)](https://github.com/warpnet/salt-lint/actions)
-[![GitHub contributors](https://img.shields.io/github/contributors/warpnet/salt-lint?logo=github&style=for-the-badge)](https://github.com/warpnet/salt-lint/graphs/contributors)
-
-
-`salt-lint` checks Salt State files (SLS) for best practices and behavior that could potentially be improved.
+<a href="https://github.com/warpnet/salt-lint" style="color: black;">
+    <h1 align="center">salt-lint</h1>
+</a>
+<p align="center">
+    <a href="https://pypi.org/project/salt-lint/">
+        <img src="https://img.shields.io/github/v/release/warpnet/salt-lint?style=for-the-badge"
+            alt="Latest release version">
+    </a>
+    <a href="https://pypi.org/project/salt-lint/">
+        <img src="https://img.shields.io/pypi/pyversions/salt-lint?style=for-the-badge"
+            alt="PyPI - Python Version">
+    </a>
+    <a href="https://raw.githubusercontent.com/warpnet/salt-lint/main/LICENSE">
+        <img src="https://img.shields.io/pypi/l/salt-lint?style=for-the-badge&color=blue"
+            alt="PyPI - License">
+    </a>
+    <a href="https://github.com/warpnet/salt-lint/actions">
+        <img src="https://img.shields.io/github/workflow/status/warpnet/salt-lint/tests?style=for-the-badge&color=blue"
+            alt="GitHub Workflow Status">
+    </a>
+    <a href="https://github.com/warpnet/salt-lint/graphs/contributors">
+        <img src="https://img.shields.io/github/contributors/warpnet/salt-lint?style=for-the-badge&color=blue"
+            alt="GitHub contributors">
+    </a>
+    </br>
+    <b>salt-lint</b> checks Salt State files (SLS) for best practices and behavior that could potentially be improved.
+    <br />
+    <a href="https://github.com/warpnet/salt-lint/"><strong>Explore the code »</strong></a>
+    <br />
+    <a href="https://salt-lint.readthedocs.io/en/latest/rules/">Check the Linting Rules</a>
+    ·
+    <a href="https://github.com/warpnet/salt-lint/issues/new?assignees=&labels=Type%3A%20Bug&template=bug_report.md&title=Bug%3A">Report Bug</a>
+    ·
+    <a href="https://github.com/warpnet/salt-lint/issues/new?assignees=&labels=Type%3A%20Enhancement&template=feature_request.md&title=Feature+Request%3A">Request Feature</a>
+</p>
 
 ## Demo
 

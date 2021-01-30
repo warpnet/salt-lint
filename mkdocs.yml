@@ -1,0 +1,32 @@
+site_name: salt-lint documentation
+theme: readthedocs
+docs_dir: 'docs'
+
+copyright: 'Copyright &copy; Warpnet B.V.'
+
+repo_name: 'warpnet/salt-lint'
+repo_url: https://github.com/warpnet/salt-lint/
+edit_uri: 'edit/main/docs/'
+
+site_description: 'A command-line utility that checks for best practices in SaltStack.'
+site_author: 'Warpnet B.V.'
+
+
+nav:
+  - Home: 'index.md'
+  - Rules:
+    - Overview: 'rules/index.md'
+    - Formatting: 'rules/formatting.md'
+    - Recommendations: 'rules/recommendations.md'
+    - Deprecations: 'rules/deprecations.md'
+  - Contributing:
+    - 'Contributing': 'contributing/contributing.md'
+    - 'Code of conduct': 'contributing/code_of_conduct.md'
+  - About:
+    - Changelog: 'about/changelog.md'
+    - License: 'about/license.md'
+
+
+markdown_extensions:
+  - markdown_include.include:
+      base_path: docs

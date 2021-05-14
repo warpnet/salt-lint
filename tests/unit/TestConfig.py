@@ -31,7 +31,7 @@ class TestConfig(unittest.TestCase):
     def setUp(self):
         # Open the temporary configuration file and write the contents of
         # SALT_LINT_CONFIG to the temporary file.
-        fp = tempfile.NamedTemporaryFile()
+        fp = tempfile.NamedTemporaryFile()  # pylint: disable=R1732
         fp.write(SALT_LINT_CONFIG.encode())
         fp.seek(0)
         self.fp = fp

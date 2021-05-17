@@ -27,7 +27,7 @@ def run(args=None):
 
     # Read input from STDIN
     if not sys.stdin.isatty():
-        stdin_file = tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False)
+        stdin_file = tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False)  # pylint: disable=R1732
         stdin_file.write(sys.stdin.read())
         stdin_file.flush()
         file_names.add(stdin_file.name)

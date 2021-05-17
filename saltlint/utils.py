@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
-# Modified work Copyright (c) 2020 Warpnet B.V.
+# Modified work Copyright (c) 2020-2021 Warpnet B.V.
 
 import glob
-import imp
+import importlib.util
 import os
 
 
@@ -19,9 +19,10 @@ def load_plugins(directory, config):
 
         pluginname = os.path.basename(pluginfile.replace('.py', ''))
         try:
-            fh, filename, desc = imp.find_module(pluginname, [directory])
-            mod = imp.load_module(pluginname, fh, filename, desc)
-            obj = getattr(mod, pluginname)(config)
+            spec = importlib.util.spec_from_file_location(pluginname, pluginfile)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            obj = getattr(module, pluginname)(config)
             result.append(obj)
         finally:
             if fh:

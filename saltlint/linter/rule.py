@@ -154,3 +154,13 @@ class DeprecationRule(Rule):
 
     def match(self, file, line):
         return self.regex.search(line)
+
+
+class TypographicalErrorRule(Rule):
+    """Base rule for catching common typographical errors."""
+    severity = 'LOW'
+    languages = [LANGUAGE_SLS]
+    tags = ['formatting']
+
+    def match(self, file, line):
+        return self.regex.search(line)

@@ -5,6 +5,9 @@ All notable changes in **salt-lint** are documented below.
 ### Deprecated
 - Drop Python 2.7 support ((#239)[https://github.com/warpnet/salt-lint/pull/239]).
 
+### Added
+- Rule 216, 217 and 218 for catching common typographical errors ((#249)[https://github.com/warpnet/salt-lint/pull/249]).
+
 ## [0.5.2] (2021-01-29)
 ### Fixed
 - Append the contents of the `CHANGELOG.md` file to the long description of the package instead of the duplicate `README.md` contents ([#234](https://github.com/warpnet/salt-lint/pull/234)).

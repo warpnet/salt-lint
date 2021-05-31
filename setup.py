@@ -45,7 +45,7 @@ def long_description():
 setup(
     name=NAME,
     version=VERSION,
-    description=DESCRIPTION.split('\n')[0],
+    description=DESCRIPTION.split('\n')[0],  # pylint: disable=C0207
     long_description=long_description(),
     long_description_content_type='text/markdown',
     author=__author__,

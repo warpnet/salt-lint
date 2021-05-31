@@ -2,11 +2,13 @@
 All notable changes in **salt-lint** are documented below.
 
 ## [Unreleased]
+
+## [0.6.0] (2021-06-01)
 ### Deprecated
-- Drop Python 2.7 support ((#239)[https://github.com/warpnet/salt-lint/pull/239]).
+- Drop Python 2.7 support ([#239](https://github.com/warpnet/salt-lint/pull/239)).
 
 ### Added
-- Rule 216, 217 and 218 for catching common typographical errors ((#249)[https://github.com/warpnet/salt-lint/pull/249]).
+- Rule 216, 217 and 218 for catching common typographical errors ([#249](https://github.com/warpnet/salt-lint/pull/249)).
 
 ## [0.5.2] (2021-01-29)
 ### Fixed
@@ -24,7 +26,8 @@ All notable changes in **salt-lint** are documented below.
 - Rules 901-915 to check for deprecated states and state options ([#214](https://github.com/warpnet/salt-lint/pull/214)).
 - This `CHANGELOG.md` file to be able to list all notable changes for each version of **salt-lint** ([#223](https://github.com/warpnet/salt-lint/pull/223)).
 
-[Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.5.2...HEAD
+[Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/warpnet/salt-lint/compare/v0.5.2...v0.6.0
 [0.5.2]: https://github.com/warpnet/salt-lint/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/warpnet/salt-lint/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/warpnet/salt-lint/compare/v0.4.2...v0.5.0

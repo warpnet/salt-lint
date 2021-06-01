@@ -12,5 +12,5 @@ class TypoContentsRule(TypographicalErrorRule):
     id = '218'
     shortdesc = '"content" looks like a typo. Did you mean "contents"?'
     description = '"content" looks like a typo. Did you mean "contents"?'
-    version_added = 'develop'
+    version_added = 'v0.6.0'
     regex = re.compile(r"^\s+- content(|_pillar|_grains|_newline|_delimiter):")

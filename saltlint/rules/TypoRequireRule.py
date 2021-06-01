@@ -12,5 +12,5 @@ class TypoRequireRule(TypographicalErrorRule):
     id = '217'
     shortdesc = '"requires" looks like a typo. Did you mean "require"?'
     description = '"requires" looks like a typo. Did you mean "require"?'
-    version_added = 'develop'
+    version_added = 'v0.6.0'
     regex = re.compile(r"^\s+- requires(|_in|_any):")

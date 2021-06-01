@@ -5,7 +5,7 @@
 """
 
 NAME = 'salt-lint'
-VERSION = '0.5.2'
+VERSION = '0.6.0'
 DESCRIPTION = __doc__
 
 __author__ = 'Warpnet B.V.'

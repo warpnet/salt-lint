@@ -173,7 +173,7 @@ To use salt-lint with [pre-commit](https://pre-commit.com),  just add the follow
 # See usage instructions at http://pre-commit.com
 
 -   repo: https://github.com/warpnet/salt-lint
-    rev: v0.6.0
+    rev: v0.6.1
     hooks:
       - id: salt-lint
 ```

@@ -3,6 +3,10 @@ All notable changes in **salt-lint** are documented below.
 
 ## [Unreleased]
 
+## [0.6.1] (2021-06-01)
+
+- Remove rule 218 because of a false positive
+
 ## [0.6.0] (2021-06-01)
 ### Deprecated
 - Drop Python 2.7 support ([#239](https://github.com/warpnet/salt-lint/pull/239)).
@@ -27,6 +31,7 @@ All notable changes in **salt-lint** are documented below.
 - This `CHANGELOG.md` file to be able to list all notable changes for each version of **salt-lint** ([#223](https://github.com/warpnet/salt-lint/pull/223)).
 
 [Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.6.0...HEAD
+[0.6.1]: https://github.com/warpnet/salt-lint/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/warpnet/salt-lint/compare/v0.5.2...v0.6.0
 [0.5.2]: https://github.com/warpnet/salt-lint/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/warpnet/salt-lint/compare/v0.5.0...v0.5.1

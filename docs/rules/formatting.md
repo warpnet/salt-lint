@@ -246,7 +246,7 @@ ___
 
 Correct ways:
 * `salt['pillar.get']('item')`
-* `pillar.get['item']`
+* `pillar['item']`
 * `pillar.get('item')`
 
 Incorrect ways:

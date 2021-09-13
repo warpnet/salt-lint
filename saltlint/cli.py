@@ -21,16 +21,16 @@ def run(args=None):
     parser = init_argument_parser()
     options = parser.parse_args(args if args is not None else sys.argv[1:])
 
-    stdin_file = None
+    stdin_filename = None
     file_names = set(options.files)
     checked_files = set()
 
     # Read input from STDIN
     if not sys.stdin.isatty():
-        stdin_file = tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False)  # pylint: disable=R1732
-        stdin_file.write(sys.stdin.read())
-        stdin_file.flush()
-        file_names.add(stdin_file.name)
+        with tempfile.NamedTemporaryFile('w', suffix='.sls', delete=False) as stdin_tmpfile:
+            stdin_tmpfile.write(sys.stdin.read())
+            stdin_filename = stdin_tmpfile.name
+            file_names.add(stdin_filename)
 
     # Read, parse and validate the configuration
     options_dict = vars(options)
@@ -68,8 +68,8 @@ def run(args=None):
         problems.extend(runner.run())
 
     # Delete stdin temporary file
-    if stdin_file:
-        os.unlink(stdin_file.name)
+    if stdin_filename:
+        os.unlink(stdin_filename)
 
     if problems:
         sorted_problems = sort_problems(problems)

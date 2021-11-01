@@ -1,10 +1,20 @@
 # Changelog
 All notable changes in **salt-lint** are documented below.
 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [Unreleased]
 
-## [0.6.1] (2021-06-01)
+## [0.7.0] (2021-11-01)
+### Added
+- Add Python 3.10 support ([#265](https://github.com/warpnet/salt-lint/pull/265)).
+- Add initial man page ([#270](https://github.com/warpnet/salt-lint/pull/270)).
 
+### Fixed
+- Close temporary file after writing to STDIN ([#263](https://github.com/warpnet/salt-lint/pull/263)).
+
+## [0.6.1] (2021-06-01)
+### Removed
 - Remove rule 218 because of a false positive
 
 ## [0.6.0] (2021-06-01)
@@ -30,7 +40,8 @@ All notable changes in **salt-lint** are documented below.
 - Rules 901-915 to check for deprecated states and state options ([#214](https://github.com/warpnet/salt-lint/pull/214)).
 - This `CHANGELOG.md` file to be able to list all notable changes for each version of **salt-lint** ([#223](https://github.com/warpnet/salt-lint/pull/223)).
 
-[Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/warpnet/salt-lint/compare/v0.6.1...v0.7.0
 [0.6.1]: https://github.com/warpnet/salt-lint/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/warpnet/salt-lint/compare/v0.5.2...v0.6.0
 [0.5.2]: https://github.com/warpnet/salt-lint/compare/v0.5.1...v0.5.2

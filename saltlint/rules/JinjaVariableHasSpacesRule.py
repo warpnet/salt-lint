@@ -14,7 +14,9 @@ class JinjaVariableHasSpacesRule(JinjaRule):
     severity = 'LOW'
     version_added = 'v0.0.1'
 
-    bracket_regex = re.compile(r"{{[^ \-\+\d]|{{[-\+][^ ]|[^ \-\+\d]}}|[^ {][-\+\d]}}")
+    bracket_regex = re.compile(
+        r"{{[^ {}\-\+\d]|{{[-\+][^ {}]|[^ {}\-\+\d]}}|[^ {}][-\+\d]}}"
+    )
 
     def match(self, file, line):
         return self.bracket_regex.search(line)

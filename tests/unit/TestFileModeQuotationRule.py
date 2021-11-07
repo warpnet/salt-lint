@@ -30,6 +30,18 @@ testfile:
     - dir_mode: 0775
 '''
 
+MODE_MISSING_QUOTATION_LINE = '''
+testfile:
+  file.managed:
+    - name: /tmp/badfile
+    - user: root
+    - group: root
+    - mode: "0700
+    - file_mode: '0660
+    - dir_mode: 0775"
+'''
+
+
 class TestModeQuotationRule(unittest.TestCase):
     collection = RulesCollection()
 
@@ -43,4 +55,8 @@ class TestModeQuotationRule(unittest.TestCase):
 
     def test_statement_negative(self):
         results = self.runner.run_state(BAD_MODE_QUOTATION_LINE)
+        self.assertEqual(3, len(results))
+
+    def test_missing_quotes(self):
+        results = self.runner.run_state(MODE_MISSING_QUOTATION_LINE)
         self.assertEqual(3, len(results))

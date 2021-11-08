@@ -17,7 +17,25 @@ class FileModeQuotationRule(Rule):
     tags = ['formatting']
     version_added = 'v0.0.3'
 
-    regex = re.compile(r"^\s+- ((dir_)|(file_))?mode: [0-9]{3,4}")
+    regex = re.compile(
+        r"""^\s+
+        -\                   # whitespace escaped due to re.VERBOSE
+        (?:dir_|file_)?mode  # file_mode, dir_mode or mode
+        :\                   # whitespace escaped duo to re.VERBOSE
+        (?:
+            (\d{3,4})        # mode without quotation
+          |
+            (['"]\d{3,4}     # mode prefixed with quotation
+              (?:
+                  $          # end of line
+                |            # or
+                  [^\d'"]    # ending quotation missing
+              )
+            )
+        )
+        """,
+        re.VERBOSE
+    )
 
     def match(self, file, line):
         return self.regex.search(line)

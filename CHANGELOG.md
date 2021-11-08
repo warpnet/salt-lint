@@ -4,6 +4,8 @@ All notable changes in **salt-lint** are documented below.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- False positive when detecting missing spaces in Jinja variables when the Jinja statement is nested in literal braces ([#272](https://github.com/warpnet/salt-lint/pull/272)).
 
 ## [0.7.0] (2021-11-01)
 ### Added

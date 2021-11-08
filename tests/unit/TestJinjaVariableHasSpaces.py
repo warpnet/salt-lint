@@ -51,6 +51,10 @@ DOUBLE_QUOTED_INTEGER_LEADING_SPACE_IS_INVALID = '''
 {{"{{0}}" }}
 '''
 
+NESTED_LITERAL_BRACES = '''
+    - name: '{${{ key }}}'
+'''
+
 class TestJinjaVariableHasSpaces(unittest.TestCase):
     collection = RulesCollection()
 
@@ -98,3 +102,12 @@ class TestJinjaVariableHasSpaces(unittest.TestCase):
     def test_variable_bad_ends_with_integer_right(self):
         results = self.runner.run_state(BAD_VARIABLE_ENDING_IN_INTEGER_RIGHT)
         self.assertEqual(1, len(results))
+
+    def test_nested_literal_braces(self):
+        """
+        Check if Jinja variables inside nested literal braces are identified
+        correctly. See related GitHub issue:
+        https://github.com/warpnet/salt-lint/issues/257
+        """
+        results = self.runner.run_state(NESTED_LITERAL_BRACES)
+        self.assertEqual(0, len(results))

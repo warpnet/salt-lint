@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 ### Fixed
+- False positive when detecting missing spaces in Jinja variables when the Jinja statement is nested in literal braces ([#272](https://github.com/warpnet/salt-lint/pull/272)).
 - Ensure a single missing quote in the file mode is also detected as incorrect quotation of a file mode ([#273](https://github.com/warpnet/salt-lint/pull/273)).
 
 ## [0.7.0] (2021-11-01)

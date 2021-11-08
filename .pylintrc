@@ -16,3 +16,4 @@ disable=
     duplicate-code,
     dangerous-default-value,
     import-error,
+    fixme,

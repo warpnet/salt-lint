@@ -41,6 +41,18 @@ testfile:
     - dir_mode: 0775"
 '''
 
+NETWORK_MANAGED_MODE = '''
+bond0:
+  network.managed:
+    - type: bond
+    - mode: 802.3ad
+    - proto: static
+    - ipaddr: 10.1.1.77
+    - netmask: 255.255.255.0
+    - gateway: 10.1.1.1
+    - dns: 10.1.1.1
+'''
+
 
 class TestModeQuotationRule(unittest.TestCase):
     collection = RulesCollection()
@@ -60,3 +72,12 @@ class TestModeQuotationRule(unittest.TestCase):
     def test_missing_quotes(self):
         results = self.runner.run_state(MODE_MISSING_QUOTATION_LINE)
         self.assertEqual(3, len(results))
+
+    def test_network_mode(self):
+        """
+        Ensure the mode argument in the network.managed state gets ignored. See
+        related GitHub issue:
+        https://github.com/warpnet/salt-lint/issues/255
+        """
+        results = self.runner.run_state(NETWORK_MANAGED_MODE)
+        self.assertEqual(0, len(results))

@@ -24,13 +24,16 @@ class FileModeQuotationRule(Rule):
         :\                   # whitespace escaped duo to re.VERBOSE
         (?:
             (\d{3,4})        # mode without quotation
+            (?:
+                ['"]         # followed by a quotation character
+              |
+                \s           # followed by a whitespace
+              |
+                $            # followed by EOL
+            )
           |
             (['"]\d{3,4}     # mode prefixed with quotation
-              (?:
-                  $          # end of line
-                |            # or
-                  [^\d'"]    # ending quotation missing
-              )
+              (?:[^\d'"]|$)  # not followed by digit, quoation or EOL
             )
         )
         """,
@@ -38,4 +41,6 @@ class FileModeQuotationRule(Rule):
     )
 
     def match(self, file, line):
+        # TODO: when salt-lint becomes state aware it should ignore the mode
+        # argument in the network.managed state.
         return self.regex.search(line)

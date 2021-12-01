@@ -10,9 +10,9 @@ Disable formatting checks using `-x formatting`.
 
 _Please mind the trailing whitespaces on every line in the code snippet_
 ```yaml
-/tmp/testfile:	
-  file.managed: 
-    - source:/salt://lorem/ipsum/dolor   
+/tmp/testfile:	⁠
+  file.managed: ⁠
+    - source:/salt://lorem/ipsum/dolor   ⁠
 ```
 
 ### Correct code

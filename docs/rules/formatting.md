@@ -72,7 +72,7 @@ ___
 
 ## 204
 
-**Lines should be no longer that 160 chars**
+**Lines should be no longer than 160 chars**
 
 ### Problematic code
 ```yaml

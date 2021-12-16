@@ -8,7 +8,7 @@ from saltlint.linter.rule import Rule
 
 class LineTooLongRule(Rule):
     id = '204'
-    shortdesc = 'Lines should be no longer that 160 chars'
+    shortdesc = 'Lines should be no longer than 160 chars'
     description = (
         'Long lines make code harder to read and '
         'code review more difficult'

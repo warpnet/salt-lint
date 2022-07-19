@@ -30,6 +30,7 @@ Rule | Description
 [212](formatting/#212) | Most files should not contain irregular spaces
 [213](formatting/#213) | SaltStack recommends using `cmd.run` together with `onchanges`, rather than `cmd.wait`
 [214](formatting/#214) | SLS file with a period in the name (besides the suffix period) can not be referenced
+[219](formatting/#219) | Nested dicts should be properly over-indented
 
 ___
 

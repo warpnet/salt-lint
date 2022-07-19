@@ -345,3 +345,56 @@ As described by the [official SaltStack documentation](https://docs.saltstack.co
 > The initial implementation of top.sls and Include declaration followed the python import model where a slash is represented as a period. This means that a SLS file with a period in the name ( besides the suffix period) can not be referenced. For example, webserver_1.0.sls is not referenceable because webserver_1.0 would refer to the directory/file webserver_1/0.sls
 >
 > The same applies for any subdirectories, this is especially 'tricky' when git repos are created. Another command that typically can't render it's output is `state.show_sls` of a file in a path that contains a dot.
+
+___
+
+## 219
+
+**Nested dictionaries should be over-indented**
+
+As described by the [official SaltStack documentation](https://docs.saltproject.io/en/latest/topics/troubleshooting/yaml_idiosyncrasies.html#nested-dictionaries):
+
+> When dictionaries are nested within other data structures (particularly lists), the indentation logic sometimes changes. Examples of where this might happen include context and default options
+
+```yaml
+/etc/http/conf/http.conf:
+  file:
+    - managed
+    - source: salt://apache/http.conf
+    - user: root
+    - group: root
+    - mode: 644
+    - template: jinja
+    - context:
+        custom_var: "override"
+    - defaults:
+        custom_var: "default value"
+        other_var: 123
+```
+> Notice that while the indentation is two spaces per level, for the values under the context and defaults options there is a four-space indent. If only two spaces are used to indent, then those keys will be considered part of the same dictionary that contains the context key, and so the data will not be loaded correctly.
+
+### Problematic code
+```yaml
+/etc/http/conf/http.conf:
+  file.managed:
+    - source: salt://apache/http.conf
+    - template: jinja
+    - context:
+      custom_var: "override"
+    - defaults:
+      custom_var: "default value"
+      other_var: 123
+```
+
+### Correct code
+```yaml
+/etc/http/conf/http.conf:
+  file.managed:
+    - source: salt://apache/http.conf
+    - template: jinja
+    - context:
+        custom_var: "override"
+    - defaults:
+        custom_var: "default value"
+        other_var: 123
+```

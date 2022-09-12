@@ -41,6 +41,20 @@ testfile:
     - onchange_any:
         - yetanotherfile
         - onemorefile
+    - on_change:
+        - otherfile
+    - on_change_in:
+        - anotherfile
+    - on_change_any:
+        - yetanotherfile
+        - onemorefile
+    - on_changes:
+        - otherfile
+    - on_changes_in:
+        - anotherfile
+    - on_changes_any:
+        - yetanotherfile
+        - onemorefile
 '''
 
 class TestTypoOnchangesRule(unittest.TestCase):
@@ -56,4 +70,4 @@ class TestTypoOnchangesRule(unittest.TestCase):
 
     def test_statement_negative(self):
         results = self.runner.run_state(BAD_ONCHANGES_LINE)
-        self.assertEqual(3, len(results))
+        self.assertEqual(9, len(results))

@@ -13,4 +13,4 @@ class TypoOnchangesRule(TypographicalErrorRule):
     shortdesc = '"onchange" looks like a typo. Did you mean "onchanges"?'
     description = '"onchange" looks like a typo. Did you mean "onchanges"?'
     version_added = 'v0.6.0'
-    regex = re.compile(r"^\s+- onchange(|_in|_any):")
+    regex = re.compile(r"^\s+- (on_?change(|_in|_any)|on_changes(|_in|_any)):")

@@ -16,7 +16,7 @@
             alt="PyPI - License">
     </a>
     <a href="https://github.com/warpnet/salt-lint/actions">
-        <img src="https://img.shields.io/github/workflow/status/warpnet/salt-lint/tests?style=for-the-badge&color=blue"
+        <img src="https://img.shields.io/github/actions/workflow/status/warpnet/salt-lint/tox.yml?style=for-the-badge&color=blue&branch=main"
             alt="GitHub Workflow Status">
     </a>
     <a href="https://github.com/warpnet/salt-lint/graphs/contributors">

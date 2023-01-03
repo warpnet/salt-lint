@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Added
 - Rule 219 for catching missing over-indentation of nested dicts ([#284](https://github.com/warpnet/salt-lint/pull/284)).
+- Add Python 3.11 support.
 
 ## [0.8.0] (2021-11-09)
 ### Fixed

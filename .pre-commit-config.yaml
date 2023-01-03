@@ -31,7 +31,7 @@ repos:
     - '--skip="./.git*,./saltlint/rules/FileManagedReplaceContentRule.py"'
     - '-L alse'
 - repo: https://github.com/PyCQA/pylint.git
-  rev: v2.9.5
+  rev: v2.15.9
   hooks:
   - id: pylint
     exclude: ^docs/

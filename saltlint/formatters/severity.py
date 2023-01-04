@@ -9,19 +9,19 @@ from saltlint.formatters.base import BaseFormatter
 class SeverityFormatter(BaseFormatter):
 
     def format(self, problem):
-        formatstr = u"{0} {sev} {1}\n{2}:{3}\n{4}\n"
+        formatstr = "{0} {sev} {1}\n{2}:{3}\n{4}\n"
 
         color = self.get_colors(self.colored)
         return formatstr.format(
-            u'{0}[{1}]{2}'.format(color['RED'], problem.rule.id,
-                                  color['ENDC']),
-            u'{0}{1}{2}'.format(color['LIGHT_RED'], problem.message,
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['BLUE'], problem.filename,
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['CYAN'], str(problem.linenumber),
-                                color['ENDC']),
-            u'{0}{1}{2}'.format(color['MAGENTA'], problem.line, color['ENDC']),
-            sev=u'{0}[{1}]{2}'.format(color['RED'], problem.rule.severity,
-                                      color['ENDC'])
+            '{0}[{1}]{2}'.format(color['RED'], problem.rule.id,
+                                 color['ENDC']),
+            '{0}{1}{2}'.format(color['LIGHT_RED'], problem.message,
+                               color['ENDC']),
+            '{0}{1}{2}'.format(color['BLUE'], problem.filename,
+                               color['ENDC']),
+            '{0}{1}{2}'.format(color['CYAN'], str(problem.linenumber),
+                               color['ENDC']),
+            '{0}{1}{2}'.format(color['MAGENTA'], problem.line, color['ENDC']),
+            sev='{0}[{1}]{2}'.format(color['RED'], problem.rule.severity,
+                                     color['ENDC'])
         )

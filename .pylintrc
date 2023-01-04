@@ -4,7 +4,6 @@ disable=
     missing-docstring,
     invalid-name,
     unused-argument,
-    no-self-use,
     useless-object-inheritance,
     too-many-instance-attributes,
     too-few-public-methods,
@@ -17,3 +16,4 @@ disable=
     dangerous-default-value,
     import-error,
     fixme,
+    consider-using-f-string,

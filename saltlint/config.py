@@ -26,7 +26,7 @@ class Configuration(object):
 
         # Read the file contents
         if os.path.exists(file):
-            with open(file, 'r') as f:
+            with open(file, 'r', encoding="UTF-8") as f:
                 content = f.read()
         else:
             content = None

@@ -13,6 +13,6 @@ class Match(object):
         self.message = message or rule.shortdesc
 
     def __repr__(self):
-        formatstr = u"[{0}] ({1}) matched {2}:{3} {4}"
+        formatstr = "[{0}] ({1}) matched {2}:{3} {4}"
         return formatstr.format(self.rule.id, self.message,
                                 self.filename, self.linenumber, self.line)

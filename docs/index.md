@@ -164,16 +164,13 @@ severity: True
 
 ### Pre-commit Setup
 
-To use salt-lint with [pre-commit](https://pre-commit.com),  just add the following to your local repo's `.pre-commit-config.yaml` file. Prior to version 0.12.0 of [pre-commit](https://pre-commit.com) the file was `hooks.yaml` (now `.pre-commit-config.yaml`).
+To use salt-lint with [pre-commit](https://pre-commit.com), just add the following to your local repo's `.pre-commit-config.yaml` file. Prior to version 0.12.0 of [pre-commit](https://pre-commit.com) the file was `hooks.yaml` (now `.pre-commit-config.yaml`).
 
 ```yaml
 ---
-
-# For use with pre-commit.
-# See usage instructions at http://pre-commit.com
-
--   repo: https://github.com/warpnet/salt-lint
-    rev: v0.7.0
+repos:
+  - repo: https://github.com/warpnet/salt-lint
+    rev: v0.8.0
     hooks:
       - id: salt-lint
 ```

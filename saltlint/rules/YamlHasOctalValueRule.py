@@ -17,7 +17,7 @@ class YamlHasOctalValueRule(Rule):
     tags = ['formatting']
     version_added = 'v0.0.6'
 
-    bracket_regex = re.compile(r"^[^:]+:\s{0,}0[0-9]{1,}\s{0,}((?={#)|(?=#)|(?=$))")
+    bracket_regex = re.compile(r"^.*(?:\s|[^\d]{2}:)0\d+(?:[\s#{]|$)")
 
     def match(self, file, line):
         return self.bracket_regex.search(line)

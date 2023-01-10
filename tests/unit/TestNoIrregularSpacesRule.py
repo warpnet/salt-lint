@@ -8,13 +8,6 @@ from saltlint.rules.NoIrregularSpacesRule import NoIrregularSpacesRule
 from tests import RunFromText
 
 
-try:
-    # Python 2: "unicode" is built-in
-    unicode
-except NameError:
-    unicode = str
-
-
 LINE = '''
 /tmp/testfile:
     file.managed:
@@ -31,7 +24,7 @@ class TestNoIrregularSpacesRule(unittest.TestCase):
 
     def test_with_irregular_spaces(self):
         for irregular in NoIrregularSpacesRule.irregular_spaces:
-            results = self.runner.run_state(unicode(LINE).format(space=irregular))
+            results = self.runner.run_state(LINE.format(space=irregular))
             self.assertEqual(1, len(results))
 
     def test_without_irregular_spaces(self):

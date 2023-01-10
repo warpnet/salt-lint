@@ -32,11 +32,11 @@ def long_description():
     files.
     """
     # Read content from the README.md file
-    with open('README.md') as readme_file:
+    with open('README.md', encoding='utf-8') as readme_file:
         readme = readme_file.read()
 
     # Read content from the CHANGELOG.md file
-    with open('CHANGELOG.md') as changelog_file:
+    with open('CHANGELOG.md', encoding='utf-8') as changelog_file:
         changelog = changelog_file.read()
 
     return readme + changelog

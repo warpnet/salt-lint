@@ -3,6 +3,10 @@ All notable changes in **salt-lint** are documented below.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.1] (2023-01-16)
+### Fixed
+- Revert changes to rule 210 ([!299](https://github.com/warpnet/salt-lint/issues/299))
+
 ## [0.9.0] (2023-01-13)
 ### Added
 - Rule 219 for catching missing over-indentation of nested dicts ([#284](https://github.com/warpnet/salt-lint/pull/284)).
@@ -50,7 +54,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Rules 901-915 to check for deprecated states and state options ([#214](https://github.com/warpnet/salt-lint/pull/214)).
 - This `CHANGELOG.md` file to be able to list all notable changes for each version of **salt-lint** ([#223](https://github.com/warpnet/salt-lint/pull/223)).
 
-[Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/warpnet/salt-lint/compare/v0.9.1...HEAD
+[0.9.1]: https://github.com/warpnet/salt-lint/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/warpnet/salt-lint/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/warpnet/salt-lint/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/warpnet/salt-lint/compare/v0.6.1...v0.7.0

@@ -20,13 +20,15 @@ class Configuration(object):
 
     def __init__(self, options={}):
         self._options = options
-        # Configuration file to use, defaults to ".salt-lint".
         config = options.get('c')
-        file = config if config is not None else '.salt-lint'
+
+        # Configuration file is not set, defaults to ".salt-lint".
+        if config is None:
+            config = get_config_path()
 
         # Read the file contents
-        if os.path.exists(file):
-            with open(file, 'r', encoding="UTF-8") as f:
+        if os.path.exists(config):
+            with open(config, 'r', encoding="UTF-8") as f:
                 content = f.read()
         else:
             content = None
@@ -130,3 +132,17 @@ class Configuration(object):
         if rule not in self.rules or 'ignore' not in self.rules[rule]:
             return False
         return self.rules[rule]['ignore'].match_file(filepath)
+
+def get_config_path():
+    """Return local config file."""
+    dirname = basename = os.getcwd()
+    while basename:
+        filename = os.path.abspath(os.path.join(dirname, ".salt-lint"))
+        if os.path.exists(filename):
+            return filename
+        if os.path.exists(os.path.abspath(os.path.join(dirname, ".git"))):
+            # Avoid looking outside .git folders as we do not want end-up
+            # picking config files from upper level projects if current
+            # project has no config.
+            return None
+        (dirname, basename) = os.path.split(dirname)

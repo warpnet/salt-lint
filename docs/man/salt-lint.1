@@ -66,8 +66,9 @@ add the severity to the standard output
 Specify configuration file to use. Defaults to ".saltlint"
 .SH FILES
 $PWD/.salt-lint -- Salt-lint checks the working directory for the presence of
-this file and applies any configuration found there. The configuration file
-location can also be overridden via the -c path/to/file CLI flag.
+this yaml formatted file and applies any configuration found there. The
+configuration file location can also be overridden via the -c path/to/file
+CLI flag.
 
 If a value is provided on both the command line and via a configuration file,
 the values will be merged (if a list like exclude_paths), or the True value

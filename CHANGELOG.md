@@ -3,6 +3,10 @@ All notable changes in **salt-lint** are documented below.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- Add Python 3.12 support ([#315](https://github.com/warpnet/salt-lint/pull/315)).
+
 ## [0.9.2] (2023-02-09)
 ### Fixed
 - Ensure version identification adheres to [PEP440](https://peps.python.org/pep-0440/) ([!304](https://github.com/warpnet/salt-lint/issues/304))

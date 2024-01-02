@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python: ['3.6', '3.7', '3.8', '3.9', '3.10', '3.11']
+        python: ['3.6', '3.7', '3.8', '3.9', '3.10', '3.11', '3.12']
 
     steps:
 
@@ -29,9 +29,9 @@ jobs:
 
       - name: Run syntax checker using Tox
         run: tox -e lint
-        # Skip linting on EOL Python version because the pre-commit actions
-        # required supported versions.
-        if: ${{ matrix.python != '3.6' }}
+        # Skip linting on EOL and newer Python version because the pre-commit
+        # actions required supported versions.
+        if: ${{ matrix.python != '3.6' && matrix.python != '3.12' }}
 
       - name: Run Tox
         # Run tox using the version of Python in `PATH`

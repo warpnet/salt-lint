@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - Add Python 3.12 support ([#315](https://github.com/warpnet/salt-lint/pull/315)).
 
+### Fixed
+- Ignore false positive result in rule 210 ([#303](https://github.com/warpnet/salt-lint/pull/303)).
+
 ## [0.9.2] (2023-02-09)
 ### Fixed
 - Ensure version identification adheres to [PEP440](https://peps.python.org/pep-0440/) ([!304](https://github.com/warpnet/salt-lint/issues/304))

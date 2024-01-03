@@ -24,7 +24,7 @@ class YamlHasOctalValueRule(Rule):
     def match(self, file, line):
         found = self.bracket_regex.search(line)
         if found:
-            exc = self.exclude_regex.search(found.group(0))
-            if exc:
+            # Skip false positive result if the exclude_regex matches.
+            if self.exclude_regex.search(found.group(0)):
                 return None
         return found

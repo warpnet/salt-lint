@@ -31,9 +31,20 @@ apache_disable_default_site:
 
 # MAC addresses shouldn't be matched, for more information see:
 # https://github.com/warpnet/salt-lint/issues/202
-infoblox_remove_record:
+infoblox_remove_record1:
   infoblox_host_record.absent:
     - mac: 4c:f2:d3:1b:2e:05
+
+infoblox_remove_record2:
+  infoblox_host_record.absent:
+    - mac: 05:f2:d3:1b:2e:4c
+
+# time values should not trigger this rule
+some_calendar_entry:
+  file.managed:
+    - name: /tmp/my_unit_file
+    - contents: |
+        oncalendar=Sun 18:00
 '''
 
 BAD_NUMBER_STATE = '''

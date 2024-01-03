@@ -19,5 +19,12 @@ class YamlHasOctalValueRule(Rule):
 
     bracket_regex = re.compile(r"^[^:]+:\s{0,}0[0-9]{1,}\s{0,}((?={#)|(?=#)|(?=$))")
 
+    exclude_regex = re.compile(r"[ T]\d\d:\d\d(?:[: ]|$)")
+
     def match(self, file, line):
-        return self.bracket_regex.search(line)
+        found = self.bracket_regex.search(line)
+        if found:
+            # Skip false positive result if the exclude_regex matches.
+            if self.exclude_regex.search(found.group(0)):
+                return None
+        return found

@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Added
 - Add Python 3.12 support ([#315](https://github.com/warpnet/salt-lint/pull/315)).
+- Lookup configuration file in parent directory ([#305](https://github.com/warpnet/salt-lint/pull/305)).
 
 ### Fixed
 - Ignore false positive result in rule 210 ([#303](https://github.com/warpnet/salt-lint/pull/303)).

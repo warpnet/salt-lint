@@ -26,8 +26,8 @@ class Configuration(object):
         if config is None:
             config = get_config_path()
 
-        # Read the file contents
-        if os.path.exists(config):
+        # Read the configuration file contents if it exists.
+        if config and os.path.exists(config):
             with open(config, 'r', encoding="UTF-8") as f:
                 content = f.read()
         else:
@@ -134,7 +134,7 @@ class Configuration(object):
         return self.rules[rule]['ignore'].match_file(filepath)
 
 def get_config_path():
-    """Return local config file."""
+    """Return local configuration file."""
     dirname = basename = os.getcwd()
     while basename:
         filename = os.path.abspath(os.path.join(dirname, ".salt-lint"))
@@ -146,3 +146,4 @@ def get_config_path():
             # project has no config.
             return None
         (dirname, basename) = os.path.split(dirname)
+    return None

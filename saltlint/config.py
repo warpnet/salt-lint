@@ -133,6 +133,7 @@ class Configuration(object):
             return False
         return self.rules[rule]['ignore'].match_file(filepath)
 
+
 def get_config_path():
     """Return local configuration file."""
     dirname = basename = os.getcwd()

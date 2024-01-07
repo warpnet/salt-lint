@@ -1,0 +1,60 @@
+[build-system]
+requires = [
+  "setuptools >= 65.3.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version"]
+name = "salt-lint"
+description = "A command-line utility that checks for best practices in SaltStack."
+readme = "README.md"
+requires-python = ">=3.6"
+authors = [
+  {name = "Roald Nefs", email = "roald.nefs@warpnet.nl"},
+]
+maintainers = [
+  {name = "Roald Nefs", email = "roald.nefs@warpnet.nl"},
+  {name = "Jeffrey Bouter", email = "jeffrey.bouter@warpnet.nl"},
+]
+license = {text = "MIT License"}
+keywords = ['salt', 'saltstack', 'lint', 'linter', 'checker']
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "Operating System :: OS Independent",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Bug Tracking",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Utilities",
+]
+dependencies = [
+    "pyyaml",
+    "pathspec>=0.6.0",
+]
+
+[project.scripts]
+salt-lint = "saltlint.cli:run"
+
+[project.urls]
+homepage = "https://github.com/warpnet/salt-lint"
+documentation = "https://salt-lint.readthedocs.io/en/latest/"
+repository = "https://github.com/warpnet/salt-lint"
+issues = "https://github.com/warpnet/salt-lint/issues"
+changelog = "https://raw.githubusercontent.com/warpnet/salt-lint/main/CHANGELOG.md"
+
+[tool.setuptools.dynamic]
+version = {attr = "saltlint.__version__"}

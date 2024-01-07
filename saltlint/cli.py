@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013-2014 Will Thames <will@thames.id.au>
-# Modified work Copyright (c) 2020 Warpnet B.V.
+# Modified work Copyright (c) 2020-2024 Warpnet B.V.
 
 from __future__ import print_function
 
@@ -9,7 +9,7 @@ import os
 import sys
 import tempfile
 
-from saltlint import NAME, VERSION, DESCRIPTION
+from saltlint import __version__
 from saltlint import formatters
 from saltlint.config import Configuration, SaltLintConfigError, default_rulesdir
 from saltlint.linter.collection import RulesCollection
@@ -80,13 +80,13 @@ def run(args=None):
 
 def init_argument_parser():
     """Returns a new initialized argument parser."""
-    parser = argparse.ArgumentParser(prog=NAME, description=DESCRIPTION)
+    parser = argparse.ArgumentParser()
 
     # The files argument is optional as STDIN is always read
     parser.add_argument(dest='files', metavar='FILE', nargs='*', default=[],
                         help='one or more files or paths')
 
-    parser.add_argument('--version', action='version', version='%(prog)s {}'.format(VERSION))
+    parser.add_argument('--version', action='version', version='%(prog)s {}'.format(__version__))
     parser.add_argument('-L', dest='listrules', default=False,
                         action='store_true', help="list all the rules")
     parser.add_argument('-r', action='append', dest='rulesdir',

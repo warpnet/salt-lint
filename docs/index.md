@@ -136,6 +136,8 @@ jobs:
 
 Salt-lint supports local configuration via a `.salt-lint` configuration file. Salt-lint checks the working directory for the presence of this file and applies any configuration found there. The configuration file location can also be overridden via the `-c path/to/file` CLI flag.
 
+If salt-lint cannot find a configuration file in the current directory it attempts to locate it in a parent directory. However salt-lint does not try to load configuration that is outside the git repository.
+
 If a value is provided on both the command line and via a configuration file, the values will be merged (if a list like **exclude_paths**), or the **True** value will be preferred, in the case of something like **quiet**.
 
 The following values are supported, and function identically to their CLI counterparts:

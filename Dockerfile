@@ -11,7 +11,7 @@ WORKDIR /src
 COPY . /src/
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -eux \
- && python3 setup.py install \
+ && python3 -m pip install . \
  && salt-lint --version \
  && find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf \
  && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf

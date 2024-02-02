@@ -52,14 +52,25 @@ class Rule(object):
         if not self.is_valid_language(file):
             return matches
 
+        last = {'line': '', 'skips': []}
         # arrays are 0-based, line numbers are 1-based
         # so use prev_line_no as the counter
         for (prev_line_no, line) in enumerate(text.split("\n")):
+            skips = []
+
             if line.lstrip().startswith('#'):
                 continue
 
             rule_id_list = get_rule_skips_from_line(line)
-            if self.id in rule_id_list:
+
+            if last['line'].startswith('-') and '|' in last['line'] or '>' in last['line']:
+                for previous_skip in last['skips']:
+                    if not previous_skip in rule_id_list:
+                        skips.append(previous_skip)
+
+            last = {'line': line.lstrip(), 'skips': rule_id_list}
+
+            if self.id in skips:
                 continue
 
             result = self.match(file, line)
@@ -70,6 +81,7 @@ class Rule(object):
                 message = result
             matches.append(Match(prev_line_no+1, line,
                                  file['path'], self, message))
+
 
         return matches
 

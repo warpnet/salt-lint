@@ -398,3 +398,42 @@ As described by the [official SaltStack documentation](https://docs.saltproject.
         custom_var: "default value"
         other_var: 123
 ```
+
+___
+
+## 220
+
+**SLS and JINJA files must end with only one newline character**
+
+As described by the [POSIX standard](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_206)
+>3.206 Line
+> 
+>A sequence of zero or more non- 'newline' characters plus a terminating 'newline' character.
+
+### Problematic code
+```yaml
+# No <newline> in <End Of File>
+debug_output:
+  cmd.run:
+    - name: echo hello<EOF>
+```
+
+### Problematic code
+```yaml
+# 2 or more <newline> in <End Of File>
+debug_output:
+  cmd.run:
+    - name: echo hello
+
+<EOF>
+```
+
+
+### Correct code
+```yaml
+# 1 <newline> in <End Of File>
+debug_output:
+  cmd.run:
+    - name: echo hello
+<EOF>
+```

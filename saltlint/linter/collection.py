@@ -4,7 +4,6 @@
 
 from collections import defaultdict
 import os
-import codecs
 import sys
 
 from saltlint.config import Configuration
@@ -35,7 +34,7 @@ class RulesCollection(object):
         matches = []
 
         try:
-            with codecs.open(statefile['path'], mode='rb', encoding='utf-8') as f:
+            with open(statefile['path'], mode='r', encoding='utf-8') as f:
                 text = f.read()
         except IOError as e:
             print("WARNING: Couldn't open %s - %s" %

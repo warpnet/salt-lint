@@ -1,7 +1,7 @@
 ---
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks.git
-  rev: v4.0.1
+  rev: v6.0.0
   hooks:
   - id: end-of-file-fixer
   - id: trailing-whitespace
@@ -19,19 +19,19 @@ repos:
   - id: hadolint
     files: docker/Dockerfile
 - repo: https://github.com/pycqa/flake8.git
-  rev: 5.0.4
+  rev: 7.3.0
   hooks:
   - id: flake8
     exclude: '^$|.git|tests|env|docs'
 - repo: https://github.com/codespell-project/codespell.git
-  rev: v2.1.0
+  rev: v2.4.2
   hooks:
   - id: codespell
     args:
     - '--skip="./.git*,./saltlint/rules/FileManagedReplaceContentRule.py"'
     - '-L alse'
 - repo: https://github.com/PyCQA/pylint.git
-  rev: v2.15.9
+  rev: v4.0.5
   hooks:
   - id: pylint
     exclude: ^docs/

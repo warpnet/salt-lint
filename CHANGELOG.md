@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Drop Python 3.6 support ([#319](https://github.com/warpnet/salt-lint/pull/319)).
 
 ### Added
+- Add Python 3.13 and 3.14 support.
 - Add Python 3.12 support ([#315](https://github.com/warpnet/salt-lint/pull/315)).
 - Lookup configuration file in parent directory ([#305](https://github.com/warpnet/salt-lint/pull/305)).
 

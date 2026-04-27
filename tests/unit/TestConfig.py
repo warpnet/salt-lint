@@ -38,7 +38,7 @@ class TestConfig(unittest.TestCase):
 
         # Specify the temporary file as if it was passed as a command line
         # argument.
-        self.config = Configuration(dict(c=self.fp.name))
+        self.config = Configuration({"c": self.fp.name})
 
     def tearDown(self):
         # Close the temporary configuration file.

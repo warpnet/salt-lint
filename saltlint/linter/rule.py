@@ -69,7 +69,7 @@ class Rule(object):
             if isinstance(result, str):
                 message = result
             matches.append(Match(prev_line_no+1, line,
-                                 file['path'], self, message))
+                                 file['path'], self, message=message))
 
         return matches
 
@@ -84,7 +84,7 @@ class Rule(object):
         results = self.matchtext(file, text)
 
         for line, section, message in results:
-            matches.append(Match(line, section, file['path'], self, message))
+            matches.append(Match(line, section, file['path'], self, message=message))
 
         return matches
 

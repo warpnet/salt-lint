@@ -5,7 +5,7 @@
 
 class Match(object):
 
-    def __init__(self, linenumber, line, filename, rule, message=None):
+    def __init__(self, linenumber, line, filename, rule, *, message=None):
         self.linenumber = linenumber
         self.line = line
         self.filename = filename

@@ -28,7 +28,7 @@ class TestRunner(unittest.TestCase):
         the runner.
         """
         exclude_paths = ['first.sls', 'second.sls']
-        config = Configuration(dict(exclude_paths=exclude_paths))
+        config = Configuration({"exclude_paths": exclude_paths})
         runner = Runner([], 'init.sls', config)
 
         self.assertTrue(

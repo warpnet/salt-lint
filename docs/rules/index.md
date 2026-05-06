@@ -53,7 +53,7 @@ Disable recommendation checks using `-x recommendation`
 
 Rule | Description
 :-:|:--
-[801](recommendations/#801) | Using the `quiet` argument with `cmd.run` is deprecated. Use `output_loglevel: quiet`
+[801](recommendations/#801) | cron.present should have an identifier
 
 ___
 

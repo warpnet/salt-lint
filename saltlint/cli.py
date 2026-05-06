@@ -16,7 +16,7 @@ from saltlint.linter.collection import RulesCollection
 from saltlint.linter.runner import Runner
 
 
-def run(args=None):
+def run(args=None):  # pylint: disable=R0911
     """Run the linter and return the exit code."""
     parser = init_argument_parser()
     options = parser.parse_args(args if args is not None else sys.argv[1:])
@@ -60,7 +60,11 @@ def run(args=None):
         print(collection.listtags())
         return 0
 
-    formatter = initialize_formatter(config)
+    try:
+        formatter = initialize_formatter(config)
+    except SaltLintConfigError as exc:
+        print(exc, file=sys.stderr)
+        return 2
 
     problems = []
     for file_name in file_names:
@@ -129,6 +133,8 @@ def init_argument_parser():
                         help='parse the output as JSON')
     parser.add_argument('--severity', dest='severity', action='store_true', default=False,
                         help='add the severity to the standard output')
+    parser.add_argument('--codeclimate', dest='codeclimate', action='store_true', default=False,
+                        help='parse the output as CodeClimate / GitLab Code Quality JSON')
     parser.add_argument('-c', help='Specify configuration file to use.  Defaults to ".salt-lint"')
 
     return parser
@@ -136,9 +142,15 @@ def init_argument_parser():
 
 def initialize_formatter(config):
     """Return the initialized output formatter based upon the configuration."""
-    if config.json:  # pylint: disable=R1705
+    if config.codeclimate and (config.json or config.severity):
+        raise SaltLintConfigError(
+            "--codeclimate cannot be combined with --json or --severity"
+        )
+    if config.codeclimate:
+        return formatters.CodeClimateFormatter()
+    if config.json:
         return formatters.JsonFormatter()
-    elif config.severity:  # pylint: disable=R1705
+    if config.severity:
         return formatters.SeverityFormatter(config.colored)
     return formatters.Formatter(config.colored)
 

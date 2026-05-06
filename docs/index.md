@@ -60,7 +60,7 @@ The following is the output from `salt-lint --help`, providing an overview of th
 
 ```bash
 usage: salt-lint [-h] [--version] [-L] [-r RULESDIR] [-R] [-t TAGS] [-T] [-v] [-x SKIP_LIST] [--nocolor] [--force-color]
-                 [--exclude EXCLUDE_PATHS] [--json] [--severity] [-c C]
+                 [--exclude EXCLUDE_PATHS] [--json] [--severity] [--codeclimate] [-c C]
                  files [files ...]
 
 positional arguments:
@@ -86,6 +86,7 @@ optional arguments:
                         path to directories or files to skip. This option is repeatable.
   --json                parse the output as JSON
   --severity            add the severity to the standard output
+  --codeclimate         parse the output as CodeClimate / GitLab Code Quality JSON
   -c C                  Specify configuration file to use. Defaults to ".salt-lint"
 ```
 

@@ -106,6 +106,11 @@ class Configuration(object):
         if 'severity' in config:
             self.severity = config['severity']
 
+        # Parse codeclimate
+        self.codeclimate = self._options.get('codeclimate', False)
+        if 'codeclimate' in config:
+            self.codeclimate = config['codeclimate']
+
         # Parse rule specific configuration, the configuration can be listed by
         # the rule ID and/or tag.
         self.rules = {}
